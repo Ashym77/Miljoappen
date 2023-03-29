@@ -6,6 +6,14 @@ const Random: NextPage<Props> = ({}) => {
   return (
     <div>
       <p>Hej</p>
+
+
+
+
+
+
+
+      <img src="" alt="" />
     </div>
   )
 }
