@@ -1,9 +1,13 @@
-import { NextPage } from 'next'
+import { NextPage } from "next"
 
 interface Props {}
 
 const Random: NextPage<Props> = ({}) => {
-  return <div></div>
+  return (
+    <div>
+      <p>Hej</p>
+    </div>
+  )
 }
 
 export default Random
