@@ -1,0 +1,40 @@
+.body_bg {
+
+
+    background-color: #441263;
+}
+
+
+.h1 {
+
+    color: #FFFFFF;
+    align-items: center;
+ 
+}
+
+
+
+.p {
+
+    margin-left: 30px;
+    margin-top: 200px;
+    margin-bottom: 50px;
+    color: #FFFFFF;
+    font-size: 90%;
+    font-size: medium;
+}
+
+
+.button {
+
+    background-color: #BEFA9E;
+    color: #000000;
+    border-radius: 30px;
+    width: 209px;
+    height: 51px;
+    font-weight: bold;
+    margin-left: 60px;
+
+
+
+}

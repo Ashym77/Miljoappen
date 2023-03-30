@@ -1,5 +1,11 @@
 import { NextPage } from 'next'
 
+
+import Link from 'next/link'
+
+
+
+
 interface Props {}
 
 const Index: NextPage<Props> = ({}) => {
@@ -9,8 +15,11 @@ const Index: NextPage<Props> = ({}) => {
   <div>
 
  
-<input type="search" name="" id=""  placeholder='Serch here' size={80}  />
+<input type="search" name="" id=""  placeholder='Sök produkt />
 
+<p>Hej</p>
+
+<Link href="/" >Home page</Link>
 
 </div>
 )
