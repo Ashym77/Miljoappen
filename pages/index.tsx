@@ -26,6 +26,9 @@ const index: NextPage<Props> = ({}) => {
 </p>
 
 
+
+
+
 <button  className={styles.button} >
 
   <Link href="/Search">Sök produkt</Link>
