@@ -15,7 +15,7 @@ const Index: NextPage<Props> = ({}) => {
   <div>
 
  
-<input type="search" name="" id=""  placeholder='Sök produkt />
+<input type="search" name="" id=""  placeholder='Sök produkt' />
 
 <p>Hej</p>
 
