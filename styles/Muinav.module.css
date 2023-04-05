@@ -1,0 +1,24 @@
+.nav {
+
+    background-color: #ffffff;
+    width: 100%;
+    margin-top: 65px;
+    
+
+
+}
+
+.searchIcon {}
+
+.searchIcon svg {
+    font-size: 25px;
+}
+
+.Link {
+
+
+    text-decoration: none;
+    color: #441263;
+
+
+}
