@@ -1,3 +1,4 @@
+/*
 import { NextPage } from 'next'
 
 
@@ -11,7 +12,7 @@ interface Props {}
 const Index: NextPage<Props> = ({}) => {
   return(
 
-
+/
   <div>
 
  
@@ -29,3 +30,4 @@ const Index: NextPage<Props> = ({}) => {
 
 
 export default Index
+*/
