@@ -2,84 +2,62 @@ import { NextPage } from "next"
 import Link from "next/link"
 import styles from "../styles/index.module.css"
 import Image from "next/image"
+import SearchIcon from '@mui/icons-material/Search';
+import SearchBar from "@/p-components/searchBar";
+import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar";
+
+
 
 interface Props {}
 
 const index: NextPage<Props> = ({}) => {
+
+
   return (
+    
     <div>
-      <h1 className={styles.h1}> Miljöappen</h1>
+      <h1 className={styles.h1}> KlimatMat</h1>
+
+
 
       <p className={styles.p}>
-        Välkommen till miljöappen! <br></br>
-        Här kan du enkelt ta reda på livsmedelsprodukters klimatavtryck och pris
+        Välkommen till KlimatMat! <br />
+Här kan du enkelt söka på livsmedelsprodukters
+klimatavtryck och pris
       </p>
 
-<<<<<<< HEAD
-  
 
-  
+ 
 
-   
-<h1 className={styles.h1}> Miljöappen</h1>
+    <form  className={styles.form}>
 
-
-<p className={styles.p}>
-    Välkommen till miljöappen! <br></br>
-    Här kan du enkelt ta reda på livsmedelsprodukters
-    klimatavtryck och pris
-
-</p>
-
-
-
-
-
-<button  className={styles.button} >
-
-  <Link href="/Search">Sök produkt</Link>
-</button>
-
-
-
-
-
-
-
-<nav>
-
-<li>
-
-
-  
-</li>
-
-
-</nav>
-
-
-  </div>
-
-=======
-      <button className={styles.button}>
-        <Link href="/Search">Sök produkt</Link>
-      </button>
->>>>>>> ecac69c6fec9c7b7fddcb17c6fafad024456f538
-
-      <div className=" flex justify-center">
-        <Image
-          src={"/earth1.svg"}
-          alt={"#"}
-          width={"150"}
-          height={"150"}
-          className={" mx-auto"}
-        ></Image>
+      <input type="search" name=""  placeholder="Search" className={styles.input}/>
+      <div className={styles.searchIcon} >
+      <SearchIcon /> 
       </div>
+       </form>
+    
+    <button className={styles.button}>
 
-      <nav>
-        <li></li>
-      </nav>
+        <Link href="/Search">Sök produkt</Link>
+      
+    </button>
+
+
+        <Image
+          src={"/planet_earth.svg"}
+          alt={"#"}
+          width={"200"}
+          height={"200"}
+          className={styles.Image}
+        ></Image>
+    
+    
+     <div className={styles.navdiv}>
+    <MuiBottomNavBar/>
     </div>
+</div>
+
   )
 }
 

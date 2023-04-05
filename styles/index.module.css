@@ -8,7 +8,10 @@
 .h1 {
 
     color: #FFFFFF;
-    align-items: center;
+
+
+    margin-left: 95px;
+    margin-top: 50px;
 
 }
 
@@ -16,13 +19,24 @@
 
 .p {
 
-    margin-left: 30px;
-    margin-top: 200px;
-    margin-bottom: 50px;
-    color: #FFFFFF;
-    font-size: 90%;
-    font-size: medium;
+
+
+
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 354.01px;
+    height: 79.8px;
+    color: #ffffff;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 131.5%;
+    text-align: center;
+
+
 }
+
 
 
 
@@ -35,7 +49,71 @@
     height: 51px;
     font-weight: bold;
     margin-left: 60px;
+    margin-top: 40px;
 
 
 
+
+}
+
+.Image {
+
+    margin-top: 50px;
+    margin-left: 70px;
+
+    width: 229.17px;
+    height: 229.17px;
+    left: 96.82px;
+    top: 417px;
+
+
+
+
+
+}
+
+.input {
+
+    width: 351px;
+    height: 51px;
+    border-radius: 50px;
+    text-align: center;
+    justify-content: center;
+
+}
+
+
+
+
+.input:focus {
+    outline: none;
+}
+
+
+.form {
+
+
+
+    position: relative;
+}
+
+
+
+.searchIcon {
+
+
+    position: absolute;
+    top: 12px;
+    left: 10px;
+
+}
+
+.searchIcon svg {
+    font-size: 29px;
+}
+
+.navdiv {
+
+
+    margin-top: 50px;
 }
