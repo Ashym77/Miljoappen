@@ -7,72 +7,34 @@ interface Props {}
 
 const index: NextPage<Props> = ({}) => {
   return (
+
     <div>
-      <h1 className={styles.h1}> Miljöappen</h1>
+      <h1 className={styles.h1}> Miljöappen
+    </h1>
 
       <p className={styles.p}>
         Välkommen till miljöappen! <br></br>
         Här kan du enkelt ta reda på livsmedelsprodukters klimatavtryck och pris
       </p>
 
-<<<<<<< HEAD
-  
+      <input
+        type="search"
+        name="searchBAr"
+        id=""
+        placeholder="Sök produkt..."
+      />
 
-  
-
-   
-<h1 className={styles.h1}> Miljöappen</h1>
-
-
-<p className={styles.p}>
-    Välkommen till miljöappen! <br></br>
-    Här kan du enkelt ta reda på livsmedelsprodukters
-    klimatavtryck och pris
-
-</p>
-
-
-
-
-
-<button  className={styles.button} >
-
-  <Link href="/Search">Sök produkt</Link>
-</button>
-
-
-
-
-
-
-
-<nav>
-
-<li>
-
-
-  
-</li>
-
-
-</nav>
-
-
-  </div>
-
-=======
       <button className={styles.button}>
         <Link href="/Search">Sök produkt</Link>
       </button>
->>>>>>> ecac69c6fec9c7b7fddcb17c6fafad024456f538
 
-      <div className=" flex justify-center">
+      <div className=" flex justify-center items-center">
         <Image
+          className={"style.img"}
           src={"/earth1.svg"}
           alt={"#"}
           width={"150"}
           height={"150"}
-          className={" mx-auto"}
         ></Image>
       </div>
 
@@ -83,4 +45,8 @@ const index: NextPage<Props> = ({}) => {
   )
 }
 
-export default index
+  
+   
+
+        export default index
+    
