@@ -1,0 +1,43 @@
+.title {
+
+    text-align: center;
+    color: #ffffff;
+}
+
+
+.infoContainer {
+
+    position: absolute;
+
+    left: 28px;
+    top: 404.74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+
+.imageInfo {
+
+    width: 342px;
+    height: 180.28px;
+
+
+}
+
+
+
+
+
+.navdiv {
+
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    right: 0px;
+
+
+}

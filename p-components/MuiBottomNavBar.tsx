@@ -3,6 +3,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import QuizOutlinedIcon from '@mui/icons-material/QuizOutlined';
+import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import {useState} from 'react'
 import styles from "../styles/Muinav.module.css"
 import Link from "next/link";
@@ -23,7 +24,7 @@ return(
     
     <Link href={"/"} className={styles.Link}>
       
-    <BottomNavigationAction label='Home'icon={ <HomeOutlinedIcon/>}  >
+    <BottomNavigationAction label='Home'icon={ <HomeOutlinedIcon/>}  className={styles.homeIcon1} >
   
 
     </BottomNavigationAction>
@@ -31,16 +32,21 @@ return(
     </Link>
 
     <Link href={"/Search"}  >
-    <BottomNavigationAction label='Search'icon={ <SearchIcon/>} ></BottomNavigationAction>
+    <BottomNavigationAction label='Search'icon={ <SearchIcon className={styles.searchIcon1}/>} ></BottomNavigationAction>
     </Link>
 
     <Link href={"/avtryck"}>
-    <BottomNavigationAction label='Faq'icon={ <QuizOutlinedIcon/>} > </BottomNavigationAction>
+    <BottomNavigationAction label='Faq'icon={ <PublicOutlinedIcon/>} className={styles.globeIcon1} > </BottomNavigationAction>
     </Link>
 
 
-</BottomNavigation>
+    <Link href={"/pask"}>
+    <BottomNavigationAction label='Faq'icon={ <QuizOutlinedIcon/>}  className={styles.faqIcon1} > </BottomNavigationAction>
+    </Link>
 
+  
+
+</BottomNavigation>
 
 )
 

@@ -1,10 +1,149 @@
+.Link {
+
+    color: #ffffff;
+
+
+}
+
+
+.Image {
+
+
+    position: absolute;
+    width: 182.27px;
+    height: 182.27px;
+    left: 103.86px;
+    top: 104.24px;
+}
+
+.title {
+
+
+    color: #ffffff;
+    margin: 0;
+    font-family: 'Josefin Sans';
+
+}
+
+.titleContainer {
+
+    background-color: #443292;
+    position: absolute;
+    width: 390px;
+    height: 44.02px;
+    left: -1.35px;
+    top: 314.24px;
+    padding: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.infoContainer {
+
+    position: absolute;
+
+    left: 28px;
+    top: 404.74px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+
+.imageInfo {
+
+    width: 342px;
+    height: 180.28px;
+
+
+}
+
+
+.button {
+
+    background-color: #BEFA9E;
+    color: #000000;
+    border-radius: 30px;
+    width: 209px;
+    height: 51px;
+    font-weight: bold;
+
+
+
+
+
+
+}
+
+
+.buttonContainer {
+    /* position: absolute;
+
+
+    top: 631.5px; */
+
+    margin-top: 631.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.buttonlink {
+
+    text-decoration: none;
+    color: #000000;
+}
+
+
+
 .navdiv {
 
-    margin-top: 705px;
-    
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    right: 0px;
+
 }
 
-.link {
 
-    color: #ffff;
+
+
+/* 
+.Image1 {
+
+    margin-top: 20px;
+    position: absolute;
+    width: 342px;
+    height: 90.14px;
+    left: 20px;
+    top: 500.3px;
 }
+
+.navdiv {
+
+
+    margin-top: 740px;
+}
+
+.button {
+
+    background-color: #BEFA9E;
+    color: #000000;
+    border-radius: 30px;
+    width: 209px;
+    height: 51px;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 40px;
+
+
+}
+ */

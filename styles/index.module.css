@@ -1,82 +1,84 @@
-.body_bg {
 
 
-    background-color: #441263;
-}
 
+.logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 45px;
 
-.h1 {
-
-    color: #FFFFFF;
-
-
-    margin-left: 95px;
-    margin-top: 50px;
 
 }
 
+.logo {
 
 
-.p {
+    width: 450.81px;
+    height: 100.42px;
+    left: 136.59px;
+    top: 200.48px;
+
+
+
+}
 
 
 
 
-    margin-top: 50px;
-    margin-bottom: 30px;
+.textContainer {
+
+    position: absolute;
     width: 354.01px;
     height: 79.8px;
-    color: #ffffff;
+    left: 18.24px;
+    top: 191.1px;
+
+
+
+}
+
+.text {
+
+
+
+
+
+    /* Paragraph/Small */
+
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 131.5%;
+    /* or 21px */
+
     text-align: center;
 
+    color: #FFFFFF;
 
 }
 
+.searchbarContainer {
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 359px;
+    height: 53.02px;
 
-
-.button {
-
-    background-color: #BEFA9E;
-    color: #000000;
-    border-radius: 30px;
-    width: 209px;
-    height: 51px;
-    font-weight: bold;
-    margin-left: 60px;
-    margin-top: 40px;
-
-
+    top: 311.15px;
 
 
 }
 
-.Image {
-
-    margin-top: 50px;
-    margin-left: 70px;
-
-    width: 229.17px;
-    height: 229.17px;
-    left: 96.82px;
-    top: 417px;
-
-
-
-
-
-}
 
 .input {
 
     width: 351px;
     height: 51px;
     border-radius: 50px;
+
     text-align: center;
     justify-content: center;
 
@@ -110,10 +112,82 @@
 
 .searchIcon svg {
     font-size: 29px;
+
+}
+
+
+.buttonContainer {
+
+    margin-top: 205.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.button {
+
+    background-color: #BEFA9E;
+    color: #000000;
+    border-radius: 30px;
+    width: 209px;
+    height: 51px;
+    font-weight: bold;
+
+
+
+
+
+}
+
+.buttonlink {
+
+    text-decoration: none;
+    color: #000000;
+}
+
+
+.imageContainer {
+
+    position: absolute;
+    width: 229.17px;
+    height: 229.17px;
+    left: 74.82px;
+    top: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+
+
+.Image {
+
+
+
+    width: 229.17px;
+    height: 229.17px;
+    left: 96.82px;
+    top: 417px;
+    margin-bottom: 20px;
+
+
+
+
+
 }
 
 .navdiv {
 
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 
-    margin-top: 50px;
+    right: 5px;
+
+
+
 }

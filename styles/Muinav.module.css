@@ -1,24 +1,44 @@
 .nav {
 
-    background-color: #ffffff;
-    width: 100%;
-    margin-top: 65px;
-    
+    background-color: #441263;
+
+    width: 390px;
+    height: 65px;
+
+
+
+
+
+
 
 
 }
 
-.searchIcon {}
+.homeIcon1 {
 
-.searchIcon svg {
-    font-size: 25px;
+
+    color: #ffffff;
 }
 
-.Link {
+.searchIcon1 {
 
 
-    text-decoration: none;
-    color: #441263;
-
-
+    color: #ffffff;
 }
+
+.globeIcon1 {
+
+
+    color: #ffffff;
+}
+
+.faqIcon1 {
+
+
+    color: #ffffff;
+}
+
+
+.searchIcon svg {}
+
+.Link {}

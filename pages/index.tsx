@@ -14,21 +14,34 @@ const index: NextPage<Props> = ({}) => {
 
 
   return (
+
+    
     
     <div>
-      <h1 className={styles.h1}> KlimatMat</h1>
 
 
 
-      <p className={styles.p}>
-        Välkommen till KlimatMat! <br />
+
+
+
+
+   <div className={styles.logoContainer}>
+      <Image src={"/Logga.svg"} alt={""} width={"0"}
+          height={"0"} className={styles.logo}></Image>
+
+</div>
+ 
+<div className={styles.textContainer}>
+
+      <p className={styles.text}>
+        Välkommen till Klimat! <br />
 Här kan du enkelt söka på livsmedelsprodukters
-klimatavtryck och pris
+klimatavtryck
       </p>
 
+      </div>
 
- 
-
+<div className={styles.searchbarContainer}>
     <form  className={styles.form}>
 
       <input type="search" name=""  placeholder="Search" className={styles.input}/>
@@ -36,26 +49,36 @@ klimatavtryck och pris
       <SearchIcon /> 
       </div>
        </form>
-    
+
+    </div>
+   
+
+   <div className={styles.buttonContainer}>
     <button className={styles.button}>
 
-        <Link href="/Search">Sök produkt</Link>
+        <Link href="/Search" className={styles.buttonlink}>Sök produkt</Link>
       
     </button>
+    </div>
 
-
+<div className={styles.imageContainer}>
         <Image
-          src={"/planet_earth.svg"}
+          src={"/Mat bilder.svg"}
           alt={"#"}
           width={"200"}
           height={"200"}
           className={styles.Image}
+        
         ></Image>
-    
+
+</div>
+      
     
      <div className={styles.navdiv}>
     <MuiBottomNavBar/>
     </div>
+
+
 </div>
 
   )
