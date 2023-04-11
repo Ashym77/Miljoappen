@@ -1,3 +1,7 @@
+.mainDiv {}
+
+
+
 .Link {
 
     color: #ffffff;
@@ -29,9 +33,9 @@
 
     background-color: #443292;
     position: absolute;
-    width: 390px;
+    width: 374px;
     height: 44.02px;
-    left: -1.35px;
+    left: 1px;
     top: 314.24px;
     padding: auto;
     display: flex;
@@ -41,11 +45,12 @@
 }
 
 
+
 .infoContainer {
 
     position: absolute;
 
-    left: 28px;
+    left: 17px;
     top: 404.74px;
     display: flex;
     align-items: center;

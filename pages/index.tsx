@@ -74,9 +74,11 @@ klimatavtryck
 </div>
       
     
-     <div className={styles.navdiv}>
-    <MuiBottomNavBar/>
+
+<div className={styles.navdiv}>
+<MuiBottomNavBar/>
     </div>
+
 
 
 </div>

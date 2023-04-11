@@ -1,4 +1,4 @@
-import {BottomNavigation,BottomNavigationAction, Box, Typography  } from "@mui/material"
+import {BottomNavigation,BottomNavigationAction,  Typography  } from "@mui/material"
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -7,6 +7,8 @@ import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import {useState} from 'react'
 import styles from "../styles/Muinav.module.css"
 import Link from "next/link";
+import Box from "@mui/material/Box"
+
 
 
   
@@ -16,11 +18,12 @@ export const  MuiBottomNavBar=()=>{
     const [value,setValue] = useState(0)
 return(
 
+    
 
 <BottomNavigation sx=
-{{width:'100%', marginTop:8, position:'absoloute', bottom:0} }
- value={value} onChange={(event,newvalue)=>{setValue(newvalue)}} 
- showLabels className={styles.nav}> 
+{{width:'100%' } }     
+ value={value} onChange={(event,newvalue)=>{setValue(newvalue) }} 
+ className={styles.nav}> 
     
     <Link href={"/"} className={styles.Link}>
       

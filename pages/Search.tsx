@@ -5,41 +5,18 @@ import Image from "next/image"
 import { MuiBottomNavBar } from '@/p-components/MuiBottomNavBar'
 
 
-
-
-
 interface Props {}
 
-const search: NextPage<Props> = ({}) => {
- 
-
- 
-  return(
-
-
-  <div>
-    
-
-
-    <div>
-
- 
-
-  {/*
-    <Link href="/">
-      <object data="returnbutton.sv" type="image/svg+xml">
-        <button></button>
-      </object>
-    </Link>
-  */}
-
-
+const Search: NextPage<Props> = ({}) => {
+  return (
   
+  
+  <div>
 
 
-    </div>
 
-    <div>
+
+<div>
   <Image src={'/farsk-mellanmjolk.svg'} alt={'#'} width={"200"}
           height={"200"} className={styles.Image}></Image>
 
@@ -78,13 +55,7 @@ const search: NextPage<Props> = ({}) => {
 <MuiBottomNavBar/>
 </div>
 
-</div>
+ </div>
+)}
 
-
-)
-}
-
-
-
-
-export default search
+export default Search

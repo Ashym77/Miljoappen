@@ -1,6 +1,3 @@
-
-
-
 .logoContainer {
     display: flex;
     align-items: center;
@@ -78,7 +75,6 @@
     width: 351px;
     height: 51px;
     border-radius: 50px;
-
     text-align: center;
     justify-content: center;
 
@@ -136,9 +132,6 @@
     font-weight: bold;
 
 
-
-
-
 }
 
 .buttonlink {
@@ -186,7 +179,8 @@
     bottom: 0;
     width: 100%;
 
-    right: 5px;
+    right: 0px;
+
 
 
 
