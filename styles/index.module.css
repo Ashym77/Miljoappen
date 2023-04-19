@@ -1,187 +1,121 @@
 .logoContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 45px;
-
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 45px;
 }
 
 .logo {
-
-
-    width: 450.81px;
-    height: 100.42px;
-    left: 136.59px;
-    top: 200.48px;
-
-
-
+  width: 450.81px;
+  height: 100.42px;
+  left: 136.59px;
+  top: 200.48px;
 }
 
-
-
-
 .textContainer {
-
-    position: absolute;
-    width: 354.01px;
-    height: 79.8px;
-    left: 18.24px;
-    top: 191.1px;
-
-
-
+  position: absolute;
+  width: 354.01px;
+  height: 79.8px;
+  left: 18.24px;
+  top: 191.1px;
 }
 
 .text {
+  /* Paragraph/Small */
 
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 131.5%;
+  /* or 21px */
 
+  text-align: center;
 
-
-
-    /* Paragraph/Small */
-
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 131.5%;
-    /* or 21px */
-
-    text-align: center;
-
-    color: #FFFFFF;
-
+  color: #ffffff;
 }
 
 .searchbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 359px;
+  height: 53.02px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 359px;
-    height: 53.02px;
-
-    top: 311.15px;
-
-
+  top: 311.15px;
 }
-
 
 .input {
-
-    width: 351px;
-    height: 51px;
-    border-radius: 50px;
-    text-align: center;
-    justify-content: center;
-
+  width: 351px;
+  height: 51px;
+  border-radius: 50px;
+  text-align: center;
+  justify-content: center;
 }
-
-
-
 
 .input:focus {
-    outline: none;
+  outline: none;
 }
-
 
 .form {
-
-
-
-    position: relative;
+  position: relative;
 }
 
-
-
 .searchIcon {
-
-
-    position: absolute;
-    top: 12px;
-    left: 10px;
-
+  position: absolute;
+  top: 12px;
+  left: 10px;
 }
 
 .searchIcon svg {
-    font-size: 29px;
-
+  font-size: 29px;
 }
-
 
 .buttonContainer {
-
-    margin-top: 205.5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  margin-top: 205.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .button {
-
-    background-color: #BEFA9E;
-    color: #000000;
-    border-radius: 30px;
-    width: 209px;
-    height: 51px;
-    font-weight: bold;
-
-
+  background-color: #befa9e;
+  color: #000000;
+  border-radius: 30px;
+  width: 209px;
+  height: 51px;
+  font-weight: bold;
 }
 
 .buttonlink {
-
-    text-decoration: none;
-    color: #000000;
+  text-decoration: none;
+  color: #000000;
 }
-
 
 .imageContainer {
-
-    position: absolute;
-    width: 229.17px;
-    height: 229.17px;
-    left: 74.82px;
-    top: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-
-
+  position: absolute;
+  width: 229.17px;
+  height: 229.17px;
+  left: 74.82px;
+  top: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .Image {
-
-
-
-    width: 229.17px;
-    height: 229.17px;
-    left: 96.82px;
-    top: 417px;
-    margin-bottom: 20px;
-
-
-
-
-
+  width: 229.17px;
+  height: 229.17px;
+  left: 96.82px;
+  top: 417px;
+  margin-bottom: 20px;
 }
 
 .navdiv {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-
-    right: 0px;
-
-
-
-
+  right: 0px;
 }

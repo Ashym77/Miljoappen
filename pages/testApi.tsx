@@ -22,6 +22,8 @@ interface Product {
   ecoscore_grade: string
 
   ecoScoreImage: string
+
+  ecoScoreLable: string
 }
 
 const ecoScoreImage = [
@@ -49,6 +51,32 @@ function getEcoScoreImage(score: string): string {
     //   return ecoScoreImage[5]
     default:
       return ecoScoreImage[5]
+  }
+}
+
+const ecoScoreLable = [
+  "Låg klimatpåverkan",
+  "Låg klimatpåverkan",
+  "Måttlig klimatpåverkan",
+  "Hög klimatpåverkan",
+  "Hög klimatpåverkan",
+  "Odefinierat",
+]
+
+function getEcoScoreLable(lable: string): string {
+  switch (lable) {
+    case "a":
+      return ecoScoreLable[0]
+    case "b":
+      return ecoScoreLable[1]
+    case "c":
+      return ecoScoreLable[2]
+    case "d":
+      return ecoScoreLable[3]
+    case "e":
+      return ecoScoreLable[4]
+    default:
+      return ecoScoreLable[5]
   }
 }
 
@@ -83,6 +111,8 @@ function ProductList() {
         ecoscore_grade: product.ecoscore_grade,
 
         ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
+
+        ecoScoreLable: getEcoScoreLable(product.ecoscore_grade),
       }))
 
       setProducts(products)
@@ -132,10 +162,12 @@ function ProductList() {
 
   return (
     <div>
-      <div>
-        <h1>Product List</h1>
+      <div className={styles.searchbarContainer}>
+        {/* <h1>Product List</h1> */}
         <input
-          type="text"
+          type="search"
+          className={styles.input}
+          placeholder="Sök produkt..."
           onChange={(event) => {
             handleSearch(event)
           }}
@@ -144,25 +176,31 @@ function ProductList() {
       <div className={styles.productContainer}>
         {filteredProducts.map((product) => (
           <div className={styles.productCard} key={product.code}>
-            <img
-              src={product.image_url}
-              alt={product.product_name}
-              className={styles.productImage}
-            />
-            <div className={styles.productInfo}>
+            <div className={styles.imageContainer}>
+              <img
+                src={product.image_url}
+                alt={product.product_name}
+                className={styles.productImage}
+              />
+            </div>
+            <div className={styles.productInfoContainer}>
+              {/* <div className={styles.productNameContainer}> */}
               <h3 className={styles.productName}>{product.product_name}</h3>
+              {/* </div> */}
               {/* <p className={styles.productBrand}>{product.brands}</p> */}
               {/* <p className={styles.productEcoScore}>
                 EcoScore: {product.ecoscore_grade}
               </p> */}
-              <div>
+              <div className={styles.ecoScoreContainer}>
+                <p>Miljöpoäng: </p>
                 <img
                   src={product.ecoScoreImage}
                   alt={`EcoScore: ${product.ecoscore_grade}`}
                   className={styles.ecoscoreImage}
                 />
               </div>
-              <div>
+              <p>{product.ecoScoreLable}</p>
+              <div className={styles.buttonContainer}>
                 <button className={styles.button}>
                   Visa produkt
                   <Link href="/" className={styles.buttonlink}></Link>

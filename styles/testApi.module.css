@@ -1,39 +1,98 @@
+.searchbarContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px;
+  padding: 40px;
+  /* border: solid red; */
+}
+
+.input {
+  width: 350px;
+  height: 40px;
+  outline: none;
+  border-radius: 50px;
+  border: none;
+  text-align: center;
+}
+
 .productContainer {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  border: solid red;
+  margin: 40px;
+  padding: 40px;
 }
 
 .productCard {
   display: flex;
   flex-direction: row;
+  /* align-items: center; */
   width: 400px;
   margin: 10px;
-  padding: 10px;
+  padding: 0px;
   background: #ffff;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 0 0 5px black;
 }
 
-.productImage {
-  width: 100px;
-  height: 100px;
-  object-fit: scale-down;
-  padding: 10px;
-  margin-right: 30px;
-  border-radius: 5px;
-  /* box-shadow: 0 0 5px black; */
+.imageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: absolute; */
+  /* border: solid green; */
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+  padding: 0;
 }
 
-.productInfo {
-  /* flex: 1; */
+.productImage {
+  width: 120px;
+  height: 120px;
+  object-fit: scale-down;
+  border-radius: 5px;
+  box-shadow: 0 0 5px black;
+  padding: 10px;
+  /* border: solid red; */
 }
+
+.productInfoContainer {
+  /* flex: 1;
+  padding: 10px;
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  border: solid red; */
+  /* flex: 1; */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+  padding: 0;
+
+  /* border: solid red; */
+}
+
+/* .productNameContainer {
+  border: solid green;
+  margin: 0;
+  padding: 0;
+} */
 
 .productName {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 400;
+  /* border: solid red; */
+  margin: 0;
+  /* padding: 10px; */
 }
 
 /* .productBrand {
@@ -51,13 +110,23 @@
   margin-top: 5px;
 } */
 
+.ecoScoreContainer {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
 .ecoscoreImage {
-  /* padding: 10px; */
+  padding: 10px;
+  /* border: solid red; */
+  /* margin: 0; */
 }
 
 .button {
-  width: 182.75px;
+  width: 150px;
   height: 38.14px;
   background: #befa9e;
   border-radius: 5px;
+  /* border: solid red; */
+  /* margin: 0; */
 }
