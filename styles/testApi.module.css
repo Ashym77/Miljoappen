@@ -130,3 +130,105 @@
   /* border: solid red; */
   /* margin: 0; */
 }
+
+@media (max-width: 768px) and (orientation: portrait) {
+  /* CSS rules */
+  /* #body {
+    margin: 0;
+    padding: 0;
+  } */
+  .searchbarContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .input {
+    width: 100%;
+    max-width: 350px;
+    height: 40px;
+    outline: none;
+    border-radius: 50px;
+    border: none;
+    text-align: center;
+  }
+
+  .productContainer {
+    display: flex;
+    /* flex-wrap: wrap; */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .productCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 100px;
+    margin: 5px;
+    padding: 5px;
+    /* background: #ffff; */
+    /* border: 1px solid black; */
+    /* border-radius: 5px; */
+    /* box-shadow: 0 0 5px black; */
+  }
+
+  .imageContainer {
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    width: 100px;
+    /* height: 150px; */
+    margin: 2px;
+    /* padding: 0; */
+  }
+
+  .productImage {
+    width: 100px;
+    height: 100px;
+    /* object-fit: scale-down; */
+    /* border-radius: 5px; */
+    /* box-shadow: 0 0 5px black; */
+    /* padding: 10px; */
+  }
+
+  .productInfoContainer {
+    /* display: flex; */
+    /* flex-direction: column; */
+    width: 100px;
+    /* height: auto; */
+    /* margin: 10px; */
+    /* padding: 0; */
+  }
+
+  .productName {
+    /* font-size: 20px; */
+    /* font-weight: 400; */
+    /* margin: 0; */
+  }
+
+  .ecoScoreContainer {
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: left; */
+  }
+
+  .ecoscoreImage {
+    /* padding: 10px; */
+  }
+
+  .button {
+    /* width: 100%; */
+    /* max-width: 150px; */
+    /* height: 38.14px; */
+    /* background: #befa9e; */
+    /* border-radius: 5px; */
+  }
+}
