@@ -1,0 +1,59 @@
+.loggaContainer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3.5rem;
+    padding-bottom: 1.5rem;
+
+}
+
+.logga {
+
+    width: 130px;
+    height: 100px;
+
+}
+
+.textContainer {
+    /* margin: .5rem; */
+    padding-top: .1rem;
+
+}
+
+.text {
+
+
+    color: whitesmoke;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: "Lato";
+    line-height: 1.2rem;
+
+}
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.input {
+    /* text-align: center; */
+    border-radius: 20px;
+    border: none;
+    width: 20rem;
+    height: 2.5rem;
+    font-size: 1rem;
+
+
+}
+
+.SearchIcon {
+    /* position:absolute; */
+    /* top: 12px; */
+    left: 10px;
+
+}

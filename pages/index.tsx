@@ -45,13 +45,18 @@ klimatavtryck
     <form  className={styles.form}>
 
       <input type="search" name=""  placeholder="Search" className={styles.input}/>
-      <div className={styles.searchIcon} >
+      <div  >
+      
+      
+      </div>
+      <div className={styles.searchIcon}>
       <SearchIcon /> 
       </div>
        </form>
 
     </div>
    
+  
 
    <div className={styles.buttonContainer}>
     <button className={styles.button}>
@@ -76,8 +81,10 @@ klimatavtryck
     
 
 <div className={styles.navdiv}>
+
 <MuiBottomNavBar/>
-    </div>
+
+</div>
 
 
 
