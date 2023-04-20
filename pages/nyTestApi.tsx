@@ -1,6 +1,6 @@
 import { log } from "console"
 import { NextPage } from "next"
-import styles from "../styles/testApi.module.css"
+import styles from "../styles/nyTestApi.module.css"
 import Image from "next/image"
 
 import { useEffect, useState } from "react"
@@ -214,8 +214,8 @@ function ProductList() {
   )
 }
 
-const TestApi: NextPage<Props> = ({}) => {
+const nyTestApi: NextPage<Props> = ({}) => {
   return <ProductList />
 }
 
-export default TestApi
+export default nyTestApi
