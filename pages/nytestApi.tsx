@@ -89,11 +89,17 @@ function ProductList() {
     async function fetchProducts() {
       const response = await fetch(
         // "https://world.openfoodfacts.org/cgi/search.pl?action=process&sort_by=unique_scans_n&page_size=100&json=true"
-        // "https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&tagtype_1=brands&tag_contains_1=contains&tag_1=Arla&sort_by=unique_scans_n&page_size=300&json=true"
+        //https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&tagtype_1=brands&tag_contains_1=contains&tag_1=Arla&sort_by=unique_scans_n&page_size=300&json=true"
         // "https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=290&json=true"
-        "https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&json=true"
+        //"https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&json=true"
         // "https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=1000&json=true"
-      )
+        //"https://sv.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&json=true&lc=sv&page_size=100"
+     // https://sv.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=manufacturinghttps://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=300&json=true_places&tag_contains_0=contains&tag_0=Sweden&tagtype_1=brands&tag_contains_1=contains&tag_1=Arla+Foods%2C+Felix&sort_by=unique_scans_n&page_size=20&json=true"
+         "https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=310&json=true"
+     
+     
+     
+     )
 
       const data = await response.json()
 
@@ -214,8 +220,8 @@ function ProductList() {
   )
 }
 
-const TestApi: NextPage<Props> = ({}) => {
+const NyTestApi: NextPage<Props> = ({}) => {
   return <ProductList />
 }
 
-export default TestApi
+export default NyTestApi
