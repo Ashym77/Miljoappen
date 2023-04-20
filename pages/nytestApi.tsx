@@ -1,6 +1,6 @@
 import { log } from "console"
 import { NextPage } from "next"
-import styles from "../styles/testApi.module.css"
+import styles from "../styles/nyTestApi.module.css"
 import Image from "next/image"
 
 import { useEffect, useState } from "react"
@@ -190,22 +190,33 @@ function ProductList() {
               />
             </div>
             <div className={styles.productInfoContainer}>
+              <div className={styles.textContainer}>
+                <div className={styles.nameContainer}>
+                  <h3 className={styles.productName}>{product.product_name}</h3>
+                </div>
+                <div className={styles.ecoScoreContainer}>
+                  <div className={styles.scoreContainer}>
+                    <h3 className={styles.ecoScoreImageLable}>Miljöpoäng: </h3>
+                    <img
+                      src={product.ecoScoreImage}
+                      alt={`EcoScore: ${product.ecoscore_grade}`}
+                      className={styles.ecoscoreImage}
+                    />
+                  </div>
+                  <div className={styles.lableContainer}>
+                    <p className={styles.ecoScoreLable}>
+                      {product.ecoScoreLable}
+                    </p>
+                  </div>
+                </div>
+              </div>
               {/* <div className={styles.productNameContainer}> */}
-              <h3 className={styles.productName}>{product.product_name}</h3>
               {/* </div> */}
               {/* <p className={styles.productBrand}>{product.brands}</p> */}
               {/* <p className={styles.productEcoScore}>
                 EcoScore: {product.ecoscore_grade}
               </p> */}
-              <div className={styles.ecoScoreContainer}>
-                <p>Miljöpoäng: </p>
-                <img
-                  src={product.ecoScoreImage}
-                  alt={`EcoScore: ${product.ecoscore_grade}`}
-                  className={styles.ecoscoreImage}
-                />
-              </div>
-              <p>{product.ecoScoreLable}</p>
+
               <div className={styles.buttonContainer}>
                 <button className={styles.button}>
                   Visa produkt
