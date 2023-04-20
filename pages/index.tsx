@@ -56,14 +56,14 @@ klimatavtryck
    <div className={styles.buttonContainer}>
     <button className={styles.button}>
 
-        <Link href="/Search" className={styles.buttonlink}>Sök produkt</Link>
+        <Link href="/nytestApi" className={styles.buttonlink}>Sök produkt</Link>
       
     </button>
     </div>
 
 <div className={styles.imageContainer}>
         <Image
-          src={"/Mat bilder.svg"}
+          src={"/Startsida bild.svg"}
           alt={"#"}
           width={"200"}
           height={"200"}

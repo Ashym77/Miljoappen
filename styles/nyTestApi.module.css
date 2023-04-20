@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   margin: 15px;
-  border: 1px solid red;
+
 }
 
 .input {
@@ -21,8 +21,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  border: 1px solid red;
-  margin: 15px;
+  /* border: 1px solid red; */
+
 }
 
 .productCard {
@@ -70,16 +70,19 @@
   align-items: center;
   justify-content: center;
   border: 1px solid blue;
+
 }
 
 .nameContainer {
   border: 1px solid green;
+
 }
 
 .productName {
   font-size: 14px;
   font-weight: 400;
   margin: 0;
+
 }
 
 .productEcoScore {
@@ -132,4 +135,13 @@
   height: 10px;
   background-color: #befa9e;
   border-radius: 5px;
+}
+
+
+.navdiv {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  right: 0px;
 }

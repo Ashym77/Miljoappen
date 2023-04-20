@@ -31,19 +31,19 @@ const Search: NextPage<Props> = ({}) => {
 
 <div className={styles.infoContainer}>
 
-<Image src={'/Klimatavtryck Mjölk.svg'} alt={'#'}  width={"200"}
+<Image src={'/Klimatinfo.svg'} alt={'#'}  width={"200"}
           height={"200"} className={styles.imageInfo}></Image>
 
 </div>
 
 
-<div className={styles.buttonContainer}>
+{/* <div className={styles.buttonContainer}>
 <button className={styles.button}>
 
 <Link href="/avtryck" className={styles.buttonlink}>Jämför liknande produkt</Link>
 
 </button>
-</div>
+</div> */}
 
 
  

@@ -34,18 +34,18 @@ return(
  
     </Link>
 
-    <Link href={"/Search"}  >
+    <Link href={"/nytestApi"}  >
     <BottomNavigationAction label='Search'icon={ <SearchIcon className={styles.searchIcon1}/>} ></BottomNavigationAction>
     </Link>
 
-    <Link href={"/avtryck"}>
+    <Link href={"/Search"}>
     <BottomNavigationAction label='Faq'icon={ <PublicOutlinedIcon/>} className={styles.globeIcon1} > </BottomNavigationAction>
     </Link>
 
-
+{/* 
     <Link href={"/pask"}>
     <BottomNavigationAction label='Faq'icon={ <QuizOutlinedIcon/>}  className={styles.faqIcon1} > </BottomNavigationAction>
-    </Link>
+    </Link> */}
 
   
 
