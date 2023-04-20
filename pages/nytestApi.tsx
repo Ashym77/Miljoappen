@@ -1,6 +1,6 @@
 import { log } from "console"
 import { NextPage } from "next"
-import styles from "../styles/testApi.module.css"
+import styles from "../styles/nyTestApi.module.css"
 import Image from "next/image"
 
 import { useEffect, useState } from "react"
