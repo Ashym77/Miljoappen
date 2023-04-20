@@ -1,6 +1,6 @@
 import { log } from "console"
 import { NextPage } from "next"
-import styles from "../styles/testApi.module.css"
+import styles from "../styles/nyTestApi.module.css"
 import Image from "next/image"
 
 import { useEffect, useState } from "react"
@@ -192,20 +192,20 @@ function ProductList() {
                 EcoScore: {product.ecoscore_grade}
               </p> */}
               <div className={styles.ecoScoreContainer}>
-                <p>Miljöpoäng: </p>
+                <p className={styles.ecoScoreImageLable}>Miljöpoäng: </p>
                 <img
                   src={product.ecoScoreImage}
                   alt={`EcoScore: ${product.ecoscore_grade}`}
                   className={styles.ecoscoreImage}
                 />
               </div>
-              <p>{product.ecoScoreLable}</p>
-              <div className={styles.buttonContainer}>
+              <p className={styles.ecoScoreLable}>{product.ecoScoreLable}</p>
+              {/* <div className={styles.buttonContainer}>
                 <button className={styles.button}>
                   Visa produkt
                   <Link href="/" className={styles.buttonlink}></Link>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         ))}
@@ -214,8 +214,8 @@ function ProductList() {
   )
 }
 
-const TestApi: NextPage<Props> = ({}) => {
+const nyTestApi: NextPage<Props> = ({}) => {
   return <ProductList />
 }
 
-export default TestApi
+export default nyTestApi

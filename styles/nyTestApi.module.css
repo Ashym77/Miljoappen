@@ -22,7 +22,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid red;
+  /* border: solid red; */
   margin: 40px;
   padding: 40px;
 }
@@ -37,7 +37,9 @@
   background: #ffff;
   border: 1px solid black;
   border-radius: 5px;
-  box-shadow: 0 0 5px black;
+  /* box-shadow: 0 0 5px black; */
+  /* box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.5); */
+  box-shadow: 5px 5px 6px rgba(0, 0, 0, 0.5);
 }
 
 .imageContainer {
@@ -170,9 +172,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 300px;
-    height: 100px;
-    margin: 5px;
+    width: 360px;
+    height: 120px;
+    margin: 15px;
     padding: 5px;
     /* background: #ffff; */
     /* border: 1px solid black; */
@@ -185,9 +187,10 @@
     /* align-items: center; */
     /* justify-content: center; */
     width: 100px;
-    /* height: 150px; */
-    margin: 2px;
+    height: 100px;
+    margin-right: 20px;
     /* padding: 0; */
+    /* border: solid red; */
   }
 
   .productImage {
@@ -196,32 +199,52 @@
     /* object-fit: scale-down; */
     /* border-radius: 5px; */
     /* box-shadow: 0 0 5px black; */
+    box-shadow: none;
     /* padding: 10px; */
+    margin-left: 0;
   }
 
   .productInfoContainer {
     /* display: flex; */
-    /* flex-direction: column; */
-    width: 100px;
-    /* height: auto; */
-    /* margin: 10px; */
-    /* padding: 0; */
+    flex-direction: space-between;
+
+    width: 120px;
+    height: 100px;
+    margin-left: 20px;
+    padding: 0px;
+    /* border: solid green; */
   }
 
   .productName {
-    /* font-size: 20px; */
+    font-size: 14px;
     /* font-weight: 400; */
-    /* margin: 0; */
+    margin-bottom: -10px;
   }
 
   .ecoScoreContainer {
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: left; */
+    /* font-size: 10px; */
+
+    /* display: flex;
+    align-items: center;
+    justify-content: left; */
+  }
+
+  .styles.ecoScoreImageLable {
+    font-size: 14px;
+    margin: 0;
   }
 
   .ecoscoreImage {
     /* padding: 10px; */
+    /* size: 0ch; */
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+
+  .ecoScoreLable {
+    font-size: 12px;
+    margin: 0;
   }
 
   .button {
