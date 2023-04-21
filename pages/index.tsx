@@ -44,7 +44,7 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.buttonContainer}>
         <button className={styles.button}>
-          <Link href="/Search" className={styles.buttonlink}>
+          <Link href="/nyTestApi" className={styles.buttonlink}>
             Sök produkt
           </Link>
         </button>
