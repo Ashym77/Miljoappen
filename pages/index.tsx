@@ -3,7 +3,6 @@ import Link from "next/link"
 import styles from "../styles/index.module.css"
 import Image from "next/image"
 import SearchIcon from '@mui/icons-material/Search';
-import SearchBar from "@/p-components/searchBar";
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar";
 
 
@@ -19,13 +18,7 @@ const index: NextPage<Props> = ({}) => {
     
     <div>
 
-
-
-
-
-
-
-   <div className={styles.logoContainer}>
+<div className={styles.logoContainer}>
       <Image src={"/Logga.svg"} alt={""} width={"0"}
           height={"0"} className={styles.logo}></Image>
 
