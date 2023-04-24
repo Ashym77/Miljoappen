@@ -1,14 +1,14 @@
-import { NextPage } from 'next'
-import Link from 'next/link'
-import styles from "../styles/Search.module.css"
+import { NextPage } from "next"
+import Link from "next/link"
+import styles from "../styles/search.module.css"
 import Image from "next/image"
-import { MuiBottomNavBar } from '@/p-components/MuiBottomNavBar'
-
+import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 
 interface Props {}
 
 const Search: NextPage<Props> = ({}) => {
   return (
+
   
   
   <div>
@@ -59,3 +59,4 @@ const Search: NextPage<Props> = ({}) => {
 )}
 
 export default Search
+

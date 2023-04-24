@@ -34,12 +34,14 @@ klimatavtryck
 
       </div>
 
+
 <div className={styles.searchbarContainer}>
     <form  className={styles.form}>
 
       <input type="search" name=""  placeholder="Search" className={styles.input}/>
       <div className={styles.searchIcon} >
       <SearchIcon /> 
+
       </div>
        </form>
 
