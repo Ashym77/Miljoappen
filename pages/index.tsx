@@ -52,7 +52,7 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.imageContainer}>
         <Image
-          src={"/Mat bilder.svg"}
+          src={"/Startsida bild.svg"}
           alt={"#"}
           width={"200"}
           height={"200"}
