@@ -24,7 +24,7 @@ interface Product {
 
   ecoScoreImage: string
 
-  ecoScoreLable: string
+  ecoScoreLabel: string
 }
 
 const ecoScoreImage = [
@@ -55,7 +55,7 @@ function getEcoScoreImage(score: string): string {
   }
 }
 
-const ecoScoreLable = [
+const ecoScoreLabel = [
   "Låg klimatpåverkan",
   "Låg klimatpåverkan",
   "Måttlig klimatpåverkan",
@@ -64,20 +64,20 @@ const ecoScoreLable = [
   "Odefinierat",
 ]
 
-function getEcoScoreLable(lable: string): string {
-  switch (lable) {
+function getEcoScoreLabel(label: string): string {
+  switch (label) {
     case "a":
-      return ecoScoreLable[0]
+      return ecoScoreLabel[0]
     case "b":
-      return ecoScoreLable[1]
+      return ecoScoreLabel[1]
     case "c":
-      return ecoScoreLable[2]
+      return ecoScoreLabel[2]
     case "d":
-      return ecoScoreLable[3]
+      return ecoScoreLabel[3]
     case "e":
-      return ecoScoreLable[4]
+      return ecoScoreLabel[4]
     default:
-      return ecoScoreLable[5]
+      return ecoScoreLabel[5]
   }
 }
 
@@ -114,7 +114,7 @@ function ProductList() {
 
         ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
 
-        ecoScoreLable: getEcoScoreLable(product.ecoscore_grade),
+        ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
       }))
 
       setProducts(products)
@@ -192,7 +192,7 @@ function ProductList() {
                 </div>
                 <div className={styles.ecoScoreContainer}>
                   <div className={styles.scoreContainer}>
-                    <h3 className={styles.ecoScoreImageLable}>Miljöpoäng: </h3>
+                    <h3 className={styles.ecoScoreImageLabel}>Miljöpoäng: </h3>
                     <img
                       src={product.ecoScoreImage}
                       alt={`EcoScore: ${product.ecoscore_grade}`}
@@ -202,9 +202,9 @@ function ProductList() {
                 </div>
               </div>
               <div className={styles.productInfoContainer2}>
-                <div className={styles.lableContainer}>
-                  <p className={styles.ecoScoreLable}>
-                    {product.ecoScoreLable}
+                <div className={styles.labelContainer}>
+                  <p className={styles.ecoScoreLabel}>
+                    {product.ecoScoreLabel}
                   </p>
                 </div>
               </div>

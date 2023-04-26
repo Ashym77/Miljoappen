@@ -120,7 +120,7 @@
   /* padding: 0; */
 }
 
-.ecoScoreImageLable {
+.ecoScoreImageLabel {
   font-size: 12px;
   font-weight: 400;
   margin: 0;
@@ -147,14 +147,14 @@
   border: 1px solid red;
 }
 
-.lableContainer {
+.labelContainer {
   /* margin-top: 0.5rem; */
   justify-content: flex-start;
   border: 1px solid green;
   padding: 0;
 }
 
-.ecoScoreLable {
+.ecoScoreLabel {
   font-size: 10px;
   margin: 0;
   padding: 0;

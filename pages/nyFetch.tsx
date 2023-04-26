@@ -114,7 +114,7 @@ function ProductList() {
 
       setProducts(products)
 
-      setFilteredProducts(products.slice(0, 10)) // display first 10 products
+      setFilteredProducts(products.slice(0, 2)) // display first 10 products
 
       setHasMore(true)
     }
@@ -130,7 +130,7 @@ function ProductList() {
       return productName?.includes(searchTerm)
     })
 
-    setFilteredProducts(newFilteredProducts.slice(0, 10))
+    setFilteredProducts(newFilteredProducts.slice(0, 2))
 
     setHasMore(true)
 
@@ -139,7 +139,7 @@ function ProductList() {
 
   function loadMore() {
     const currentSize = filteredProducts.length
-    const nextProducts = products.slice(currentSize, currentSize + 24)
+    const nextProducts = products.slice(currentSize, currentSize + 2)
     setFilteredProducts((prevProducts) => [...prevProducts, ...nextProducts])
     if (currentSize + 24 >= products.length) {
       setHasMore(false)
@@ -159,13 +159,13 @@ function ProductList() {
           }}
         />
       </div>
-      {/* <InfiniteScroll
+      <InfiniteScroll
         dataLength={filteredProducts.length}
         next={loadMore}
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
         children={undefined}
-      ></InfiniteScroll> */}
+      ></InfiniteScroll>
       <div className={styles.productContainer}>
         {filteredProducts.map((product) => (
           <div className={styles.cardGrid}>
