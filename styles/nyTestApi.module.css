@@ -3,8 +3,10 @@
   align-items: center;
   justify-content: center;
   margin: 15px;
+
   /* border: 1px solid red; */
   /* padding: 0; */
+
 }
 
 .input {
@@ -23,10 +25,15 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
+
   /* background-color: black; */
   /* border: 1px solid red; */
   margin: 15px;
   /* padding: 0; */
+
+  /* border: 1px solid red; */
+
+
 }
 
 .productCard {
@@ -78,6 +85,7 @@
   /* flex: 1; */
   display: flex;
 
+
   /* align-items: left; */
   justify-content: space-between;
   border: 1px solid blue;
@@ -87,13 +95,27 @@
 .nameContainer {
   border: 1px solid green;
   /* padding: 0; */
+
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid blue; */
+
+}
+
+.nameContainer {
+  /* border: 1px solid green; */
+
+
 }
 
 .productName {
   font-size: 12px;
   font-weight: 400;
   margin: 0;
+
   /* padding: 0; */
+
+
 }
 
 .productEcoScore {
@@ -192,4 +214,13 @@
   border-radius: 5px;
   border: none;
   /* padding: 0; */
+}
+
+
+.navdiv {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  right: 0px;
 }

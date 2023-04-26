@@ -32,16 +32,20 @@
 .infoContainer {
   position: absolute;
 
+
   left: 17px;
   top: 404.74px;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .imageInfo {
+
   width: 344.26px;
   height: 350.3px;
+
 }
 
 .button {
