@@ -43,7 +43,7 @@
   height: 120px;
   margin: 10px;
   background-color: #ffff;
-  /* border: 1px solid black; */
+  border: 1px solid black;
   border-radius: 5px;
   /* box-shadow: 0 0 5px black; */
   /* padding: 0; */
@@ -78,7 +78,7 @@
   /* align-items: center; */
   /* font-size: 1px; */
   /* border: solid red; */
-  /* border: 1px solid black; */
+  border: 1px solid black;
 }
 
 .textContainer {
@@ -88,12 +88,12 @@
 
   /* align-items: left; */
   justify-content: space-between;
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
   padding: 0;
 }
 
 .nameContainer {
-  /* border: 1px solid green; */
+  border: 1px solid green;
   /* padding: 0; */
 
   align-items: center;
@@ -130,7 +130,7 @@
   align-items: center;
   justify-content: right;
   flex: 0;
-  /* border: 1px solid orange; */
+  border: 1px solid orange;
   /* padding: 0; */
 }
 
@@ -138,11 +138,11 @@
   display: flex;
   align-items: center;
   justify-content: right;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   /* padding: 0; */
 }
 
-.ecoScoreImageLable {
+.ecoScoreImageLabel {
   font-size: 12px;
   font-weight: 400;
   margin: 0;
@@ -166,17 +166,17 @@
 
   /* border: 1px solid blue; */
   /* padding-right: 3px; */
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
-.lableContainer {
+.labelContainer {
   /* margin-top: 0.5rem; */
   justify-content: flex-start;
-  /* border: 1px solid green; */
+  border: 1px solid green;
   padding: 0;
 }
 
-.ecoScoreLable {
+.ecoScoreLabel {
   font-size: 10px;
   margin: 0;
   padding: 0;
@@ -204,7 +204,7 @@
   align-items: normal;
   /* justify-content: center; */
   /* margin-top: auto; */
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .button {
