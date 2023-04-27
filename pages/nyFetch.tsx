@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
-import InfiniteScroll from "react-infinite-scroll-component"
+// import InfiniteScroll from "react-infinite-scroll-component"
 
 interface Props {}
 
