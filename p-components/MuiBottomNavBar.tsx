@@ -33,7 +33,7 @@ export const MuiBottomNavBar = () => {
         ></BottomNavigationAction>
       </Link>
 
-      <Link href={"/nyTestApi"}>
+      <Link href={"/nyFetch"}>
         <BottomNavigationAction
           label="Search"
           icon={<SearchIcon className={styles.searchIcon1} />}
@@ -56,4 +56,4 @@ export const MuiBottomNavBar = () => {
     </Link> */}
     </BottomNavigation>
   )
-
+  }

@@ -152,91 +152,97 @@ function ProductList() {
   //   console.log("finished")
   // }
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-    const searchTerm = event.target.value.toLowerCase()
+      const searchTerm = event.target.value.toLowerCase()
     //const firstLetter = event.target.value.trim().charAt(0).toLowerCase();
-
-    const newFilteredProducts = products.filter((product) => {
+      const newFilteredProducts = products.filter((product) => {
       const productName = product.product_name?.toLowerCase()
       return productName?.includes(searchTerm)
       //return productName?.charAt(0) === firstLetter;
     })
+    
+
 
     setFilteredProducts(newFilteredProducts)
   }
+
+
 
   // TODO
 
   return (
     <div>
-      <div className={styles.searchbarContainer}>
-        {/* <h1>Product List</h1> */}
-        <input
-          type="search"
-          className={styles.input}
-          placeholder="Sök produkt..."
-          onChange={(event) => {
-            handleSearch(event)
-          }}
-        />
-      </div>
-      <div className={styles.productContainer}>
-        {filteredProducts.map((product) => (
-          <div className={styles.productCard} key={product.code}>
-            <div className={styles.imageContainer}>
-              <img
-                src={product.image_url}
-                alt={product.product_name}
-                className={styles.productImage}
-              />
-            </div>
-            <div className={styles.productInfoContainer}>
-              <div className={styles.textContainer}>
-                <div className={styles.nameContainer}>
-                  <h3 className={styles.productName}>{product.product_name}</h3>
+  {filteredProducts.length > 0 ? (
+      <><div className={styles.searchbarContainer}>
+          {/* <h1>Product List</h1> */}
+          <input
+            type="search"
+            className={styles.input}
+            placeholder="Sök produkt..."
+            onChange={(event) => {
+              handleSearch(event)
+            } } />
+        </div>
+        
+        <div className={styles.productContainer}>
+            {filteredProducts.map((product) => (
+              <div className={styles.productCard} key={product.code}>
+                <div className={styles.imageContainer}>
+                  <img
+                    src={product.image_url}
+                    alt={product.product_name}
+                    className={styles.productImage} />
                 </div>
-                <div className={styles.ecoScoreContainer}>
-                  <div className={styles.scoreContainer}>
-                    <h3 className={styles.ecoScoreImageLabel}>Miljöpoäng: </h3>
-                    <img
-                      src={product.ecoScoreImage}
-                      alt={`EcoScore: ${product.ecoscore_grade}`}
-                      className={styles.ecoscoreImage}
-                    />
+                <div className={styles.productInfoContainer}>
+                  <div className={styles.textContainer}>
+                    <div className={styles.nameContainer}>
+                      <h3 className={styles.productName}>{product.product_name}</h3>
+                    </div>
+                    <div className={styles.ecoScoreContainer}>
+                      <div className={styles.scoreContainer}>
+                        <h3 className={styles.ecoScoreImageLabel}>Miljöpoäng: </h3>
+                        <img
+                          src={product.ecoScoreImage}
+                          alt={`EcoScore: ${product.ecoscore_grade}`}
+                          className={styles.ecoscoreImage} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className={styles.productInfoContainer2}>
+                    <div className={styles.labelContainer}>
+                      <p className={styles.ecoScoreLabel}>
+                        {product.ecoScoreLabel}
+                      </p>
+                    </div>
+                  </div>
+                  {/* <div className={styles.productNameContainer}> */}
+                  {/* </div> */}
+                  {/* <p className={styles.productBrand}>{product.brands}</p> */}
+                  {/* <p className={styles.productEcoScore}>
+              EcoScore: {product.ecoscore_grade}
+            </p> */}
+
+                  <div className={styles.buttonContainer}>
+                    <button className={styles.button}>
+
+                      <Link href="/Search" className={styles.buttonlink}>
+                        Visa produkt
+                      </Link>
+
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className={styles.productInfoContainer2}>
-                <div className={styles.labelContainer}>
-                  <p className={styles.ecoScoreLabel}>
-                    {product.ecoScoreLabel}
-                  </p>
-                </div>
-              </div>
-              {/* <div className={styles.productNameContainer}> */}
-              {/* </div> */}
-              {/* <p className={styles.productBrand}>{product.brands}</p> */}
-              {/* <p className={styles.productEcoScore}>
-                EcoScore: {product.ecoscore_grade}
-              </p> */}
+            ))}
+          </div><div className={styles.navdiv}>
+            <MuiBottomNavBar />
+          </div></>
 
-              <div className={styles.buttonContainer}>
-                <button className={styles.button}>
+  ):(
 
-                  <Link href="/Search" className={styles.buttonlink}>
-                    Visa produkt
-                  </Link>
 
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className={styles.navdiv}>
-        <MuiBottomNavBar />
-      </div>
-
+    <p>Inga produkter matchade din sökning.</p>
+  )
+}
     </div>
   )
 }

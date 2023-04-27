@@ -51,7 +51,7 @@ klimatavtryck
    <div className={styles.buttonContainer}>
     <button className={styles.button}>
 
-        <Link href="/nytestApi" className={styles.buttonlink}>Sök produkt</Link>
+        <Link href="/nyFetch" className={styles.buttonlink}>Sök produkt</Link>
       
     </button>
     </div>

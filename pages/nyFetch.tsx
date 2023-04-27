@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
-import InfiniteScroll from "react-infinite-scroll-component"
+//import InfiniteScroll from "react-infinite-scroll-component"
 
 interface Props {}
 
@@ -89,11 +89,15 @@ function ProductList() {
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(
-        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&page_size=150&json=1`
       )
 
       const data = await response.json()
 
+
+        console.log(data);
+        
+      
       const products: Product[] = data.products.map((product: Product) => ({
         code: product.code,
 
@@ -114,7 +118,7 @@ function ProductList() {
 
       setProducts(products)
 
-      setFilteredProducts(products.slice(0, 2)) // display first 10 products
+      setFilteredProducts(products.slice(0,150)) // display first 10 products
 
       setHasMore(true)
     }
@@ -130,7 +134,7 @@ function ProductList() {
       return productName?.includes(searchTerm)
     })
 
-    setFilteredProducts(newFilteredProducts.slice(0, 2))
+    setFilteredProducts(newFilteredProducts.slice(0,150))
 
     setHasMore(true)
 
@@ -159,18 +163,19 @@ function ProductList() {
           }}
         />
       </div>
-      <InfiniteScroll
+      {/* <InfiniteScroll
         dataLength={filteredProducts.length}
         next={loadMore}
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
         children={undefined}
-      ></InfiniteScroll>
+      ></InfiniteScroll> */}
       <div className={styles.productContainer}>
         {filteredProducts.map((product) => (
-          <div className={styles.cardGrid}>
-            <div className={styles.productCard} key={product.code}>
+          <div className={styles.cardGrid}key={product.code}>
+            <div className={styles.productCard} >
               <div className={styles.productImageContainer}>
+             
                 <img
                   src={product.image_url}
                   alt={product.product_name}
@@ -179,6 +184,7 @@ function ProductList() {
               </div>
               <div className={styles.productName}>
                 <p>{product.product_name}</p>
+                
               </div>
               <div className={styles.productEcoScoreImageContainer}>
                 <img

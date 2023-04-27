@@ -1,7 +1,6 @@
 .nav {
 
-    background-color: #441263;
-    /* background-color: #ffffff; */
+   
 
     height: 4rem;
 
@@ -11,7 +10,8 @@
     right: 0px;
 
 
-
+    background-color: #441263;
+    /* background-color: #ffffff; */
 
 }
 

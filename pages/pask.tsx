@@ -15,6 +15,8 @@ const Pask: NextPage<Props> = ({}) => {
     <h1 className={styles.title}>Glad påsk  önskar vi er alla från grupp 6</h1>
 
   
+<Navbar/>
+
 
 
 
