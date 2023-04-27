@@ -26,11 +26,11 @@ interface Product {
 }
 
 const ecoScoreImage = [
-  "/ecoscore_a.svg",
-  "/ecoscore_b.svg",
-  "/ecoscore_c.svg",
-  "/ecoscore_d.svg",
-  "/ecoscore_e.svg",
+  "/ecoscore_a_v2.svg",
+  "/ecoscore_b_v2.svg",
+  "/ecoscore_c_v2.svg",
+  "/ecoscore_d_v2.svg",
+  "/ecoscore_e_v2.svg",
   "/ecoscore_u_v2.svg",
 ]
 
@@ -52,11 +52,11 @@ function getEcoScoreImage(score: string): string {
 }
 
 const ecoScoreLable = [
-  "Låg klimatpåverkan",
-  "Låg klimatpåverkan",
-  "Måttlig klimatpåverkan",
-  "Hög klimatpåverkan",
-  "Hög klimatpåverkan",
+  "Minimal",
+  "Låg",
+  "Måttlig",
+  "Medelhög",
+  "Hög",
   "Odefinierat",
 ]
 
@@ -89,10 +89,11 @@ function ProductList() {
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(
-        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=true`
       )
 
       const data = await response.json()
+      console.log(data)
 
       const products: Product[] = data.products.map((product: Product) => ({
         code: product.code,
@@ -114,9 +115,10 @@ function ProductList() {
 
       setProducts(products)
 
-      setFilteredProducts(products.slice(0, 2)) // display first 10 products
+      setFilteredProducts(products.slice(0, 50)) // display first 10 products
+      //   setFilteredProducts(products) // display first 10 products
 
-      setHasMore(true)
+      //   setHasMore(true)
     }
 
     fetchProducts()
@@ -130,7 +132,7 @@ function ProductList() {
       return productName?.includes(searchTerm)
     })
 
-    setFilteredProducts(newFilteredProducts.slice(0, 2))
+    setFilteredProducts(newFilteredProducts.slice(0, 200))
 
     setHasMore(true)
 
@@ -139,7 +141,7 @@ function ProductList() {
 
   function loadMore() {
     const currentSize = filteredProducts.length
-    const nextProducts = products.slice(currentSize, currentSize + 2)
+    const nextProducts = products.slice(currentSize, currentSize + 24)
     setFilteredProducts((prevProducts) => [...prevProducts, ...nextProducts])
     if (currentSize + 24 >= products.length) {
       setHasMore(false)
@@ -159,17 +161,17 @@ function ProductList() {
           }}
         />
       </div>
-      <InfiniteScroll
+      {/* <InfiniteScroll
         dataLength={filteredProducts.length}
         next={loadMore}
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
         children={undefined}
-      ></InfiniteScroll>
+      ></InfiniteScroll> */}
       <div className={styles.productContainer}>
         {filteredProducts.map((product) => (
-          <div className={styles.cardGrid}>
-            <div className={styles.productCard} key={product.code}>
+          <div className={styles.cardGrid} key={product.code}>
+            <div className={styles.productCard}>
               <div className={styles.productImageContainer}>
                 <img
                   src={product.image_url}
@@ -179,6 +181,9 @@ function ProductList() {
               </div>
               <div className={styles.productName}>
                 <p>{product.product_name}</p>
+              </div>
+              <div className={styles.ecoScoreTextContainer}>
+                <p className={styles.ecoScoreText}>Klimatpåverkan</p>
               </div>
               <div className={styles.productEcoScoreImageContainer}>
                 <img
@@ -192,8 +197,8 @@ function ProductList() {
               </div>
               <div className={styles.productButton}>
                 <button className={styles.button}>
-                  <Link href="/Search" className={styles.buttonlink}>
-                    Visa produkt
+                  <Link href="/Search" className={styles.buttonLink}>
+                    Visa detaljer
                   </Link>
                 </button>
               </div>

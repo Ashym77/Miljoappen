@@ -13,7 +13,6 @@ import styles from "../styles/Muinav.module.css"
 import Link from "next/link"
 import Box from "@mui/material/Box"
 
-
 export const MuiBottomNavBar = () => {
   const [value, setValue] = useState(0)
   return (
@@ -56,4 +55,4 @@ export const MuiBottomNavBar = () => {
     </Link> */}
     </BottomNavigation>
   )
-
+}
