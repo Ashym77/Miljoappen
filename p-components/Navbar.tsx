@@ -4,63 +4,60 @@ import Link from 'next/link';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 
- export const Navbar=()=> {
+export const Navbar = () => {
 
 
-return(
+    return (
 
 
-<div>
-    '
+        <div>
+            '
 
-<nav className="">
-
-
-<ul>
-
-<li>
-
-<Link href={'/'}>
-
-<HomeOutlinedIcon/>
-
-</Link>
-
-</li>
+            <nav className="">
 
 
+                <ul>
 
-<li>
+                    <li>
 
-<Link href={'/Search'} >
-<SearchIcon/>
-</Link>
+                        <Link href={'/'}>
 
-</li>
+                            <HomeOutlinedIcon />
+
+                        </Link>
+
+                    </li>
 
 
 
+                    <li>
 
-</ul>
+                        <Link href={'/Search'} >
+                            <SearchIcon />
+                        </Link>
 
-
-
-<li>
+                    </li>
 
 
 
 
-</li>
+                </ul>
+
+
+
+                <li>
+
+
+
+
+                </li>
 
 
 
 
 
 
-</nav>
-
-
-
+            </nav>
 
 
 
@@ -71,10 +68,13 @@ return(
 
 
 
-    
-    '
-</div>
 
-)
-    
+
+
+
+            '
+        </div>
+
+    )
+
 }
