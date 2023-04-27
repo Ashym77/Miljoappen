@@ -3,7 +3,8 @@ import { useEffect, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
-import InfiniteScroll from "react-infinite-scroll-component"
+import MyContextProvider from "@/context/my-context-provider"
+// import InfiniteScroll from "react-infinite-scroll-component"
 
 interface Props {}
 
@@ -159,13 +160,13 @@ function ProductList() {
           }}
         />
       </div>
-      <InfiniteScroll
+      {/* <InfiniteScroll
         dataLength={filteredProducts.length}
         next={loadMore}
         hasMore={hasMore}
         loader={<h4>Loading...</h4>}
         children={undefined}
-      ></InfiniteScroll>
+      ></InfiniteScroll> */}
       <div className={styles.productContainer}>
         {filteredProducts.map((product) => (
           <div className={styles.cardGrid}>
@@ -192,7 +193,7 @@ function ProductList() {
               </div>
               <div className={styles.productButton}>
                 <button className={styles.button}>
-                  <Link href="/Search" className={styles.buttonlink}>
+                  <Link href="/productPage" className={styles.buttonlink}>
                     Visa produkt
                   </Link>
                 </button>
@@ -253,7 +254,7 @@ function ProductList() {
 }
 
 const NyFetch: NextPage<Props> = ({}) => {
-  return <ProductList />
+  return <MyContextProvider><ProductList /></MyContextProvider>
 }
 
 export default NyFetch
