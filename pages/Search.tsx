@@ -31,7 +31,7 @@ const Search: NextPage<Props> = ({}) => {
 
 <div className={styles.infoContainer}>
 
-<Image src={'/Klimatinfo.svg'} alt={'#'}  width={"200"}
+<Image src={'/nyklimatinfo.svg'} alt={'#'}  width={"200"}
           height={"200"} className={styles.imageInfo}></Image>
 
 </div>

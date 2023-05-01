@@ -2,22 +2,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 45px;
+  padding: 20px;
+
 }
 
 .logo {
   width: 450.81px;
   height: 100.42px;
   left: 136.59px;
-  top: 200.48px;
+  margin-top: 20.48px;
 }
 
 .textContainer {
-  position: absolute;
+  display: flex;
   width: 354.01px;
   height: 79.8px;
   left: 18.24px;
-  top: 191.1px;
+
+
 }
 
 .text {
@@ -36,14 +38,18 @@
 }
 
 .searchbarContainer {
+
+
+
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  margin-top: 20px;
   width: 359px;
   height: 53.02px;
 
-  top: 311.15px;
+
+
 }
 
 .input {
@@ -52,6 +58,7 @@
   border-radius: 50px;
   text-align: center;
   justify-content: center;
+  border-style: none;
 }
 
 .input:focus {
@@ -73,10 +80,12 @@
 }
 
 .buttonContainer {
-  margin-top: 205.5px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin-top: 20px;
 }
 
 .button {
@@ -86,6 +95,8 @@
   width: 209px;
   height: 51px;
   font-weight: bold;
+  border-style: none;
+
 }
 
 .buttonlink {
@@ -94,14 +105,14 @@
 }
 
 .imageContainer {
-  position: absolute;
-  width: 229.17px;
-  height: 229.17px;
-  left: 74.82px;
-  top: 500px;
+
+
+
+  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .Image {
@@ -110,6 +121,20 @@
   left: 96.82px;
   top: 417px;
   margin-bottom: 20px;
+}
+
+.linkContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkText {
+  color: #ffffff;
+  font-family: "Lato";
+  font-size: 14px;
+  text-decoration: underline;
 }
 
 .navdiv {
