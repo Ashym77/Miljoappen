@@ -121,14 +121,10 @@ const MyContextProvider: React.FC<UserProviderProps> = ({ children }) => {
 
 
     }
-    return (<MyProduct.Provider value={contextValue}  >
 
-    {children   }
-    </MyProduct.Provider>
-
-    )
- 
+    return <MyProduct.Provider value={contextValue} children={children} />
 }
 
 
 export default MyContextProvider
+

@@ -55,4 +55,8 @@ export const MuiBottomNavBar = () => {
     </Link> */}
     </BottomNavigation>
   )
+
+  }
+
 }
+

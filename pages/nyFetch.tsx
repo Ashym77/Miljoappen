@@ -3,6 +3,10 @@ import { useEffect, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
+
+import MyContextProvider from "@/context/my-context-provider"
+=======
+
 // import InfiniteScroll from "react-infinite-scroll-component"
 
 interface Props {}
@@ -206,8 +210,10 @@ function ProductList() {
               </div>
               <div className={styles.productButton}>
                 <button className={styles.button}>
-                  <Link href="/Search" className={styles.buttonLink}>
-                    Visa detaljer
+
+                  <Link href="/productPage" className={styles.buttonlink}>
+                    Visa produkt
+
                   </Link>
                 </button>
               </div>
@@ -267,7 +273,7 @@ function ProductList() {
 }
 
 const NyFetch: NextPage<Props> = ({}) => {
-  return <ProductList />
+  return <MyContextProvider><ProductList /></MyContextProvider>
 }
 
 export default NyFetch
