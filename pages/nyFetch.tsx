@@ -3,7 +3,10 @@ import { useEffect, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
+
 import MyContextProvider from "@/context/my-context-provider"
+=======
+
 // import InfiniteScroll from "react-infinite-scroll-component"
 
 interface Props {}
@@ -27,11 +30,11 @@ interface Product {
 }
 
 const ecoScoreImage = [
-  "/ecoscore_a.svg",
-  "/ecoscore_b.svg",
-  "/ecoscore_c.svg",
-  "/ecoscore_d.svg",
-  "/ecoscore_e.svg",
+  "/ecoscore_a_v2.svg",
+  "/ecoscore_b_v2.svg",
+  "/ecoscore_c_v2.svg",
+  "/ecoscore_d_v2.svg",
+  "/ecoscore_e_v2.svg",
   "/ecoscore_u_v2.svg",
 ]
 
@@ -53,11 +56,11 @@ function getEcoScoreImage(score: string): string {
 }
 
 const ecoScoreLable = [
-  "Låg klimatpåverkan",
-  "Låg klimatpåverkan",
-  "Måttlig klimatpåverkan",
-  "Hög klimatpåverkan",
-  "Hög klimatpåverkan",
+  "Minimal",
+  "Låg",
+  "Måttlig",
+  "Medelhög",
+  "Hög",
   "Odefinierat",
 ]
 
@@ -90,38 +93,49 @@ function ProductList() {
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(
-        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-      )
+        `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
+       // `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&json=true`
+        )
 
       const data = await response.json()
+      console.log(data)
 
       const products: Product[] = data.products.map((product: Product) => ({
         code: product.code,
-
         product_name: product.product_name,
-
         brands: product.brands,
-
         categories: product.categories,
-
         image_url: product.image_url,
-
         ecoscore_grade: product.ecoscore_grade,
-
         ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
-
         ecoScoreLable: getEcoScoreLable(product.ecoscore_grade),
-      }))
+      }));
 
-      setProducts(products)
 
-      setFilteredProducts(products.slice(0, 2)) // display first 10 products
+      const filteredProducts = products.filter(
+        (product) =>
+     
+          product.ecoscore_grade !== "undefined" &&
+          product.ecoscore_grade !== "not-applicable"  &&
+          product.ecoscore_grade !== "unknown" &&
+          product.product_name !== undefined &&
+          product.image_url !== undefined 
+        
+       
+      );
+    
+      console.log("Filtered Products:", filteredProducts);
+      console.log("All Products:", products);
+    
+      setProducts(filteredProducts);
+      setFilteredProducts(filteredProducts.slice(0, 100));
+      //   setFilteredProducts(products) // display first 10 products
 
-      setHasMore(true)
+      //   setHasMore(true)
     }
 
     fetchProducts()
-  }, [query])
+  }, [])
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     const searchTerm = event.target.value.toLowerCase()
@@ -131,21 +145,21 @@ function ProductList() {
       return productName?.includes(searchTerm)
     })
 
-    setFilteredProducts(newFilteredProducts.slice(0, 2))
+    setFilteredProducts(newFilteredProducts.slice(0, 100))
 
     setHasMore(true)
 
     setQuery(searchTerm)
   }
 
-  function loadMore() {
-    const currentSize = filteredProducts.length
-    const nextProducts = products.slice(currentSize, currentSize + 2)
-    setFilteredProducts((prevProducts) => [...prevProducts, ...nextProducts])
-    if (currentSize + 24 >= products.length) {
-      setHasMore(false)
-    }
-  }
+  // function loadMore() {
+  //   const currentSize = filteredProducts.length
+  //   const nextProducts = products.slice(currentSize, currentSize + 24)
+  //   setFilteredProducts((prevProducts) => [...prevProducts, ...nextProducts])
+  //   if (currentSize + 24 >= products.length) {
+  //     setHasMore(false)
+  //   }
+  // }
 
   return (
     <div>
@@ -169,8 +183,8 @@ function ProductList() {
       ></InfiniteScroll> */}
       <div className={styles.productContainer}>
         {filteredProducts.map((product) => (
-          <div className={styles.cardGrid}>
-            <div className={styles.productCard} key={product.code}>
+          <div className={styles.cardGrid} key={product.code}>
+            <div className={styles.productCard}>
               <div className={styles.productImageContainer}>
                 <img
                   src={product.image_url}
@@ -180,6 +194,9 @@ function ProductList() {
               </div>
               <div className={styles.productName}>
                 <p>{product.product_name}</p>
+              </div>
+              <div className={styles.ecoScoreTextContainer}>
+                <p className={styles.ecoScoreText}>Klimatpåverkan</p>
               </div>
               <div className={styles.productEcoScoreImageContainer}>
                 <img
@@ -193,8 +210,10 @@ function ProductList() {
               </div>
               <div className={styles.productButton}>
                 <button className={styles.button}>
+
                   <Link href="/productPage" className={styles.buttonlink}>
                     Visa produkt
+
                   </Link>
                 </button>
               </div>

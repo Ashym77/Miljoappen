@@ -43,18 +43,29 @@ klimatavtryck
       <SearchIcon /> 
 
       </div>
+
+
        </form>
 
+
+
+
     </div>
-   
 
    <div className={styles.buttonContainer}>
     <button className={styles.button}>
 
-        <Link href="/nytestApi" className={styles.buttonlink}>Sök produkt</Link>
+        <Link href="/nyFetch" className={styles.buttonlink}>Sök produkt</Link>
       
     </button>
     </div>
+    <div className={styles.linkContainer}>
+        <Link href={"/info"} className={styles.linkText}>
+          Läs mer om vår klimatskala
+        </Link>
+      </div>
+
+
 
 <div className={styles.imageContainer}>
         <Image
