@@ -1,3 +1,4 @@
+
 import { NextPage } from "next"
 import { useEffect, useState } from "react"
 import { User } from "@/types/user"
@@ -13,6 +14,7 @@ interface Props {
   setName: (name: string) => void
   setEmail: (email: string) => void
 
+
 }
 
 const user: User = {
@@ -20,22 +22,19 @@ const user: User = {
   email: "",
 
 
-
-
-
 };
-
-
 
 
 const addUser = async (name: string, email: string, user: User) => {
   try {
     const response = await fetch("/api/user/newuser", {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...user, name, email }),
+
     });
 
     if (!response.ok) {
@@ -63,11 +62,13 @@ const Database: NextPage<Props> = ({}) => {
   const getUsers = async () => {
 
  try {
+
       const response = await fetch("/api/user", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
+
       });
 
       if (!response.ok) {
