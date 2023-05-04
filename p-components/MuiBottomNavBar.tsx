@@ -32,14 +32,14 @@ export const MuiBottomNavBar = () => {
         ></BottomNavigationAction>
       </Link>
 
-      <Link href={"/nyFetch"}>
+      <Link href={"/productFetch"}>
         <BottomNavigationAction
           label="Search"
           icon={<SearchIcon className={styles.searchIcon1} />}
         ></BottomNavigationAction>
       </Link>
 
-      <Link href={"/Search"}>
+      <Link href={"/productPage"}>
         <BottomNavigationAction
           label="Faq"
           icon={<PublicOutlinedIcon />}

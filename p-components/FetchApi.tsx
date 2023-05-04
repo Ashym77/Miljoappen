@@ -10,7 +10,7 @@ const FetchApi = () => {
 
 
     
-    interface Props {}
+ 
     
     interface Product {
       code: string
@@ -106,8 +106,8 @@ const FetchApi = () => {
         async function fetchProducts() {
           const response = await fetch(
             //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-            //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
-            `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=400&json=true`
+            `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
+
             );
             
     
@@ -151,8 +151,8 @@ const FetchApi = () => {
        
       );  
 
-      console.log(filteredProducts);
-      
+      console.log("Filtered Products:", filteredProducts)
+      console.log("All Products:", products)
     
           setProducts(filteredProducts)
     
@@ -168,22 +168,7 @@ const FetchApi = () => {
 
       
     
-      function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
-        const searchTerm = event.target.value.toLowerCase()
-    
-        const newFilteredProducts = products.filter((product) => {
-          const productName = product.product_name?.toLowerCase()
-          return productName?.includes(searchTerm)
-        })
-    
-        setFilteredProducts(newFilteredProducts.slice(0, 100))
-    
 
-        setHasMore(true)
-      }
-
-      fetchProducts()
-    }, [query])
 
     function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
       const searchTerm = event.target.value.toLowerCase()
@@ -208,7 +193,6 @@ const FetchApi = () => {
     //       setHasMore(false)
     //     }
     //   }
-
     return (
       <div>
         <div className={styles.searchbarContainer}>
@@ -223,70 +207,107 @@ const FetchApi = () => {
           />
         </div>
         {/* <InfiniteScroll
-            dataLength={filteredProducts.length}
-            next={loadMore}
-            hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-            children={undefined}
-          ></InfiniteScroll>  */}
-
-          <div className={styles.productContainer}>
-            {filteredProducts.map((product) => (
-              <div className={styles.cardGrid}>
-                <div className={styles.productCard} key={product.code}>
-                  <div className={styles.productImageContainer}>
-                    <img
-                      src={product.image_url}
-                      alt={product.product_name}
-                      className={styles.productImage}
-                    />
-                  </div>
-                  <div className={styles.productName}>
-                    <p>{product.product_name}</p>
-                    <div className={styles.productName}>
-
-</div>
-                  </div>
-                  <div className={styles.productEcoScoreImageContainer}>
-                    <img
-                      src={product.ecoScoreImage}
-                      alt={`EcoScore: ${product.ecoscore_grade}`}
-                      className={styles.productEcoScore}
-                    />
-                  </div>
-                
-                    
-
-
-                 
-                  <div className={styles.productEcoScoreText}>
-                    <p>{product.ecoScoreLabel}</p>
-                  </div>
-                  <div className={styles.productButton}>
-                  <button
-  className={styles.button}
-  onClick={() =>
-    router.push({
-      pathname: '/productPage',
-      query: {
-        code: product.code,
-        product_name: product.product_name,
-        brands: product.brands,
-        categories: product.categories,
-        image_url: product.image_url,
-        ecoscore_grade: product.ecoscore_grade,
-        ecoScoreImage: product.ecoScoreImage,
-        ecoScoreLabel: product.ecoScoreLabel,
-      },
-    })
-  }
->
-  Visa produkt
-</button>
-                  </div>
-                
-
+          dataLength={filteredProducts.length}
+          next={loadMore}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+          children={undefined}
+        ></InfiniteScroll> */}
+        <div className={styles.productContainer}>
+          {filteredProducts.map((product) => (
+            <div className={styles.cardGrid} key={product.code}>
+              <div className={styles.productCard}>
+                <div className={styles.productImageContainer}>
+                  <img
+                    src={product.image_url}
+                    alt={product.product_name}
+                    className={styles.productImage}
+                  />
                 </div>
+                <div className={styles.productName}>
+                  <p>{product.product_name}</p>
+                </div>
+                <div className={styles.ecoScoreTextContainer}>
+                  <p className={styles.ecoScoreText}>Klimatpåverkan</p>
+                </div>
+                <div className={styles.productEcoScoreImageContainer}>
+                  <img
+                    src={product.ecoScoreImage}
+                    alt={`EcoScore: ${product.ecoscore_grade}`}
+                    className={styles.productEcoScore}
+                  />
+                </div>
+                <div className={styles.productEcoScoreText}>
+                  <p>{product.ecoScoreLabel}</p>
+                </div>
+                <div className={styles.productButton}>
+  
+                <button
+    className={styles.button}
+    onClick={() =>
+      router.push({
+        pathname: '/productPage',
+        query: {
+          code: product.code,
+          product_name: product.product_name,
+          brands: product.brands,
+          categories: product.categories,
+          image_url: product.image_url,
+          ecoscore_grade: product.ecoscore_grade,
+          ecoScoreImage: product.ecoScoreImage,
+          ecoScoreLabel: product.ecoScoreLabel,
+        },
+      })
+    }
+  >
+    Visa produkt
+  </button>
+  
+                </div>
+                {/* <div className={styles.imageContainer}>
+                <img
+                  src={product.image_url}
+                  alt={product.product_name}
+                  className={styles.productImage}
+                />
+              </div>
+              <div className={styles.productInfoContainer}>
+                <div className={styles.textContainer}>
+                <div className={styles.nameContainer}>
+                  <p className={styles.productName}>{product.product_name}</p>
+                </div>
+                <div className={styles.ecoScoreContainer}>
+                <div className={styles.scoreContainer}>
+                  <h3 className={styles.ecoScoreImageLabel}>Miljöpoäng: </h3>
+                  <img
+                    src={product.ecoScoreImage}
+                    alt={`EcoScore: ${product.ecoscore_grade}`}
+                    className={styles.ecoscoreImage}
+                  />
+                </div>
+                </div>
+                </div>
+                <div className={styles.productInfoContainer2}>
+                  <div className={styles.LabelContainer}>
+                    <p className={styles.ecoScorev}>
+                      {product.ecoScoreLabel}
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.productNameContainer}></div>
+                <p className={styles.productBrand}>{product.brands}</p>
+                <p className={styles.productEcoScore}>
+                  EcoScore: {product.ecoscore_grade}
+                </p>
+  
+                <div className={styles.buttonContainer}>
+                  <button className={styles.button}>
+                    <Link href="/Search" className={styles.buttonlink}>
+                      Visa produkt
+                    </Link>
+                  </button>
+                </div>
+              </div> */}
               </div>
             </div>
           ))}
@@ -297,6 +318,7 @@ const FetchApi = () => {
       </div>
     )
   }
+
 
   return <ProductList />
 }
