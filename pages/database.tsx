@@ -1,249 +1,151 @@
-import { User } from "@/types/user"
+
 import { NextPage } from "next"
 import { useEffect, useState } from "react"
-import styles from "../styles/index.module.css"
-// import { ObjectId } from "mongodb"
+import { User } from "@/types/user"
+import { InputNameComponent } from "@/p-components/inputNameComponent"
+import { InputEmailComponent } from "@/p-components/inputEmailComponent"
+
+
 
 interface Props {
   name: string
-  email: string
+  email:string
 
   setName: (name: string) => void
   setEmail: (email: string) => void
+
+
 }
 
 const user: User = {
   name: "",
   email: "",
-}
 
-interface OutputProps {
-  name: string
-  email: string
-}
+
+};
+
 
 const addUser = async (name: string, email: string, user: User) => {
   try {
-    const response = await fetch("/api/user/newUser", {
+    const response = await fetch("/api/user/newuser", {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ ...user, name, email }),
-    })
+
+    });
 
     if (!response.ok) {
-      throw new Error("Network response was not ok")
+      throw new Error("Network response was not ok");
     }
 
-    const data = await response.json()
-    console.log(data._id)
+    const data = await response.json();
+    console.log(data); // Access the _id field from the response
   } catch (error) {
-    console.error("Error:", error)
+    console.error("Error:", error);
   }
-}
+};
 
-const InputNameComponent = ({ name, setName }: Props) => {
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newName = event.target.value
-    setName(newName)
-  }
 
-  return (
-    <input
-      type="text"
-      value={name}
-      onChange={handleNameChange}
-      placeholder="namn"
-      className=""
-    />
-  )
-}
 
-const InputEmailComponent = ({ email, setEmail }: Props) => {
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = event.target.value
-
-    setEmail(newEmail)
-  }
-  return (
-    <div>
-      <div className={styles.emailContainer}>
-        <input
-          type="text"
-          value={email}
-          onChange={handleEmailChange}
-          className={styles.inputEmail}
-          placeholder="Email"
-        />
-      </div>
-    </div>
-  )
-}
-
-const OutputComponent: React.FC<OutputProps> = ({ name, email }) => {
-  return (
-    <div className=" mt-5 mb-5">
-      <p>Name: {name}</p>
-      <p>Email: {email}</p>
-    </div>
-  )
-}
 
 const Database: NextPage<Props> = ({}) => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const [users, setUsers] = useState<User[]>([])
-  const [showUsers, setShowUsers] = useState(false)
+  const [users, setUsers] = useState<User[]>([]);
+
+
 
   const getUsers = async () => {
-    try {
+
+ try {
+
       const response = await fetch("/api/user", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      })
+
+      });
 
       if (!response.ok) {
-        throw new Error("Network response was not ok")
+        throw new Error("Network response was not ok");
       }
 
-      const data = await response.json()
-      setUsers(data) // Store the retrieved user data in state
+
+      const data = await response.json();
+      console.log(data);
+      console.log(data._id);
+      
+      setUsers(data); // Store the retrieved user data in state
     } catch (error) {
-      console.error("Error:", error)
+      console.error("Error:", error);
     }
-  }
+  };
 
   return (
     <>
-      <InputNameComponent
-        name={name}
-        setName={setName}
-        email={""}
-        setEmail={function (email: string): void {
-          throw new Error("Function not implemented.")
-        }}
-      />
-      <InputEmailComponent
-        email={email}
-        setEmail={setEmail}
-        name={""}
-        setName={function (name: string): void {
-          throw new Error("Function not implemented.")
-        }}
-      />
+      <InputNameComponent name={name} setName={setName} />
+      <InputEmailComponent email={email} setEmail={setEmail}/>
+   
 
-      <OutputComponent name={name} email={email} />
-
+    
+      
       {/* Display the retrieved user data */}
+ 
+<div >
 
-      <div className={styles.buttonContainer}>
-        <button
-          onClick={() => {
-            addUser(name, email, user)
-          }}
-          className=" bg-green-500"
-        >
-          Post
-        </button>
+      <button
+        onClick={() => {
+          addUser(name, email,  user);
+        }}
+       
+      >
+        Post
+      </button>
       </div>
-
-      <div className=" bg-red-600 ">
-        <h2 className={styles.h2}>Users:</h2>
+      
+      
+      <div>
+        <h2 className="text-green-500">Users:</h2>
         <ul>
           {users.map((user) => (
             <li key={user._id}>
-              <p>Id: {user._id}</p>
-
-              <p>Name: {user.name}</p>
-
-              <p>Email: {user.email}</p>
-              <br />
-
-              {/* Id: {user.id}, Name: {user.name}, Email: {user.email},  */}
+              
+              
+              Name: {user.name} <br />  
+              Emial {user.email}
+             
             </li>
+            
+       
+
           ))}
         </ul>
-      </div>
+      </div>  
 
-      <div>
-        <button onClick={getUsers}>Get users</button>
-      </div>
+            <div>
+              
+              <button onClick={getUsers} className=" w-6 h-4">
+
+              Get users
+
+              </button>
+              </div>  
+
+              <button className=" bg-blue-500 hover:bg-blue-400
+                    rounded font-bold text-white">
+Button
+</button>
+
+
+
+
     </>
-  )
-}
+  );
+};
 
 export default Database
-
-// // import { connectToDatabase } from "/.env.local";
-// import { User } from "@/types/user"
-
-// // export async function addUser(name: string, email: string): Promise<User> {
-// //   const db = await connectToDatabase()
-// //   const usersCollection = db.collection<User>("users")
-
-// //   const result = await usersCollection.insertOne({ name, email })
-// //   const insertedUser = result.ops[0]
-
-// //   return insertedUser
-// // }
-
-// const addUser = async (name: string, email: string, user: User) => {
-//   try {
-//     const response = await fetch("/api/user/newUser", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ ...user, name, email }),
-//     })
-
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok")
-//     }
-
-//     const data = await response.json()
-//     console.log(data._id)
-//   } catch (error) {
-//     console.error("Error:", error)
-//   }
-// }
-
-// export async function getUserById(id: string): Promise<User | null> {
-//   const db = await connectToDatabase()
-//   const usersCollection = db.collection<User>("users")
-
-//   const user = await usersCollection.findOne({ _id: new ObjectId(id) })
-
-//   return user
-// }
-
-// export async function displayUsers(): Promise<string> {
-//   const db = await connectToDatabase()
-//   const usersCollection = db.collection<User>("users")
-
-//   const users = await usersCollection.find().toArray()
-//   const userItems = users.map((user) => `<li>${user.name} (${user.email})</li>`)
-
-//   return `<ul>${userItems.join("")}</ul>`
-// }
-
-// export async function addNewUser(
-//   nameInput: HTMLInputElement,
-//   emailInput: HTMLInputElement
-// ): Promise<void> {
-//   const name = nameInput.value.trim()
-//   const email = emailInput.value.trim()
-
-//   if (!name || !email) {
-//     throw new Error("Name and email are required")
-//   }
-
-//   await addUser(name, email)
-
-//   nameInput.value = ""
-//   emailInput.value = ""
-// }

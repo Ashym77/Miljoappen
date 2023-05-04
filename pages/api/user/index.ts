@@ -1,10 +1,12 @@
 import { connectToDatabase } from "@/utils/db"
 import { NextApiRequest, NextApiResponse } from "next"
 
+
 type User = {
   _id: string
   name: string
   email: string
+
 }
 
 export default async function handler(
@@ -22,9 +24,11 @@ export default async function handler(
 
         const convertedUsers: User[] = users.map((userDoc) => {
           return {
+
             _id: userDoc._id.toString(),
             name: userDoc.name as string,
             email: userDoc.email as string,
+
           }
         })
 
