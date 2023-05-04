@@ -105,13 +105,11 @@ const FetchApi = () => {
         async function fetchProducts() {
           const response = await fetch(
             //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-            //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
-            `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=400&json=true`
+            `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
+            //`https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=400&json=true`
             );
             
-           // `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
-            `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&json=true`
-          )
+      
     
           const data = await response.json()
     
@@ -154,17 +152,6 @@ const FetchApi = () => {
 
           
 
-      const filteredProducts = products.filter(
-        (product) =>
-     
-          product.ecoscore_grade !== "undefined" &&
-          product.ecoscore_grade !== "not-applicable"  &&
-          product.ecoscore_grade !== "unknown" &&
-          product.product_name !== undefined &&
-          product.image_url !== undefined 
-        
-       
-      );  
 
       console.log(filteredProducts);
       
@@ -179,7 +166,7 @@ const FetchApi = () => {
    
         fetchProducts()
       }, [])
-
+    
 
       
     
