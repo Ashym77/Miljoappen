@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
-import MyContextProvider, { MyProduct } from "@/context/my-context-provider"
+import { useRouter } from "next/router"
+
 
 
 const FetchApi = () => {
@@ -25,7 +26,7 @@ const FetchApi = () => {
     
       ecoScoreImage: string
     
-      ecoScoreLable: string
+      ecoScoreLabel: string
     }
     
     const ecoScoreImage = [
@@ -54,7 +55,7 @@ const FetchApi = () => {
       }
     }
     
-    const ecoScoreLable = [
+    const ecoScoreLabel = [
       "Låg klimatpåverkan",
       "Låg klimatpåverkan",
       "Måttlig klimatpåverkan",
@@ -63,20 +64,20 @@ const FetchApi = () => {
       "Odefinierat",
     ]
     
-    function getEcoScoreLable(lable: string): string {
-      switch (lable) {
+    function getEcoScoreLabel(Label: string): string {
+      switch (Label) {
         case "a":
-          return ecoScoreLable[0]
+          return ecoScoreLabel[0]
         case "b":
-          return ecoScoreLable[1]
+          return ecoScoreLabel[1]
         case "c":
-          return ecoScoreLable[2]
+          return ecoScoreLabel[2]
         case "d":
-          return ecoScoreLable[3]
+          return ecoScoreLabel[3]
         case "e":
-          return ecoScoreLable[4]
+          return ecoScoreLabel[4]
         default:
-          return ecoScoreLable[5]
+          return ecoScoreLabel[5]
       }
     }
     
@@ -88,7 +89,8 @@ const FetchApi = () => {
       const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
     
       const [hasMore, setHasMore] = useState<boolean>(true)
-      const{product_name} = useContext(MyProduct)
+    
+      const router = useRouter();
     
       useEffect(() => {
         async function fetchProducts() {
@@ -113,7 +115,7 @@ const FetchApi = () => {
     
             ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
     
-            ecoScoreLable: getEcoScoreLable(product.ecoscore_grade),
+            ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
           }))
     
           setProducts(products)
@@ -192,14 +194,29 @@ const FetchApi = () => {
                     />
                   </div>
                   <div className={styles.productEcoScoreText}>
-                    <p>{product.ecoScoreLable}</p>
+                    <p>{product.ecoScoreLabel}</p>
                   </div>
                   <div className={styles.productButton}>
-                    <button className={styles.button}>
-                      <Link href="/productPage" className={styles.buttonlink}>
-                        Visa produkt
-                      </Link>
-                    </button>
+                  <button
+  className={styles.button}
+  onClick={() =>
+    router.push({
+      pathname: '/productPage',
+      query: {
+        code: product.code,
+        product_name: product.product_name,
+        brands: product.brands,
+        categories: product.categories,
+        image_url: product.image_url,
+        ecoscore_grade: product.ecoscore_grade,
+        ecoScoreImage: product.ecoScoreImage,
+        ecoScoreLabel: product.ecoScoreLabel,
+      },
+    })
+  }
+>
+  Visa produkt
+</button>
                   </div>
                 
                 </div>

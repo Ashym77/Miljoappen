@@ -1,38 +1,36 @@
-import { NextPage } from 'next'
-import MyContextProvider, { MyProduct } from '@/context/my-context-provider'
-import { useContext } from 'react'
-import Image from "next/image"
-import { log } from 'console'
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 
-interface Props {
 
-}
+const ProductPage = () => {
+  const router = useRouter();
+  
+  const {
+    code,
+    product_name,
+    brands,
+    categories,
+    image_url,
+    ecoscore_grade,
+    ecoScoreImage,
+    ecoScoreLabel,
+  } = router.query;
 
+  return (
+    <div>
+      <h1>Product Details</h1>
+      <p>Code: {code}</p>
+      <p>Product Name: {product_name}</p>
+      <p>Brands: {brands}</p>
+      <p>Categories: {categories}</p>
+     
+      <img src={image_url} alt={product_name} />
+      <p>Eco Score Grade: {ecoscore_grade}</p>
+     <img src={ecoScoreImage} alt={`EcoScore: ${ecoscore_grade}`} />
+      <p>Eco Score Label: {ecoScoreLabel}</p>
+    </div>
+  );
+};
 
-const ProductPage: NextPage<Props> = ({}) => {
-    const{code} = useContext(MyProduct)
-
-    const{product_name} = useContext(MyProduct)
-    const {brands} = useContext(MyProduct)
-    const {categories} = useContext(MyProduct)
-    const {image_url} = useContext(MyProduct)
-    const {ecoscore_grade} = useContext(MyProduct)
-    const {ecoScoreImage} = useContext(MyProduct)
-
-    const {ecoScoreLabel} = useContext(MyProduct)
-    console.log(product_name);
-
-  return <div>
-<MyContextProvider>
-<div><h1>{product_name}</h1></div>
-<div><p>{brands}</p></div>
-<div><Image src={image_url} alt={""} width={"0"}
-          height={"0"}></Image></div>
-    </MyContextProvider>
-
-  </div>
-}
-
-export default ProductPage
-
+export default ProductPage;
