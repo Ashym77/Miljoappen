@@ -1,4 +1,5 @@
 
+
 import { connectToDatabase } from "@/utils/db"
 import type { NextApiRequest, NextApiResponse } from "next"
 type User = {
@@ -33,3 +34,4 @@ if (req.method === "POST") {
  res.status(405).send(`Method ${req.method} Not Allowed`)
 }
 }
+

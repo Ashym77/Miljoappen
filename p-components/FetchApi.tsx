@@ -5,8 +5,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 
 
-
 const FetchApi = () => {
+  interface Props {}
+
 
     
     interface Props {}
@@ -175,13 +176,30 @@ const FetchApi = () => {
           return productName?.includes(searchTerm)
         })
     
-        setFilteredProducts(newFilteredProducts.slice(0, 2))
+        setFilteredProducts(newFilteredProducts.slice(0, 100))
     
+
         setHasMore(true)
-    
-        setQuery(searchTerm)
       }
-    
+
+      fetchProducts()
+    }, [query])
+
+    function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
+      const searchTerm = event.target.value.toLowerCase()
+
+      const newFilteredProducts = products.filter((product) => {
+        const productName = product.product_name?.toLowerCase()
+        return productName?.includes(searchTerm)
+      })
+
+      setFilteredProducts(newFilteredProducts.slice(0, 2))
+
+      setHasMore(true)
+
+      setQuery(searchTerm)
+    }
+
     //   function loadMore() {
     //     const currentSize = filteredProducts.length
     //     const nextProducts = products.slice(currentSize, currentSize + 2)
@@ -190,27 +208,28 @@ const FetchApi = () => {
     //       setHasMore(false)
     //     }
     //   }
-    
-      return (
-        <div>
-          <div className={styles.searchbarContainer}>
-            {/* <h1>Product List</h1> */}
-            <input
-              type="search"
-              className={styles.input}
-              placeholder="Sök produkt..."
-              onChange={(event) => {
-                handleSearch(event)
-              }}
-            />
-          </div>
-          {/* <InfiniteScroll
+
+    return (
+      <div>
+        <div className={styles.searchbarContainer}>
+          {/* <h1>Product List</h1> */}
+          <input
+            type="search"
+            className={styles.input}
+            placeholder="Sök produkt..."
+            onChange={(event) => {
+              handleSearch(event)
+            }}
+          />
+        </div>
+        {/* <InfiniteScroll
             dataLength={filteredProducts.length}
             next={loadMore}
             hasMore={hasMore}
             loader={<h4>Loading...</h4>}
             children={undefined}
           ></InfiniteScroll>  */}
+
           <div className={styles.productContainer}>
             {filteredProducts.map((product) => (
               <div className={styles.cardGrid}>
@@ -266,22 +285,19 @@ const FetchApi = () => {
 </button>
                   </div>
                 
+
                 </div>
               </div>
-            ))}
-          </div>
-          <div className={styles.navdiv}>
-            <MuiBottomNavBar />
-          </div>
+            </div>
+          ))}
         </div>
-      )
-    }
-    
+        <div className={styles.navdiv}>
+          <MuiBottomNavBar />
+        </div>
+      </div>
+    )
+  }
 
-
-return <ProductList/>
-
-
-
+  return <ProductList />
 }
 export default FetchApi
