@@ -5,7 +5,7 @@ import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
 
 import MyContextProvider from "@/context/my-context-provider"
-=======
+// =======
 
 // import InfiniteScroll from "react-infinite-scroll-component"
 
@@ -94,8 +94,8 @@ function ProductList() {
     async function fetchProducts() {
       const response = await fetch(
         `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
-       // `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&json=true`
-        )
+        // `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&json=true`
+      )
 
       const data = await response.json()
       console.log(data)
@@ -109,26 +109,22 @@ function ProductList() {
         ecoscore_grade: product.ecoscore_grade,
         ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
         ecoScoreLable: getEcoScoreLable(product.ecoscore_grade),
-      }));
-
+      }))
 
       const filteredProducts = products.filter(
         (product) =>
-     
           product.ecoscore_grade !== "undefined" &&
-          product.ecoscore_grade !== "not-applicable"  &&
+          product.ecoscore_grade !== "not-applicable" &&
           product.ecoscore_grade !== "unknown" &&
           product.product_name !== undefined &&
-          product.image_url !== undefined 
-        
-       
-      );
-    
-      console.log("Filtered Products:", filteredProducts);
-      console.log("All Products:", products);
-    
-      setProducts(filteredProducts);
-      setFilteredProducts(filteredProducts.slice(0, 100));
+          product.image_url !== undefined
+      )
+
+      console.log("Filtered Products:", filteredProducts)
+      console.log("All Products:", products)
+
+      setProducts(filteredProducts)
+      setFilteredProducts(filteredProducts.slice(0, 100))
       //   setFilteredProducts(products) // display first 10 products
 
       //   setHasMore(true)
@@ -210,10 +206,8 @@ function ProductList() {
               </div>
               <div className={styles.productButton}>
                 <button className={styles.button}>
-
                   <Link href="/productPage" className={styles.buttonlink}>
                     Visa produkt
-
                   </Link>
                 </button>
               </div>
@@ -273,7 +267,11 @@ function ProductList() {
 }
 
 const NyFetch: NextPage<Props> = ({}) => {
-  return <MyContextProvider><ProductList /></MyContextProvider>
+  return (
+    <MyContextProvider>
+      <ProductList />
+    </MyContextProvider>
+  )
 }
 
 export default NyFetch
