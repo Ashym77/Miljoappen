@@ -27,6 +27,15 @@ const FetchApi = () => {
       ecoScoreImage: string
     
       ecoScoreLabel: string
+
+      co2_agriculture:string
+
+      co2_consumption: string
+      co2_distribution: string
+      co2_packaging: string
+      co2_processing: string
+
+
     }
     
     const ecoScoreImage = [
@@ -95,8 +104,11 @@ const FetchApi = () => {
       useEffect(() => {
         async function fetchProducts() {
           const response = await fetch(
-            `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-          )
+            //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+            //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
+            `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=400&json=true`
+            );
+            
     
           const data = await response.json()
     
@@ -116,17 +128,44 @@ const FetchApi = () => {
             ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
     
             ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
+         
+
+          
           }))
+
+
+          console.log(products);
+
+          
+
+      const filteredProducts = products.filter(
+        (product) =>
+     
+          product.ecoscore_grade !== "undefined" &&
+          product.ecoscore_grade !== "not-applicable"  &&
+          product.ecoscore_grade !== "unknown" &&
+          product.product_name !== undefined &&
+          product.image_url !== undefined 
+        
+       
+      );  
+
+      console.log(filteredProducts);
+      
     
-          setProducts(products)
+          setProducts(filteredProducts)
     
-          setFilteredProducts(products.slice(0, 2)) // display first 10 products
+          setFilteredProducts(filteredProducts.slice(0, 100)) // display first 10 products
     
           setHasMore(true)
         }
     
+   
         fetchProducts()
-      }, [query])
+      }, [])
+
+
+      
     
       function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
         const searchTerm = event.target.value.toLowerCase()
@@ -185,6 +224,9 @@ const FetchApi = () => {
                   </div>
                   <div className={styles.productName}>
                     <p>{product.product_name}</p>
+                    <div className={styles.productName}>
+
+</div>
                   </div>
                   <div className={styles.productEcoScoreImageContainer}>
                     <img
@@ -193,6 +235,11 @@ const FetchApi = () => {
                       className={styles.productEcoScore}
                     />
                   </div>
+                
+                    
+
+
+                 
                   <div className={styles.productEcoScoreText}>
                     <p>{product.ecoScoreLabel}</p>
                   </div>
