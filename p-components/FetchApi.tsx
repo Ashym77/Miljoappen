@@ -95,7 +95,8 @@ const FetchApi = () => {
       useEffect(() => {
         async function fetchProducts() {
           const response = await fetch(
-            `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+           // `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
+            `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&json=true`
           )
     
           const data = await response.json()
@@ -117,10 +118,21 @@ const FetchApi = () => {
     
             ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
           }))
+          const filteredProducts = products.filter(
+            (product) =>
+         
+              product.ecoscore_grade !== "undefined" &&
+              product.ecoscore_grade !== "not-applicable"  &&
+              product.ecoscore_grade !== "unknown" &&
+              product.product_name !== undefined &&
+              product.image_url !== undefined 
+            
+           
+          );
     
-          setProducts(products)
+          setProducts(filteredProducts)
     
-          setFilteredProducts(products.slice(0, 2)) // display first 10 products
+          setFilteredProducts(filteredProducts.slice(0, 24)) // display first 10 products
     
           setHasMore(true)
         }
@@ -136,7 +148,7 @@ const FetchApi = () => {
           return productName?.includes(searchTerm)
         })
     
-        setFilteredProducts(newFilteredProducts.slice(0, 2))
+        setFilteredProducts(newFilteredProducts.slice(0, 100))
     
         setHasMore(true)
     
