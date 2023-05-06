@@ -1,12 +1,11 @@
-import { connectToDatabase } from "@/utils/db"
 import { NextApiRequest, NextApiResponse } from "next"
-
+import { connectToDatabase } from "@/utils/db"
 
 type User = {
-  _id: string
+  _id:string
   name: string
   email: string
-
+  
 }
 
 export default async function handler(
@@ -14,7 +13,7 @@ export default async function handler(
   res: NextApiResponse<User | User[] | string>
 ) {
   try {
-    const db = await connectToDatabase()
+   
 
     switch (req.method) {
       case "GET": {
@@ -24,11 +23,9 @@ export default async function handler(
 
         const convertedUsers: User[] = users.map((userDoc) => {
           return {
-
-            _id: userDoc._id.toString(),
             name: userDoc.name as string,
             email: userDoc.email as string,
-
+          _id:userDoc._id.toString()
           }
         })
 

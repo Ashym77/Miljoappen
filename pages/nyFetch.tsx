@@ -30,6 +30,8 @@ interface Product {
   ecoScoreImage: string
 
   ecoScoreLabel: string
+
+  ecoscore_score:string
 }
 
 const ecoScoreImage = [
@@ -93,48 +95,51 @@ function ProductList() {
 
   const [hasMore, setHasMore] = useState<boolean>(true)
   const router = useRouter();
+  async function fetchProducts() {
+    const response = await fetch(
+      `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
+      // `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&json=true`
+    )
+
+    const data = await response.json()
+    console.log(data)
+
+    const products: Product[] = data.products.map((product: Product) => ({
+      code: product.code,
+      product_name: product.product_name,
+      brands: product.brands,
+      categories: product.categories,
+      image_url: product.image_url,
+      ecoscore_grade: product.ecoscore_grade,
+
+      ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
+
+      ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
+      ecoscore_score:product.ecoscore_score,
+    }));
+
+
+    const filteredProducts = products.filter(
+      (product) =>
+        product.ecoscore_grade !== "undefined" &&
+        product.ecoscore_grade !== "not-applicable" &&
+        product.ecoscore_grade !== "unknown" &&
+        product.product_name !== undefined &&
+        product.image_url !== undefined
+    )
+
+    console.log("Filtered Products:", filteredProducts)
+    console.log("All Products:", products)
+
+    setProducts(filteredProducts)
+    setFilteredProducts(filteredProducts.slice(0, 425))
+    //   setFilteredProducts(products) // display first 10 products
+
+    //   setHasMore(true)
+  }
 
   useEffect(() => {
-    async function fetchProducts() {
-      const response = await fetch(
-        `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
-        // `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&json=true`
-      )
-
-      const data = await response.json()
-      console.log(data)
-
-      const products: Product[] = data.products.map((product: Product) => ({
-        code: product.code,
-        product_name: product.product_name,
-        brands: product.brands,
-        categories: product.categories,
-        image_url: product.image_url,
-        ecoscore_grade: product.ecoscore_grade,
-        ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
-
-        ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
-      }));
-
-
-      const filteredProducts = products.filter(
-        (product) =>
-          product.ecoscore_grade !== "undefined" &&
-          product.ecoscore_grade !== "not-applicable" &&
-          product.ecoscore_grade !== "unknown" &&
-          product.product_name !== undefined &&
-          product.image_url !== undefined
-      )
-
-      console.log("Filtered Products:", filteredProducts)
-      console.log("All Products:", products)
-
-      setProducts(filteredProducts)
-      setFilteredProducts(filteredProducts.slice(0, 100))
-      //   setFilteredProducts(products) // display first 10 products
-
-      //   setHasMore(true)
-    }
+ 
 
     fetchProducts()
   }, [])
@@ -147,7 +152,7 @@ function ProductList() {
       return productName?.includes(searchTerm)
     })
 
-    setFilteredProducts(newFilteredProducts.slice(0, 100))
+    setFilteredProducts(newFilteredProducts.slice(0, 425))
 
     setHasMore(true)
 
@@ -196,6 +201,7 @@ function ProductList() {
               </div>
               <div className={styles.productName}>
                 <p>{product.product_name}</p>
+                <p>{product.ecoscore_score}</p>
               </div>
               <div className={styles.ecoScoreTextContainer}>
                 <p className={styles.ecoScoreText}>Klimatpåverkan</p>
@@ -226,6 +232,7 @@ function ProductList() {
         ecoscore_grade: product.ecoscore_grade,
         ecoScoreImage: product.ecoScoreImage,
         ecoScoreLabel: product.ecoScoreLabel,
+        ecoscore_score:product.ecoscore_score
       },
     })
   }

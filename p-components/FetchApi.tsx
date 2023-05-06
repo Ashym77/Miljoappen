@@ -29,12 +29,7 @@ const FetchApi = () => {
     
       ecoScoreLabel: string
 
-      co2_agriculture:string
-
-      co2_consumption: string
-      co2_distribution: string
-      co2_packaging: string
-      co2_processing: string
+      ecoscore_score:string
 
 
     }
@@ -106,7 +101,7 @@ const FetchApi = () => {
         async function fetchProducts() {
           const response = await fetch(
             //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-            `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
+            `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
 
             );
             
@@ -129,13 +124,15 @@ const FetchApi = () => {
             ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
     
             ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
+
+            ecoscore_score: product.ecoscore_score
          
 
           
           }))
 
 
-          console.log(products);
+      
 
           
 
@@ -156,7 +153,7 @@ const FetchApi = () => {
     
           setProducts(filteredProducts)
     
-          setFilteredProducts(filteredProducts.slice(0, 100)) // display first 10 products
+          setFilteredProducts(filteredProducts.slice(0, 425)) // display first 10 products
     
           setHasMore(true)
         }
@@ -178,7 +175,7 @@ const FetchApi = () => {
         return productName?.includes(searchTerm)
       })
 
-      setFilteredProducts(newFilteredProducts.slice(0, 2))
+      setFilteredProducts(newFilteredProducts.slice(0, 425))
 
       setHasMore(true)
 
@@ -256,6 +253,7 @@ const FetchApi = () => {
           ecoscore_grade: product.ecoscore_grade,
           ecoScoreImage: product.ecoScoreImage,
           ecoScoreLabel: product.ecoScoreLabel,
+          ecoscore_score:product.ecoscore_score
         },
       })
     }

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import styles from "../styles/productPage.module.css"
+import { MuiBottomNavBar } from '@/p-components/MuiBottomNavBar';
 
 
 
@@ -16,6 +17,7 @@ const ProductPage = () => {
     ecoscore_grade,
     ecoScoreImage,
     ecoScoreLabel,
+    ecoscore_score
   } = router.query;
 
   return (
@@ -55,6 +57,7 @@ const ProductPage = () => {
 
 <div className={styles.impactContainer}><p className={styles.impact}></p>
 <p className={styles.categories}>Påverkan</p></div>
+<p> {ecoscore_score}/100 Klimatpoäng</p>
     
       
           
@@ -62,7 +65,9 @@ const ProductPage = () => {
           
          
         {/* </div> */}
-  
+        <div className={styles.navdiv}>
+        <MuiBottomNavBar />
+      </div>
 </div>
       
 

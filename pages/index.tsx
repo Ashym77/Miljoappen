@@ -61,12 +61,14 @@ function getEcoScoreLable(lable: string): string {
 }
 
 const index: NextPage<Props> = ({}) => {
+  
+  
   useEffect(() => {
     const openButton = document.querySelector(
-      "[data-open-modal"
+      "[data-open-modal]"
     ) as HTMLButtonElement
     const closeButton = document.querySelector(
-      "[data-close-modal"
+      "[data-close-modal]"
     ) as HTMLButtonElement
     const modal = document.querySelector("[data-modal]") as HTMLDialogElement
 
@@ -141,7 +143,7 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.buttonContainer}>
         <button className={styles.button}>
-          <Link href="/nyFetch" className={styles.buttonlink}>
+          <Link href="/productFetch" className={styles.buttonlink}>
             Sök produkt
           </Link>
         </button>

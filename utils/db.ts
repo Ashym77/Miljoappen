@@ -1,8 +1,5 @@
 import { MongoClient, Db, MongoClientOptions } from "mongodb"
 
-
-
-
 if (!process.env.MONGODB_URI) {
   throw new Error("No MongoDB URI specified")
 }
@@ -10,7 +7,6 @@ if (!process.env.MONGODB_URI) {
 const uri = process.env.MONGODB_URI
 
 let cachedDb: Db | null = null
-
 
 const options: MongoClientOptions = {
   connectTimeoutMS: 5000,
@@ -21,7 +17,6 @@ export async function connectToDatabase() {
   if (cachedDb) {
     return cachedDb
   }
-
 
   try {
     const client = await MongoClient.connect(uri, options)
