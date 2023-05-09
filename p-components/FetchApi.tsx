@@ -3,169 +3,144 @@ import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
 import { useRouter } from "next/router"
-
+import { Navbar } from "./Navbar"
 
 const FetchApi = () => {
   interface Props {}
 
+  interface Product {
+    code: string
 
-    
- 
-    
-    interface Product {
-      code: string
-    
-      product_name: string
-    
-      brands: string
-    
-      categories: string
-    
-      image_url: string
-    
-      ecoscore_grade: string
-    
-      ecoScoreImage: string
-    
-      ecoScoreLabel: string
+    product_name: string
 
-      ecoscore_score:string
+    brands: string
 
+    categories: string
 
+    image_url: string
+
+    ecoscore_grade: string
+
+    ecoScoreImage: string
+
+    ecoScoreLabel: string
+
+    ecoscore_score: string
+  }
+
+  const ecoScoreImage = [
+    "/ecoscore_a.svg",
+    "/ecoscore_b.svg",
+    "/ecoscore_c.svg",
+    "/ecoscore_d.svg",
+    "/ecoscore_e.svg",
+    "/ecoscore_u_v2.svg",
+  ]
+
+  function getEcoScoreImage(score: string): string {
+    switch (score) {
+      case "a":
+        return ecoScoreImage[0]
+      case "b":
+        return ecoScoreImage[1]
+      case "c":
+        return ecoScoreImage[2]
+      case "d":
+        return ecoScoreImage[3]
+      case "e":
+        return ecoScoreImage[4]
+      default:
+        return ecoScoreImage[5]
     }
-    
-    const ecoScoreImage = [
-      "/ecoscore_a.svg",
-      "/ecoscore_b.svg",
-      "/ecoscore_c.svg",
-      "/ecoscore_d.svg",
-      "/ecoscore_e.svg",
-      "/ecoscore_u_v2.svg",
-    ]
-    
-    function getEcoScoreImage(score: string): string {
-      switch (score) {
-        case "a":
-          return ecoScoreImage[0]
-        case "b":
-          return ecoScoreImage[1]
-        case "c":
-          return ecoScoreImage[2]
-        case "d":
-          return ecoScoreImage[3]
-        case "e":
-          return ecoScoreImage[4]
-        default:
-          return ecoScoreImage[5]
+  }
+
+  const ecoScoreLabel = [
+    "Låg klimatpåverkan",
+    "Låg klimatpåverkan",
+    "Måttlig klimatpåverkan",
+    "Hög klimatpåverkan",
+    "Hög klimatpåverkan",
+    "Odefinierat",
+  ]
+
+  function getEcoScoreLabel(Label: string): string {
+    switch (Label) {
+      case "a":
+        return ecoScoreLabel[0]
+      case "b":
+        return ecoScoreLabel[1]
+      case "c":
+        return ecoScoreLabel[2]
+      case "d":
+        return ecoScoreLabel[3]
+      case "e":
+        return ecoScoreLabel[4]
+      default:
+        return ecoScoreLabel[5]
+    }
+  }
+
+  function ProductList() {
+    const [query, setQuery] = useState<string>("")
+
+    const [products, setProducts] = useState<Product[]>([])
+
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+
+    const [hasMore, setHasMore] = useState<boolean>(true)
+
+    const router = useRouter()
+
+    useEffect(() => {
+      async function fetchProducts() {
+        const response = await fetch(
+          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+          `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
+        )
+
+        const data = await response.json()
+
+        const products: Product[] = data.products.map((product: Product) => ({
+          code: product.code,
+
+          product_name: product.product_name,
+
+          brands: product.brands,
+
+          categories: product.categories,
+
+          image_url: product.image_url,
+
+          ecoscore_grade: product.ecoscore_grade,
+
+          ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
+
+          ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
+
+          ecoscore_score: product.ecoscore_score,
+        }))
+
+        const filteredProducts = products.filter(
+          (product) =>
+            product.ecoscore_grade !== "undefined" &&
+            product.ecoscore_grade !== "not-applicable" &&
+            product.ecoscore_grade !== "unknown" &&
+            product.product_name !== undefined &&
+            product.image_url !== undefined
+        )
+
+        console.log("Filtered Products:", filteredProducts)
+        console.log("All Products:", products)
+
+        setProducts(filteredProducts)
+
+        setFilteredProducts(filteredProducts.slice(0, 425)) // display first 10 products
+
+        setHasMore(true)
       }
-    }
-    
-    const ecoScoreLabel = [
-      "Låg klimatpåverkan",
-      "Låg klimatpåverkan",
-      "Måttlig klimatpåverkan",
-      "Hög klimatpåverkan",
-      "Hög klimatpåverkan",
-      "Odefinierat",
-    ]
-    
-    function getEcoScoreLabel(Label: string): string {
-      switch (Label) {
-        case "a":
-          return ecoScoreLabel[0]
-        case "b":
-          return ecoScoreLabel[1]
-        case "c":
-          return ecoScoreLabel[2]
-        case "d":
-          return ecoScoreLabel[3]
-        case "e":
-          return ecoScoreLabel[4]
-        default:
-          return ecoScoreLabel[5]
-      }
-    }
-    
-    function ProductList() {
-      const [query, setQuery] = useState<string>("")
-    
-      const [products, setProducts] = useState<Product[]>([])
-    
-      const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-    
-      const [hasMore, setHasMore] = useState<boolean>(true)
-    
-      const router = useRouter();
-    
-      useEffect(() => {
-        async function fetchProducts() {
-          const response = await fetch(
-            //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-            `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
 
-            );
-            
-    
-          const data = await response.json()
-    
-          const products: Product[] = data.products.map((product: Product) => ({
-            code: product.code,
-    
-            product_name: product.product_name,
-    
-            brands: product.brands,
-    
-            categories: product.categories,
-    
-            image_url: product.image_url,
-    
-            ecoscore_grade: product.ecoscore_grade,
-    
-            ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
-    
-            ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
-
-            ecoscore_score: product.ecoscore_score
-         
-
-          
-          }))
-
-
-      
-
-          
-
-      const filteredProducts = products.filter(
-        (product) =>
-     
-          product.ecoscore_grade !== "undefined" &&
-          product.ecoscore_grade !== "not-applicable"  &&
-          product.ecoscore_grade !== "unknown" &&
-          product.product_name !== undefined &&
-          product.image_url !== undefined 
-        
-       
-      );  
-
-      console.log("Filtered Products:", filteredProducts)
-      console.log("All Products:", products)
-    
-          setProducts(filteredProducts)
-    
-          setFilteredProducts(filteredProducts.slice(0, 425)) // display first 10 products
-    
-          setHasMore(true)
-        }
-    
-   
-        fetchProducts()
-      }, [])
-
-
-      
-    
-
+      fetchProducts()
+    }, [])
 
     function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
       const searchTerm = event.target.value.toLowerCase()
@@ -238,29 +213,27 @@ const FetchApi = () => {
                   <p>{product.ecoScoreLabel}</p>
                 </div>
                 <div className={styles.productButton}>
-  
-                <button
-    className={styles.button}
-    onClick={() =>
-      router.push({
-        pathname: '/productPage',
-        query: {
-          code: product.code,
-          product_name: product.product_name,
-          brands: product.brands,
-          categories: product.categories,
-          image_url: product.image_url,
-          ecoscore_grade: product.ecoscore_grade,
-          ecoScoreImage: product.ecoScoreImage,
-          ecoScoreLabel: product.ecoScoreLabel,
-          ecoscore_score:product.ecoscore_score
-        },
-      })
-    }
-  >
-    Visa produkt
-  </button>
-  
+                  <button
+                    className={styles.button}
+                    onClick={() =>
+                      router.push({
+                        pathname: "/productPage",
+                        query: {
+                          code: product.code,
+                          product_name: product.product_name,
+                          brands: product.brands,
+                          categories: product.categories,
+                          image_url: product.image_url,
+                          ecoscore_grade: product.ecoscore_grade,
+                          ecoScoreImage: product.ecoScoreImage,
+                          ecoScoreLabel: product.ecoScoreLabel,
+                          ecoscore_score: product.ecoscore_score,
+                        },
+                      })
+                    }
+                  >
+                    Visa produkt
+                  </button>
                 </div>
                 {/* <div className={styles.imageContainer}>
                 <img
@@ -310,13 +283,14 @@ const FetchApi = () => {
             </div>
           ))}
         </div>
-        <div className={styles.navdiv}>
+
+        <Navbar />
+        {/* <div className={styles.navdiv}>
           <MuiBottomNavBar />
-        </div>
+        </div> */}
       </div>
     )
   }
-
 
   return <ProductList />
 }

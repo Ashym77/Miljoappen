@@ -8,8 +8,6 @@ import MyContextProvider from "@/context/my-context-provider"
 
 import router, { useRouter } from "next/router"
 
-
-
 // import InfiniteScroll from "react-infinite-scroll-component"
 
 interface Props {}
@@ -31,7 +29,7 @@ interface Product {
 
   ecoScoreLabel: string
 
-  ecoscore_score:string
+  ecoscore_score: string
 }
 
 const ecoScoreImage = [
@@ -94,7 +92,7 @@ function ProductList() {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
 
   const [hasMore, setHasMore] = useState<boolean>(true)
-  const router = useRouter();
+  const router = useRouter()
   async function fetchProducts() {
     const response = await fetch(
       `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=400&json=true`
@@ -115,9 +113,8 @@ function ProductList() {
       ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
 
       ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
-      ecoscore_score:product.ecoscore_score,
-    }));
-
+      ecoscore_score: product.ecoscore_score,
+    }))
 
     const filteredProducts = products.filter(
       (product) =>
@@ -139,8 +136,6 @@ function ProductList() {
   }
 
   useEffect(() => {
- 
-
     fetchProducts()
   }, [])
 
@@ -217,29 +212,27 @@ function ProductList() {
                 <p>{product.ecoScoreLabel}</p>
               </div>
               <div className={styles.productButton}>
-
-              <button
-  className={styles.button}
-  onClick={() =>
-    router.push({
-      pathname: '/productPage',
-      query: {
-        code: product.code,
-        product_name: product.product_name,
-        brands: product.brands,
-        categories: product.categories,
-        image_url: product.image_url,
-        ecoscore_grade: product.ecoscore_grade,
-        ecoScoreImage: product.ecoScoreImage,
-        ecoScoreLabel: product.ecoScoreLabel,
-        ecoscore_score:product.ecoscore_score
-      },
-    })
-  }
->
-  Visa produkt
-</button>
-
+                <button
+                  className={styles.button}
+                  onClick={() =>
+                    router.push({
+                      pathname: "/productPage",
+                      query: {
+                        code: product.code,
+                        product_name: product.product_name,
+                        brands: product.brands,
+                        categories: product.categories,
+                        image_url: product.image_url,
+                        ecoscore_grade: product.ecoscore_grade,
+                        ecoScoreImage: product.ecoScoreImage,
+                        ecoScoreLabel: product.ecoScoreLabel,
+                        ecoscore_score: product.ecoscore_score,
+                      },
+                    })
+                  }
+                >
+                  Visa produkt
+                </button>
               </div>
               {/* <div className={styles.imageContainer}>
               <img

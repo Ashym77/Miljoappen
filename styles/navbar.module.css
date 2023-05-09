@@ -1,0 +1,52 @@
+.navBar {
+}
+
+.navUl {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #441263;
+  padding-bottom: 5px;
+  padding-top: 5px;
+
+  /* background-color: orange; */
+}
+
+.navContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+}
+
+.homeIconGreen {
+  width: 44px;
+  height: 44.8px;
+}
+
+.homeIconWhite {
+  width: 44px;
+  height: 44.8px;
+}
+
+.favoritIconGreen {
+  width: 44px;
+  height: 44.8px;
+}
+
+.favoritIconWhite {
+  width: 44px;
+  height: 44.8px;
+}
+
+.faqIconGreen {
+  width: 44px;
+  height: 44.8px;
+}
+
+.faqIconWhite {
+  width: 44px;
+  height: 44.8px;
+}

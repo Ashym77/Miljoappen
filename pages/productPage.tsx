@@ -1,13 +1,12 @@
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useRouter } from "next/router"
+import { useState } from "react"
 import styles from "../styles/productPage.module.css"
-import { MuiBottomNavBar } from '@/p-components/MuiBottomNavBar';
-
-
+import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
+import { Navbar } from "@/p-components/Navbar"
 
 const ProductPage = () => {
-  const router = useRouter();
-  
+  const router = useRouter()
+
   const {
     code,
     product_name,
@@ -17,75 +16,73 @@ const ProductPage = () => {
     ecoscore_grade,
     ecoScoreImage,
     ecoScoreLabel,
-    ecoscore_score
-  } = router.query;
+    ecoscore_score,
+  } = router.query
+
+  console.log(router)
 
   return (
     <div>
-
       <div className={styles.productImageContainer2}>
-        <img className={styles.productImage} src={image_url} alt={product_name} />
+        <img
+          className={styles.productImage}
+          src={image_url}
+          alt={product_name}
+        />
       </div>
 
-    <div className={styles.productNameContainer2}>
-    <p className={styles.product_name}>Product Name: {product_name}</p>
-    </div>
-      
+      <div className={styles.productNameContainer2}>
+        <p className={styles.product_name}>Product Name: {product_name}</p>
+      </div>
 
-
-<div className={styles.infoCard}>
-  {/* <div className = {styles.ecoScoreContainer}> */}
-    <div className = {styles.ecoScoreImageContainer}>
-  <img className = {styles.ecoScoreImage}src={ecoScoreImage} alt={`EcoScore: ${ecoscore_grade}`} />
-
-  </div>
-      <div className={styles.ecoScoreLabelContainer}>
-        <p className={styles.ecoScoreLabel}>Eco Score Label: {ecoScoreLabel}</p>
+      <div className={styles.infoCard}>
+        {/* <div className = {styles.ecoScoreContainer}> */}
+        <div className={styles.ecoScoreImageContainer}>
+          <img
+            className={styles.ecoScoreImage}
+            src={ecoScoreImage}
+            alt={`EcoScore: ${ecoscore_grade}`}
+          />
+        </div>
+        <div className={styles.ecoScoreLabelContainer}>
+          <p className={styles.ecoScoreLabel}>
+            Eco Score Label: {ecoScoreLabel}
+          </p>
         </div>
 
-    <table>
-      <tr>
-<th>Kategori</th>
-<th>Påverkan</th>
+        <table>
+          <tr>
+            <th>Kategori</th>
+            <th>Påverkan</th>
+          </tr>
+        </table>
 
+        <div className={styles.categoriesContainer}>
+          <p className={styles.categories}></p>
+          <p className={styles.categories}>Kategori</p>
+        </div>
 
-      </tr>
-    </table>
+        <div className={styles.impactContainer}>
+          <p className={styles.impact}></p>
+          <p className={styles.categories}>Påverkan</p>
+        </div>
+        <p> {ecoscore_score}/100 Klimatpoäng</p>
 
-    <div className={styles.categoriesContainer}><p className={styles.categories}></p>
-<p className={styles.categories}>Kategori</p></div>
-
-<div className={styles.impactContainer}><p className={styles.impact}></p>
-<p className={styles.categories}>Påverkan</p></div>
-<p> {ecoscore_score}/100 Klimatpoäng</p>
-    
-      
-          
-          
-          
-         
         {/* </div> */}
-        <div className={styles.navdiv}>
-        <MuiBottomNavBar />
       </div>
-</div>
-      
+      {/* <div className={styles.navdiv}>
+        <MuiBottomNavBar />
+      </div> */}
 
-
-
-
-
+      <Navbar />
       {/* <p className={styles.ecoscore_grade}>Eco Score Grade:</p>
       <h1 className={styles.headline}>Product Details</h1>
       <p className={styles.code}>Code:</p>
       <p className={styles.product_name}>Product Name: {product_name}</p>
       <p className={styles.brands}>Brands: </p>
       <p className={styles.categories}>Categories</p> */}
-     
-      
-   
     </div>
-  );
-};
+  )
+}
 
-export default ProductPage;
+export default ProductPage

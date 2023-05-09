@@ -5,6 +5,8 @@ import Image from "next/image"
 import SearchIcon from "@mui/icons-material/Search"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { useEffect } from "react"
+import FetchApi from "@/p-components/FetchApi"
+import { Navbar } from "@/p-components/Navbar"
 
 interface Props {}
 
@@ -61,8 +63,6 @@ function getEcoScoreLable(lable: string): string {
 }
 
 const index: NextPage<Props> = ({}) => {
-  
-  
   useEffect(() => {
     const openButton = document.querySelector(
       "[data-open-modal]"
@@ -91,23 +91,6 @@ const index: NextPage<Props> = ({}) => {
     // })
   })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   return (
     <div>
       <div className={styles.logoContainer}>
@@ -303,10 +286,10 @@ const index: NextPage<Props> = ({}) => {
   </div>
 </dialog> */}
 
-      <p className={styles.hoverText}>Läs mer om vår klimatskala</p>
+      {/* <p className={styles.hoverText}>Läs mer om vår klimatskala</p>
       <div className={styles.card}>
         <p>This is the hover card that appears when you hover over the text.</p>
-      </div>
+      </div> */}
 
       <div className={styles.imageContainer}>
         <Image
@@ -318,9 +301,10 @@ const index: NextPage<Props> = ({}) => {
         ></Image>
       </div>
 
-      <div className={styles.navdiv}>
+      {/* <div className={styles.navdiv}>
         <MuiBottomNavBar />
-      </div>
+      </div> */}
+      <Navbar />
     </div>
   )
 }
