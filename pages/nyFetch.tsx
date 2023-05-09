@@ -17,6 +17,8 @@ interface Product {
 
   product_name: string
 
+  generic_name: string
+
   brands: string
 
   categories: string
@@ -136,8 +138,9 @@ function ProductList() {
   }
 
   useEffect(() => {
+
     fetchProducts()
-  }, [])
+  }, [query])
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     const searchTerm = event.target.value.toLowerCase()
@@ -198,9 +201,16 @@ function ProductList() {
                 <p>{product.product_name}</p>
                 <p>{product.ecoscore_score}</p>
               </div>
-              <div className={styles.ecoScoreTextContainer}>
-                <p className={styles.ecoScoreText}>Klimatpåverkan</p>
+              <div className={styles.genericName}>
+                {product.generic_name !== undefined ? (
+                  <p>{product.generic_name.slice(0, 22)}... </p>
+                ) : (
+                  <p></p>
+                )}
               </div>
+              {/* <div className={styles.ecoScoreTextContainer}>
+                <p className={styles.ecoScoreText}>Klimatpåverkan</p>
+              </div> */}
               <div className={styles.productEcoScoreImageContainer}>
                 <img
                   src={product.ecoScoreImage}
@@ -209,7 +219,11 @@ function ProductList() {
                 />
               </div>
               <div className={styles.productEcoScoreText}>
+
+                <p>{product.ecoScoreLable} klimatpåverkan</p>
+
                 <p>{product.ecoScoreLabel}</p>
+
               </div>
               <div className={styles.productButton}>
                 <button

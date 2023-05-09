@@ -11,11 +11,11 @@ import { Navbar } from "@/p-components/Navbar"
 interface Props {}
 
 const ecoScoreImage = [
-  "/ecoscore_a_v2.svg",
-  "/ecoscore_b_v2.svg",
-  "/ecoscore_c_v2.svg",
-  "/ecoscore_d_v2.svg",
-  "/ecoscore_e_v2.svg",
+  "/ecoscore_a_v3.svg",
+  "/ecoscore_b_v3.svg",
+  "/ecoscore_c_v3.svg",
+  "/ecoscore_d_v3.svg",
+  "/ecoscore_e_v3.svg",
   "/ecoscore_u_v2.svg",
 ]
 
@@ -77,13 +77,16 @@ const index: NextPage<Props> = ({}) => {
     openButton.addEventListener("click", () => {
       if (!modal.open) {
         modal.showModal()
-        document.body.classList.add("dialog-overlay") // Add the overlay to the body
+
+        document.body.classList.add("dialogMask") // Add the overlay to the body
+        // document.body.classList.add("dialog-overlay") // Add the overlay to the body
       }
     })
 
     closeButton.addEventListener("click", () => {
       modal.close()
-      document.body.classList.remove("dialog-overlay") // Remove the overlay from the body when the dialog is closed
+      // document.body.classList.remove("dialog-overlay") // Remove the overlay from the body when the dialog is closed
+      document.body.classList.remove("dialogMask") // Remove the overlay from the body when the dialog is closed
     })
 
     // modal.addEventListener("close", () => {
@@ -144,67 +147,75 @@ const index: NextPage<Props> = ({}) => {
         </button>
       </div>
 
-      <dialog data-modal className={styles.dialog}>
-        <div className={styles.dialogContainer}>
-          <h1 className={styles.dialogHeadline}>Vår klimatskala</h1>
+      <div className={styles.dialogMask}>
+        <dialog data-modal className={styles.dialog}>
+          <div className={styles.dialogContainer}>
+            <h1 className={styles.dialogHeadline}>Vår klimatskala</h1>
 
-          <Image
-            src={"/ecoscore_a_v2.svg"}
-            alt={"/ecoscore_a_v2.svg"}
-            className={styles.dialogImageA}
-            width={"100"}
-            height={"100"}
-          />
-          <h3 className={styles.dialogClimateLabelA}>Minimal</h3>
-          <h2 className={styles.dialogClimatetextA}>Klimatpåverkan</h2>
+            <Image
+              src={"/ecoscore_a_v2.svg"}
+              alt={"/ecoscore_a_v2.svg"}
+              className={styles.dialogImageA}
+              width={"100"}
+              height={"100"}
+            />
+            <h3 className={styles.dialogClimateLabelA}>Minimal</h3>
+            <h2 className={styles.dialogClimatetextA}>Klimatpåverkan</h2>
 
-          <Image
-            src={"/ecoscore_b_v2.svg"}
-            alt={"/ecoscore_b_v2.svg"}
-            className={styles.dialogImageB}
-            width={"100"}
-            height={"100"}
-          />
-          <h3 className={styles.dialogClimateLabelB}>Låg</h3>
-          <h2 className={styles.dialogClimatetextB}>Klimatpåverkan</h2>
+            <Image
+              src={"/ecoscore_b_v2.svg"}
+              alt={"/ecoscore_b_v2.svg"}
+              className={styles.dialogImageB}
+              width={"100"}
+              height={"100"}
+            />
+            <h3 className={styles.dialogClimateLabelB}>Låg</h3>
+            <h2 className={styles.dialogClimatetextB}>Klimatpåverkan</h2>
 
-          <Image
-            src={"/ecoscore_c_v2.svg"}
-            alt={"/ecoscore_c_v2.svg"}
-            className={styles.dialogImageC}
-            width={"100"}
-            height={"100"}
-          />
-          <h3 className={styles.dialogClimateLabelC}>Måttlig</h3>
-          <h2 className={styles.dialogClimatetextC}>Klimatpåverkan</h2>
+            <Image
+              src={"/ecoscore_c_v2.svg"}
+              alt={"/ecoscore_c_v2.svg"}
+              className={styles.dialogImageC}
+              width={"100"}
+              height={"100"}
+            />
+            <h3 className={styles.dialogClimateLabelC}>Måttlig</h3>
+            <h2 className={styles.dialogClimatetextC}>Klimatpåverkan</h2>
 
-          <Image
-            src={"/ecoscore_d_v2.svg"}
-            alt={"/ecoscore_d_v2.svg"}
-            className={styles.dialogImageD}
-            width={"100"}
-            height={"100"}
-          />
-          <h3 className={styles.dialogClimateLabelD}>Medelhög</h3>
-          <h2 className={styles.dialogClimatetextD}>Klimatpåverkan</h2>
+            <Image
+              src={"/ecoscore_d_v2.svg"}
+              alt={"/ecoscore_d_v2.svg"}
+              className={styles.dialogImageD}
+              width={"100"}
+              height={"100"}
+            />
+            <h3 className={styles.dialogClimateLabelD}>Medelhög</h3>
+            <h2 className={styles.dialogClimatetextD}>Klimatpåverkan</h2>
 
-          <Image
-            src={"/ecoscore_e_v2.svg"}
-            alt={"/ecoscore_e_v2.svg"}
-            className={styles.dialogImageE}
-            width={"100"}
-            height={"100"}
-          />
-          <h3 className={styles.dialogClimateLabelE}>Hög</h3>
-          <h2 className={styles.dialogClimatetextE}>Klimatpåverkan</h2>
-        </div>
+            <Image
+              src={"/ecoscore_e_v2.svg"}
+              alt={"/ecoscore_e_v2.svg"}
+              className={styles.dialogImageE}
+              width={"100"}
+              height={"100"}
+            />
+            <h3 className={styles.dialogClimateLabelE}>Hög</h3>
+            <h2 className={styles.dialogClimatetextE}>Klimatpåverkan</h2>
+          </div>
 
-        <div className={styles.dialogCloseButtonContainer}>
-          <button data-close-modal className={styles.dialogCloseButton}>
-            X
-          </button>
-        </div>
-      </dialog>
+          <div className={styles.dialogCloseButtonContainer}>
+            <button data-close-modal className={styles.dialogCloseButton}>
+              <Image
+                src={"/blackClose.svg"}
+                alt={""}
+                className={styles.dialogImageE}
+                width={"30"}
+                height={"33"}
+              />
+            </button>
+          </div>
+        </dialog>
+      </div>
       {/* </div> */}
 
       {/* <dialog
