@@ -3,7 +3,6 @@ import type { NextApiRequest, NextApiResponse } from "next"
 type User = {
   name: string
   email: string
-  age: number
 }
 export default async function handler(
   req: NextApiRequest,

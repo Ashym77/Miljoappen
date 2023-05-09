@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
-import MyContextProvider, { MyProduct } from "@/context/my-context-provider"
+import { useRouter } from "next/router"
+import { Navbar } from "./Navbar"
 
 const FetchApi = () => {
   interface Props {}
@@ -22,25 +23,9 @@ const FetchApi = () => {
 
     ecoScoreImage: string
 
-    ecoScoreLable: string
-  }
+    ecoScoreLabel: string
 
-  const { setProduct } = useContext(MyProduct)
-
-  const [selectedProduct, setSelectedProduct] = useState<Product>({
-    code: "",
-    product_name: "",
-    brands: "",
-    categories: "",
-    image_url: "",
-    ecoscore_grade: "",
-    ecoScoreImage: "",
-    ecoScoreLable: "",
-  })
-
-  function handleProductSelection(product: Product) {
-    setSelectedProduct(product)
-    setProduct(product)
+    ecoscore_score: string
   }
 
   const ecoScoreImage = [
@@ -69,7 +54,7 @@ const FetchApi = () => {
     }
   }
 
-  const ecoScoreLable = [
+  const ecoScoreLabel = [
     "Låg klimatpåverkan",
     "Låg klimatpåverkan",
     "Måttlig klimatpåverkan",
@@ -78,20 +63,20 @@ const FetchApi = () => {
     "Odefinierat",
   ]
 
-  function getEcoScoreLable(lable: string): string {
-    switch (lable) {
+  function getEcoScoreLabel(Label: string): string {
+    switch (Label) {
       case "a":
-        return ecoScoreLable[0]
+        return ecoScoreLabel[0]
       case "b":
-        return ecoScoreLable[1]
+        return ecoScoreLabel[1]
       case "c":
-        return ecoScoreLable[2]
+        return ecoScoreLabel[2]
       case "d":
-        return ecoScoreLable[3]
+        return ecoScoreLabel[3]
       case "e":
-        return ecoScoreLable[4]
+        return ecoScoreLabel[4]
       default:
-        return ecoScoreLable[5]
+        return ecoScoreLabel[5]
     }
   }
 
@@ -103,12 +88,14 @@ const FetchApi = () => {
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
 
     const [hasMore, setHasMore] = useState<boolean>(true)
-    const { product_name } = useContext(MyProduct)
+
+    const router = useRouter()
 
     useEffect(() => {
       async function fetchProducts() {
         const response = await fetch(
-          `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+          `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
         )
 
         const data = await response.json()
@@ -128,18 +115,32 @@ const FetchApi = () => {
 
           ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
 
-          ecoScoreLable: getEcoScoreLable(product.ecoscore_grade),
+          ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
+
+          ecoscore_score: product.ecoscore_score,
         }))
 
-        setProducts(products)
+        const filteredProducts = products.filter(
+          (product) =>
+            product.ecoscore_grade !== "undefined" &&
+            product.ecoscore_grade !== "not-applicable" &&
+            product.ecoscore_grade !== "unknown" &&
+            product.product_name !== undefined &&
+            product.image_url !== undefined
+        )
 
-        setFilteredProducts(products.slice(0, 2)) // display first 10 products
+        console.log("Filtered Products:", filteredProducts)
+        console.log("All Products:", products)
+
+        setProducts(filteredProducts)
+
+        setFilteredProducts(filteredProducts.slice(0, 425)) // display first 10 products
 
         setHasMore(true)
       }
 
       fetchProducts()
-    }, [query])
+    }, [])
 
     function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
       const searchTerm = event.target.value.toLowerCase()
@@ -149,7 +150,7 @@ const FetchApi = () => {
         return productName?.includes(searchTerm)
       })
 
-      setFilteredProducts(newFilteredProducts.slice(0, 2))
+      setFilteredProducts(newFilteredProducts.slice(0, 425))
 
       setHasMore(true)
 
@@ -164,7 +165,6 @@ const FetchApi = () => {
     //       setHasMore(false)
     //     }
     //   }
-
     return (
       <div>
         <div className={styles.searchbarContainer}>
@@ -179,16 +179,16 @@ const FetchApi = () => {
           />
         </div>
         {/* <InfiniteScroll
-            dataLength={filteredProducts.length}
-            next={loadMore}
-            hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-            children={undefined}
-          ></InfiniteScroll>  */}
+          dataLength={filteredProducts.length}
+          next={loadMore}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+          children={undefined}
+        ></InfiniteScroll> */}
         <div className={styles.productContainer}>
           {filteredProducts.map((product) => (
-            <div className={styles.cardGrid}>
-              <div className={styles.productCard} key={product.code}>
+            <div className={styles.cardGrid} key={product.code}>
+              <div className={styles.productCard}>
                 <div className={styles.productImageContainer}>
                   <img
                     src={product.image_url}
@@ -199,6 +199,9 @@ const FetchApi = () => {
                 <div className={styles.productName}>
                   <p>{product.product_name}</p>
                 </div>
+                <div className={styles.ecoScoreTextContainer}>
+                  <p className={styles.ecoScoreText}>Klimatpåverkan</p>
+                </div>
                 <div className={styles.productEcoScoreImageContainer}>
                   <img
                     src={product.ecoScoreImage}
@@ -207,26 +210,84 @@ const FetchApi = () => {
                   />
                 </div>
                 <div className={styles.productEcoScoreText}>
-                  <p>{product.ecoScoreLable}</p>
+                  <p>{product.ecoScoreLabel}</p>
                 </div>
                 <div className={styles.productButton}>
-                  {/* <button className={styles.button}>
-                    <Link href="/productPage" className={styles.buttonlink}>
-                      Visa produkt
-                    </Link>
-                  </button> */}
-                  <Link href="/productPage"></Link>
-                  <button onClick={() => handleProductSelection(product)}>
-                    See Product
+                  <button
+                    className={styles.button}
+                    onClick={() =>
+                      router.push({
+                        pathname: "/productPage",
+                        query: {
+                          code: product.code,
+                          product_name: product.product_name,
+                          brands: product.brands,
+                          categories: product.categories,
+                          image_url: product.image_url,
+                          ecoscore_grade: product.ecoscore_grade,
+                          ecoScoreImage: product.ecoScoreImage,
+                          ecoScoreLabel: product.ecoScoreLabel,
+                          ecoscore_score: product.ecoscore_score,
+                        },
+                      })
+                    }
+                  >
+                    Visa produkt
                   </button>
                 </div>
+                {/* <div className={styles.imageContainer}>
+                <img
+                  src={product.image_url}
+                  alt={product.product_name}
+                  className={styles.productImage}
+                />
+              </div>
+              <div className={styles.productInfoContainer}>
+                <div className={styles.textContainer}>
+                <div className={styles.nameContainer}>
+                  <p className={styles.productName}>{product.product_name}</p>
+                </div>
+                <div className={styles.ecoScoreContainer}>
+                <div className={styles.scoreContainer}>
+                  <h3 className={styles.ecoScoreImageLabel}>Miljöpoäng: </h3>
+                  <img
+                    src={product.ecoScoreImage}
+                    alt={`EcoScore: ${product.ecoscore_grade}`}
+                    className={styles.ecoscoreImage}
+                  />
+                </div>
+                </div>
+                </div>
+                <div className={styles.productInfoContainer2}>
+                  <div className={styles.LabelContainer}>
+                    <p className={styles.ecoScorev}>
+                      {product.ecoScoreLabel}
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.productNameContainer}></div>
+                <p className={styles.productBrand}>{product.brands}</p>
+                <p className={styles.productEcoScore}>
+                  EcoScore: {product.ecoscore_grade}
+                </p>
+  
+                <div className={styles.buttonContainer}>
+                  <button className={styles.button}>
+                    <Link href="/Search" className={styles.buttonlink}>
+                      Visa produkt
+                    </Link>
+                  </button>
+                </div>
+              </div> */}
               </div>
             </div>
           ))}
         </div>
-        <div className={styles.navdiv}>
+
+        <Navbar />
+        {/* <div className={styles.navdiv}>
           <MuiBottomNavBar />
-        </div>
+        </div> */}
       </div>
     )
   }

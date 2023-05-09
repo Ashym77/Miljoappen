@@ -1,36 +1,21 @@
-import { NextPage } from 'next'
+import { NextPage } from "next"
 import styles from "../styles/pask.module.css"
-import { MuiBottomNavBar } from '@/p-components/MuiBottomNavBar'
-import Link from 'next/link'
+import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
+import Link from "next/link"
 import Image from "next/image"
-import { Navbar } from '@/p-components/Navbar'
+import { Navbar } from "@/p-components/Navbar"
+import FetchApi from "@/p-components/FetchApi"
 
 interface Props {}
 
 const Pask: NextPage<Props> = ({}) => {
   return (
-  <div>
+    <div>
+      
 
-
-    <h1 className={styles.title}>Glad påsk  önskar vi er alla från grupp 6</h1>
-
-  
-
-
-
-
-<div className={styles.navdiv}>
-    <MuiBottomNavBar/>
+      <Navbar />
     </div>
-
-
-
-
-
-
-  </div>
-  
-  
-  )}
+  )
+}
 
 export default Pask

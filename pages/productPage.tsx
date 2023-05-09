@@ -1,38 +1,88 @@
-import { NextPage } from 'next'
-import MyContextProvider, { MyProduct } from '@/context/my-context-provider'
-import { useContext } from 'react'
-import Image from "next/image"
-import { log } from 'console'
+import { useRouter } from "next/router"
+import { useState } from "react"
+import styles from "../styles/productPage.module.css"
+import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
+import { Navbar } from "@/p-components/Navbar"
 
+const ProductPage = () => {
+  const router = useRouter()
 
-interface Props {
+  const {
+    code,
+    product_name,
+    brands,
+    categories,
+    image_url,
+    ecoscore_grade,
+    ecoScoreImage,
+    ecoScoreLabel,
+    ecoscore_score,
+  } = router.query
 
-}
+  console.log(router)
 
+  return (
+    <div>
+      <div className={styles.productImageContainer2}>
+        <img
+          className={styles.productImage}
+          src={image_url}
+          alt={product_name}
+        />
+      </div>
 
-const ProductPage: NextPage<Props> = ({}) => {
-    const{code} = useContext(MyProduct)
+      <div className={styles.productNameContainer2}>
+        <p className={styles.product_name}>Product Name: {product_name}</p>
+      </div>
 
-    const{product_name} = useContext(MyProduct)
-    const {brands} = useContext(MyProduct)
-    const {categories} = useContext(MyProduct)
-    const {image_url} = useContext(MyProduct)
-    const {ecoscore_grade} = useContext(MyProduct)
-    const {ecoScoreImage} = useContext(MyProduct)
+      <div className={styles.infoCard}>
+        {/* <div className = {styles.ecoScoreContainer}> */}
+        <div className={styles.ecoScoreImageContainer}>
+          <img
+            className={styles.ecoScoreImage}
+            src={ecoScoreImage}
+            alt={`EcoScore: ${ecoscore_grade}`}
+          />
+        </div>
+        <div className={styles.ecoScoreLabelContainer}>
+          <p className={styles.ecoScoreLabel}>
+            Eco Score Label: {ecoScoreLabel}
+          </p>
+        </div>
 
-    const {ecoScoreLabel} = useContext(MyProduct)
-    console.log(product_name);
+        <table>
+          <tr>
+            <th>Kategori</th>
+            <th>Påverkan</th>
+          </tr>
+        </table>
 
-  return <div>
-<MyContextProvider>
-<div><h1>{product_name}</h1></div>
-<div><p>{brands}</p></div>
-<div><Image src={image_url} alt={""} width={"0"}
-          height={"0"}></Image></div>
-    </MyContextProvider>
+        <div className={styles.categoriesContainer}>
+          <p className={styles.categories}></p>
+          <p className={styles.categories}>Kategori</p>
+        </div>
 
-  </div>
+        <div className={styles.impactContainer}>
+          <p className={styles.impact}></p>
+          <p className={styles.categories}>Påverkan</p>
+        </div>
+        <p> {ecoscore_score}/100 Klimatpoäng</p>
+
+        {/* </div> */}
+      </div>
+      {/* <div className={styles.navdiv}>
+        <MuiBottomNavBar />
+      </div> */}
+
+      <Navbar />
+      {/* <p className={styles.ecoscore_grade}>Eco Score Grade:</p>
+      <h1 className={styles.headline}>Product Details</h1>
+      <p className={styles.code}>Code:</p>
+      <p className={styles.product_name}>Product Name: {product_name}</p>
+      <p className={styles.brands}>Brands: </p>
+      <p className={styles.categories}>Categories</p> */}
+    </div>
+  )
 }
 
 export default ProductPage
-

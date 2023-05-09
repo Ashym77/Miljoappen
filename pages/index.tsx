@@ -5,6 +5,8 @@ import Image from "next/image"
 import SearchIcon from "@mui/icons-material/Search"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { useEffect } from "react"
+import FetchApi from "@/p-components/FetchApi"
+import { Navbar } from "@/p-components/Navbar"
 
 interface Props {}
 
@@ -127,7 +129,7 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.buttonContainer}>
         <button className={styles.button}>
-          <Link href="/nyFetch" className={styles.buttonlink}>
+          <Link href="/productFetch" className={styles.buttonlink}>
             Sök produkt
           </Link>
         </button>
@@ -310,9 +312,10 @@ const index: NextPage<Props> = ({}) => {
         ></Image>
       </div>
 
-      <div className={styles.navdiv}>
+      {/* <div className={styles.navdiv}>
         <MuiBottomNavBar />
-      </div>
+      </div> */}
+      <Navbar />
     </div>
   )
 }
