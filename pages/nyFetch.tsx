@@ -16,6 +16,8 @@ interface Product {
 
   product_name: string
 
+  generic_name: string
+
   brands: string
 
   categories: string
@@ -103,6 +105,7 @@ function ProductList() {
       const products: Product[] = data.products.map((product: Product) => ({
         code: product.code,
         product_name: product.product_name,
+        generic_name: product.generic_name,
         brands: product.brands,
         categories: product.categories,
         image_url: product.image_url,
@@ -122,6 +125,9 @@ function ProductList() {
 
       console.log("Filtered Products:", filteredProducts)
       console.log("All Products:", products)
+      console.log(
+        "DEBUGGING" + filteredProducts.at(0)?.generic_name.slice(0, 5)
+      )
 
       setProducts(filteredProducts)
       setFilteredProducts(filteredProducts.slice(0, 100))
@@ -131,7 +137,7 @@ function ProductList() {
     }
 
     fetchProducts()
-  }, [])
+  }, [query])
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     const searchTerm = event.target.value.toLowerCase()
@@ -191,9 +197,16 @@ function ProductList() {
               <div className={styles.productName}>
                 <p>{product.product_name}</p>
               </div>
-              <div className={styles.ecoScoreTextContainer}>
-                <p className={styles.ecoScoreText}>Klimatpåverkan</p>
+              <div className={styles.genericName}>
+                {product.generic_name !== undefined ? (
+                  <p>{product.generic_name.slice(0, 22)}... </p>
+                ) : (
+                  <p></p>
+                )}
               </div>
+              {/* <div className={styles.ecoScoreTextContainer}>
+                <p className={styles.ecoScoreText}>Klimatpåverkan</p>
+              </div> */}
               <div className={styles.productEcoScoreImageContainer}>
                 <img
                   src={product.ecoScoreImage}
@@ -202,7 +215,7 @@ function ProductList() {
                 />
               </div>
               <div className={styles.productEcoScoreText}>
-                <p>{product.ecoScoreLable}</p>
+                <p>{product.ecoScoreLable} klimatpåverkan</p>
               </div>
               <div className={styles.productButton}>
                 <button className={styles.button}>
