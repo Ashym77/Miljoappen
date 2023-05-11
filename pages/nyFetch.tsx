@@ -5,6 +5,7 @@ import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
 
 import MyContextProvider from "@/context/my-context-provider"
+import { useRouter } from "next/router"
 // =======
 
 // import InfiniteScroll from "react-infinite-scroll-component"
@@ -29,6 +30,8 @@ interface Product {
   ecoScoreImage: string
 
   ecoScoreLable: string
+
+  ecoscore_score: string
 }
 
 const ecoScoreImage = [
@@ -92,6 +95,8 @@ function ProductList() {
 
   const [hasMore, setHasMore] = useState<boolean>(true)
 
+  const router = useRouter()
+
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(
@@ -112,6 +117,7 @@ function ProductList() {
         ecoscore_grade: product.ecoscore_grade,
         ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
         ecoScoreLable: getEcoScoreLable(product.ecoscore_grade),
+        ecoscore_score: product.ecoscore_score,
       }))
 
       const filteredProducts = products.filter(
@@ -218,10 +224,29 @@ function ProductList() {
                 <p>{product.ecoScoreLable} klimatpåverkan</p>
               </div>
               <div className={styles.productButton}>
-                <button className={styles.button}>
-                  <Link href="/productPage" className={styles.buttonlink}>
+                <button
+                  className={styles.button}
+                  onClick={() =>
+                    router.push({
+                      pathname: "/productPage",
+                      query: {
+                        code: product.code,
+                        product_name: product.product_name,
+                        brands: product.brands,
+                        categories: product.categories,
+                        image_url: product.image_url,
+                        ecoscore_grade: product.ecoscore_grade,
+                        ecoScoreImage: product.ecoScoreImage,
+                        ecoScoreLabel: product.ecoScoreLable,
+                        ecoscore_score: product.ecoscore_score,
+                      },
+                    })
+                  }
+                >
+                  Visa produkt
+                  {/* <Link href="/productPage" className={styles.buttonlink}>
                     Visa produkt
-                  </Link>
+                  </Link> */}
                 </button>
               </div>
               {/* <div className={styles.imageContainer}>

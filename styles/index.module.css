@@ -177,7 +177,7 @@
 }
 
 .dialogContainer {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   display: grid;

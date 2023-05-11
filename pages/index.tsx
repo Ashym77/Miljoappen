@@ -9,7 +9,7 @@ import { useEffect } from "react"
 interface Props {}
 
 const ecoScoreImage = [
-  "/ecoscore_a_v3.svg",
+  "/ecoscore_a_v4.svg",
   "/ecoscore_b_v3.svg",
   "/ecoscore_c_v3.svg",
   "/ecoscore_d_v3.svg",
