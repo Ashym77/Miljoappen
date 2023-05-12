@@ -1,9 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
+import { debounce } from "@mui/material"
 
 const FetchApi = () => {
   interface Props {}
@@ -31,11 +32,11 @@ const FetchApi = () => {
   }
 
   const ecoScoreImage = [
-    "/ecoscore_a_v2.svg",
-    "/ecoscore_b_v2.svg",
-    "/ecoscore_c_v2.svg",
-    "/ecoscore_d_v2.svg",
-    "/ecoscore_e_v2.svg",
+    "/Löv A.png",
+    "/Löv B.png",
+    "/Löv C.png",
+    "/Löv D.png",
+    "/Löv E.png",
     "/ecoscore_u_v2.svg",
   ]
 
@@ -92,12 +93,14 @@ const FetchApi = () => {
     const [hasMore, setHasMore] = useState<boolean>(true)
 
     const router = useRouter()
+    const { search } = router.query
 
     useEffect(() => {
       async function fetchProducts() {
         const response = await fetch(
           //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-          `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
+          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
+          `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
         )
 
         const data = await response.json()
@@ -141,7 +144,7 @@ const FetchApi = () => {
 
         setHasMore(true)
       }
-
+      query
       fetchProducts()
     }, [])
 

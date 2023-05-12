@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+  margin-left: 15px;
 }
 
 .logo {
@@ -41,7 +42,7 @@
   margin-top: 20px;
   width: 359px;
   height: 53.02px;
-  margin-left: 5px;
+  margin-left: 8px;
 }
 
 .input {
@@ -155,7 +156,7 @@
 
 .dialog {
   width: 284px;
-  height: 360px;
+  height: 355px;
   border-style: none;
   border-radius: 5px;
   /* display: grid;
@@ -196,7 +197,7 @@
 }
 
 .dialogImageA {
-  width: 33px;
+  width: 40px;
   /* height: 33; */
   grid-column: 1 / 1;
   grid-row: 2 / 2;
@@ -204,28 +205,28 @@
   align-self: center;
 }
 .dialogImageB {
-  width: 33px;
+  width: 40px;
   grid-column: 1 / 1;
   grid-row: 3 / 3;
   justify-self: center;
   align-self: center;
 }
 .dialogImageC {
-  width: 33px;
+  width: 40px;
   grid-column: 1 / 1;
   grid-row: 4 / 4;
   justify-self: center;
   align-self: center;
 }
 .dialogImageD {
-  width: 33px;
+  width: 40px;
   grid-column: 1 / 1;
   grid-row: 5 / 5;
   justify-self: center;
   align-self: center;
 }
 .dialogImageE {
-  width: 33px;
+  width: 40px;
   grid-column: 1 / 1;
   grid-row: 6 / 6;
   justify-self: center;
@@ -246,7 +247,6 @@
   font-weight: 400;
   grid-column: 2 / 2;
   grid-row: 2 / 2;
-  align-self: flex-end;
 }
 .dialogClimateLabelB {
   font-size: 14px;
@@ -260,7 +260,6 @@
   font-weight: 400;
   grid-column: 2 / 2;
   grid-row: 3 / 3;
-  align-self: flex-end;
 }
 .dialogClimateLabelC {
   font-size: 14px;
@@ -274,7 +273,6 @@
   font-weight: 400;
   grid-column: 2 / 2;
   grid-row: 4 / 4;
-  align-self: flex-end;
 }
 .dialogClimateLabelD {
   font-size: 14px;
@@ -288,7 +286,6 @@
   font-weight: 400;
   grid-column: 2 / 2;
   grid-row: 5 / 5;
-  align-self: flex-end;
 }
 .dialogClimateLabelE {
   font-size: 14px;
@@ -302,7 +299,6 @@
   font-weight: 400;
   grid-column: 2 / 2;
   grid-row: 6 / 6;
-  align-self: flex-end;
 }
 
 .dialogCloseButtonContainer {

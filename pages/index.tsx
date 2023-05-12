@@ -4,7 +4,7 @@ import styles from "../styles/index.module.css"
 import Image from "next/image"
 import SearchIcon from "@mui/icons-material/Search"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import FetchApi from "@/p-components/FetchApi"
 import { Navbar } from "@/p-components/Navbar"
 
@@ -63,6 +63,7 @@ function getEcoScoreLable(lable: string): string {
 }
 
 const index: NextPage<Props> = ({}) => {
+  const [searchTerm, setSearchTerm] = useState("")
   useEffect(() => {
     const openButton = document.querySelector(
       "[data-open-modal]"
@@ -98,7 +99,7 @@ const index: NextPage<Props> = ({}) => {
     <div>
       <div className={styles.logoContainer}>
         <Image
-          src={"/Logga.svg"}
+          src={"/Slutgiltig logga.svg"}
           alt={""}
           width={"0"}
           height={"0"}
@@ -120,6 +121,8 @@ const index: NextPage<Props> = ({}) => {
             name=""
             placeholder="Search"
             className={styles.input}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <div className={styles.searchIcon}>
             <SearchIcon />
@@ -129,7 +132,10 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.buttonContainer}>
         <button className={styles.button}>
-          <Link href="/productFetch" className={styles.buttonlink}>
+          <Link
+            href={{ pathname: "/productFetch", query: { search: searchTerm } }}
+            className={styles.buttonlink}
+          >
             Sök produkt
           </Link>
         </button>
@@ -153,8 +159,8 @@ const index: NextPage<Props> = ({}) => {
             <h1 className={styles.dialogHeadline}>Vår klimatskala</h1>
 
             <Image
-              src={"/ecoscore_a_v2.svg"}
-              alt={"/ecoscore_a_v2.svg"}
+              src={"/Löv A.png"}
+              alt={"/Löv A.png"}
               className={styles.dialogImageA}
               width={"100"}
               height={"100"}
@@ -163,8 +169,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextA}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_b_v2.svg"}
-              alt={"/ecoscore_b_v2.svg"}
+              src={"/Löv B.png"}
+              alt={"/Löv B.png"}
               className={styles.dialogImageB}
               width={"100"}
               height={"100"}
@@ -173,8 +179,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextB}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_c_v2.svg"}
-              alt={"/ecoscore_c_v2.svg"}
+              src={"/Löv C.png"}
+              alt={"/Löv C.png"}
               className={styles.dialogImageC}
               width={"100"}
               height={"100"}
@@ -183,8 +189,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextC}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_d_v2.svg"}
-              alt={"/ecoscore_d_v2.svg"}
+              src={"/Löv D.png"}
+              alt={"/Löv D.png"}
               className={styles.dialogImageD}
               width={"100"}
               height={"100"}
@@ -193,8 +199,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextD}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_e_v2.svg"}
-              alt={"/ecoscore_e_v2.svg"}
+              src={"/Löv E.png"}
+              alt={"/Löv e.png"}
               className={styles.dialogImageE}
               width={"100"}
               height={"100"}
