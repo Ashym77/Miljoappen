@@ -1,38 +1,30 @@
 .productImageContainer2 {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 120px;
-    border: solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px;
+  /* border: solid red; */
 }
 
 .productNameContainer2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
-    border: solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  /* border: solid red; */
 }
-
-
 
 .infoCard {
-
-    width: 345px;
-    height: 360px;
-    background-color: #ffff;
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: 122px 182px;
-    grid-template-rows: 72px 36px 36px 36px 36px 36px 36px 36px 36px;
-    grid-gap: 0px;
-    margin: 10px;
-
+  width: 345px;
+  height: 360px;
+  background-color: #ffff;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 122px 182px;
+  grid-template-rows: 72px 36px 36px 36px 36px 36px 36px 36px 36px;
+  grid-gap: 0px;
+  margin: 10px;
 }
-
-
-
 
 /* .ecoScoreContainer{
     
@@ -43,46 +35,46 @@
     border: solid blue;
 } */
 .ecoScoreImageContainer {
-    justify-self: flex-end;
-    /* border:solid green; */
+  justify-self: flex-end;
+  /* border:solid green; */
 }
 
-
 .ecoScoreImage {
-    /* justify-self: center; */
-
+  /* justify-self: center; */
 }
 
 .ecoScoreLabelContainer {
-    justify-self: flex-end;
-    /* border:solid yellow; */
+  justify-self: flex-end;
+  /* border:solid yellow; */
 }
 
 .ecoScoreLabel {
-    /* justify-self: center; */
+  /* justify-self: center; */
 }
 
-
 .categoriesContainer {
-    grid-column: 1 / 2;
-    grid-row: 2 / 2;
-    justify-self: center;
+  grid-column: 1 / 2;
+  grid-row: 2 / 2;
+  justify-self: center;
 }
 
 .impactContainer {
-    grid-column: 2 / 2;
-    grid-row: 2 / 2;
-    justify-self: center;
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+  justify-self: center;
 }
 
-
-.productImage {}
-
+.productImage {
+}
 
 .navdiv {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 
-    right: 0px;
+  right: 0px;
+}
+
+.product_name {
+  color: #ffff;
 }

@@ -39,9 +39,9 @@
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-  margin-left: 10px;
   width: 359px;
   height: 53.02px;
+  margin-left: 5px;
 }
 
 .input {
@@ -178,7 +178,7 @@
 }
 
 .dialogContainer {
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   display: grid;
@@ -203,7 +203,6 @@
   justify-self: center;
   align-self: center;
 }
-
 .dialogImageB {
   width: 33px;
   grid-column: 1 / 1;
@@ -211,7 +210,6 @@
   justify-self: center;
   align-self: center;
 }
-
 .dialogImageC {
   width: 33px;
   grid-column: 1 / 1;
@@ -219,7 +217,6 @@
   justify-self: center;
   align-self: center;
 }
-
 .dialogImageD {
   width: 33px;
   grid-column: 1 / 1;
@@ -227,7 +224,6 @@
   justify-self: center;
   align-self: center;
 }
-
 .dialogImageE {
   width: 33px;
   grid-column: 1 / 1;
@@ -245,7 +241,6 @@
   grid-row: 2 / 2;
   align-self: flex-start;
 }
-
 .dialogClimatetextA {
   font-size: 12px;
   font-weight: 400;
@@ -253,7 +248,6 @@
   grid-row: 2 / 2;
   align-self: flex-end;
 }
-
 .dialogClimateLabelB {
   font-size: 14px;
   font-weight: 700;
@@ -261,7 +255,6 @@
   grid-row: 3 / 3;
   align-self: flex-start;
 }
-
 .dialogClimatetextB {
   font-size: 12px;
   font-weight: 400;
@@ -269,7 +262,6 @@
   grid-row: 3 / 3;
   align-self: flex-end;
 }
-
 .dialogClimateLabelC {
   font-size: 14px;
   font-weight: 700;
@@ -277,7 +269,6 @@
   grid-row: 4 / 4;
   align-self: flex-start;
 }
-
 .dialogClimatetextC {
   font-size: 12px;
   font-weight: 400;
@@ -285,7 +276,6 @@
   grid-row: 4 / 4;
   align-self: flex-end;
 }
-
 .dialogClimateLabelD {
   font-size: 14px;
   font-weight: 700;
@@ -293,7 +283,6 @@
   grid-row: 5 / 5;
   align-self: flex-start;
 }
-
 .dialogClimatetextD {
   font-size: 12px;
   font-weight: 400;
@@ -301,7 +290,6 @@
   grid-row: 5 / 5;
   align-self: flex-end;
 }
-
 .dialogClimateLabelE {
   font-size: 14px;
   font-weight: 700;
@@ -309,7 +297,6 @@
   grid-row: 6 / 6;
   align-self: flex-start;
 }
-
 .dialogClimatetextE {
   font-size: 12px;
   font-weight: 400;
@@ -339,7 +326,6 @@
   top: 0;
   left: 0;
   width: 100%;
-
   height: 100%; */
   /* background-color: rgba(0, 0, 0, 0.6);  */
   background-color: black;
@@ -349,7 +335,6 @@
 .modal-overlay {
   background-color: black;
   backdrop-filter: blur(5px);
-
 }
 
 /* dialog {
@@ -440,8 +425,7 @@
   padding: 20px;
   z-index: 9999;
 }
-
-.hoverText:hover+.card {
+.hoverText:hover + .card {
   display: block;
 }
 
@@ -449,7 +433,6 @@
   position: relative;
   z-index: 1;
 }
-
 .navdiv {
   position: fixed;
   bottom: 0;

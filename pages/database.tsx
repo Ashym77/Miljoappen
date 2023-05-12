@@ -4,7 +4,7 @@ import { User } from "@/types/user"
 import { InputNameComponent } from "@/p-components/inputNameComponent"
 import { InputEmailComponent } from "@/p-components/inputEmailComponent"
 
-interface Props {
+ interface Props {
   name: string
   email: string
 

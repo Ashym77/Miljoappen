@@ -112,6 +112,8 @@ function ProductList() {
       image_url: product.image_url,
       ecoscore_grade: product.ecoscore_grade,
 
+      generic_name: product.generic_name,
+
       ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
 
       ecoScoreLabel: getEcoScoreLabel(product.ecoscore_grade),
@@ -138,7 +140,6 @@ function ProductList() {
   }
 
   useEffect(() => {
-
     fetchProducts()
   }, [query])
 
@@ -199,7 +200,6 @@ function ProductList() {
               </div>
               <div className={styles.productName}>
                 <p>{product.product_name}</p>
-                <p>{product.ecoscore_score}</p>
               </div>
               <div className={styles.genericName}>
                 {product.generic_name !== undefined ? (
@@ -219,11 +219,7 @@ function ProductList() {
                 />
               </div>
               <div className={styles.productEcoScoreText}>
-
-                <p>{product.ecoScoreLable} klimatpåverkan</p>
-
-                <p>{product.ecoScoreLabel}</p>
-
+                <p>{product.ecoScoreLabel} klimatpåverkan</p>
               </div>
               <div className={styles.productButton}>
                 <button

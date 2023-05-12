@@ -13,6 +13,8 @@ const FetchApi = () => {
 
     product_name: string
 
+    generic_name: string
+
     brands: string
 
     categories: string
@@ -29,11 +31,11 @@ const FetchApi = () => {
   }
 
   const ecoScoreImage = [
-    "/ecoscore_a.svg",
-    "/ecoscore_b.svg",
-    "/ecoscore_c.svg",
-    "/ecoscore_d.svg",
-    "/ecoscore_e.svg",
+    "/ecoscore_a_v2.svg",
+    "/ecoscore_b_v2.svg",
+    "/ecoscore_c_v2.svg",
+    "/ecoscore_d_v2.svg",
+    "/ecoscore_e_v2.svg",
     "/ecoscore_u_v2.svg",
   ]
 
@@ -55,11 +57,11 @@ const FetchApi = () => {
   }
 
   const ecoScoreLabel = [
-    "Låg klimatpåverkan",
-    "Låg klimatpåverkan",
-    "Måttlig klimatpåverkan",
-    "Hög klimatpåverkan",
-    "Hög klimatpåverkan",
+    "Minimal",
+    "Låg",
+    "Måttlig",
+    "Medelhög",
+    "Hög",
     "Odefinierat",
   ]
 
@@ -112,6 +114,7 @@ const FetchApi = () => {
           image_url: product.image_url,
 
           ecoscore_grade: product.ecoscore_grade,
+          generic_name: product.generic_name,
 
           ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
 
@@ -199,9 +202,14 @@ const FetchApi = () => {
                 <div className={styles.productName}>
                   <p>{product.product_name}</p>
                 </div>
-                <div className={styles.ecoScoreTextContainer}>
-                  <p className={styles.ecoScoreText}>Klimatpåverkan</p>
+                <div className={styles.genericName}>
+                  {product.generic_name !== undefined ? (
+                    <p>{product.generic_name.slice(0, 22)}... </p>
+                  ) : (
+                    <p></p>
+                  )}
                 </div>
+
                 <div className={styles.productEcoScoreImageContainer}>
                   <img
                     src={product.ecoScoreImage}
@@ -210,7 +218,7 @@ const FetchApi = () => {
                   />
                 </div>
                 <div className={styles.productEcoScoreText}>
-                  <p>{product.ecoScoreLabel}</p>
+                  <p>{product.ecoScoreLabel} klimatpåverkan </p>
                 </div>
                 <div className={styles.productButton}>
                   <button

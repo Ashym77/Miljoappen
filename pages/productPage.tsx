@@ -1,9 +1,10 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
-import styles from "../styles/productPage.module.css"
+//import styles from "../styles/productPage.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { Navbar } from "@/p-components/Navbar"
-
+import styles from "../styles/productPage2.module.css"
+import Link from "next/link"
 const ProductPage = () => {
   const router = useRouter()
 
@@ -19,44 +20,50 @@ const ProductPage = () => {
     ecoscore_score,
   } = router.query
 
-  console.log(router)
-
   return (
     <div>
-      <div className={styles.productImageContainer2}>
-        <img
-          className={styles.productImage}
-          src={image_url}
-          alt={product_name}
-        />
-      </div>
+      <div className={styles.heartIconContainer}>
+        <div className={styles.arrowIconContainer}>
+          <Link href={"/productFetch"}>
+            <img src={"/pil_icon.svg"} alt="" />
+          </Link>
+        </div>
 
-      <div className={styles.productNameContainer2}>
-        <p className={styles.product_name}>Product Name: {product_name}</p>
+        <img src={"/heart_icon_white.svg"} alt="" />
       </div>
 
       <div className={styles.infoCard}>
+        <div className={styles.productNameContainer2}>
+          <p className={styles.product_name}> {product_name}</p>
+        </div>
+
+        <div className={styles.productImageContainer2}>
+          <img
+            className={styles.productImage}
+            src={`${image_url}`}
+            alt={`${product_name}`}
+          />
+        </div>
+
         {/* <div className = {styles.ecoScoreContainer}> */}
         <div className={styles.ecoScoreImageContainer}>
           <img
             className={styles.ecoScoreImage}
-            src={ecoScoreImage}
+            src={`${ecoScoreImage}`}
             alt={`EcoScore: ${ecoscore_grade}`}
           />
         </div>
         <div className={styles.ecoScoreLabelContainer}>
-          <p className={styles.ecoScoreLabel}>
-            Eco Score Label: {ecoScoreLabel}
-          </p>
+          <p className={styles.ecoScoreLabel}>{ecoScoreLabel} klimatpåverkan</p>
         </div>
 
-        <table>
+        {/* <table>
           <tr>
             <th>Kategori</th>
             <th>Påverkan</th>
           </tr>
-        </table>
-
+        </table> */}
+        {/* 
         <div className={styles.categoriesContainer}>
           <p className={styles.categories}></p>
           <p className={styles.categories}>Kategori</p>
@@ -65,14 +72,41 @@ const ProductPage = () => {
         <div className={styles.impactContainer}>
           <p className={styles.impact}></p>
           <p className={styles.categories}>Påverkan</p>
+        </div> */}
+        <div className={styles.totalscoreContainer}>
+          <p className={styles.totalscore}> {ecoscore_score}/100 </p>
+          <p className={styles.totalscoretext}>Klimatpoäng</p>
         </div>
-        <p> {ecoscore_score}/100 Klimatpoäng</p>
-
         {/* </div> */}
       </div>
-      {/* <div className={styles.navdiv}>
-        <MuiBottomNavBar />
-      </div> */}
+
+      <div className={styles.headlineContainer}>
+        <h3 className={styles.headline}>
+          {" "}
+          Produktens klimatpoäng bygger på två kategorier{" "}
+        </h3>
+      </div>
+
+      <div className={styles.text1Container}>
+        <p className={styles.lcaText}>
+          LCA (Life Cycle analysis), som anger ett <br /> snittvärde för
+          liknande produkters utsläpp
+        </p>
+      </div>
+
+      <div className={styles.text2Container}>
+        <p className={styles.bonusMalustext}>
+          Bonus malus, som ger plus- och minuspoäng baserat på fyra
+          underkategorier: miljömärkning, ingrediensers ursprung, miljöskadliga
+          ingredienser och förpackning
+        </p>
+      </div>
+
+      <div className={styles.linkContainer}>
+        <Link href={"https://www.google.com"}>
+          <p className= {styles.linkText}>Läs mer om produktens klimatpoäng</p>
+        </Link>
+      </div>
 
       <Navbar />
       {/* <p className={styles.ecoscore_grade}>Eco Score Grade:</p>
