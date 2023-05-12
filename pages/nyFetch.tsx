@@ -138,7 +138,6 @@ function ProductList() {
   }
 
   useEffect(() => {
-
     fetchProducts()
   }, [query])
 
@@ -219,11 +218,9 @@ function ProductList() {
                 />
               </div>
               <div className={styles.productEcoScoreText}>
-
-                <p>{product.ecoScoreLable} klimatpåverkan</p>
+                <p>{product.ecoScoreLabel} klimatpåverkan</p>
 
                 <p>{product.ecoScoreLabel}</p>
-
               </div>
               <div className={styles.productButton}>
                 <button
