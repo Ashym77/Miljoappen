@@ -1,16 +1,32 @@
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 //import styles from "../styles/productPage.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { Navbar } from "@/p-components/Navbar"
 import styles from "../styles/productPage2.module.css"
 import Link from "next/link"
+
+interface Product {
+  code: string
+  product_name: string
+  generic_name: string
+  brands: string
+  categories: string
+  image_url: string
+  ecoscore_grade: string
+  ecoScoreImage: string
+  ecoScoreLabel: string
+  ecoscore_score: number
+}
+
 const ProductPage = () => {
   const router = useRouter()
+  const [isFavorite, setIsFavorite] = useState<boolean>(false)
 
   const {
     code,
     product_name,
+    generic_name,
     brands,
     categories,
     image_url,
@@ -18,7 +34,57 @@ const ProductPage = () => {
     ecoScoreImage,
     ecoScoreLabel,
     ecoscore_score,
-  } = router.query
+  } = router.query as unknown as Product
+
+  useEffect(() => {
+    // Check if the current product is already saved as a favorite
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]")
+    const isProductFavorite = favorites.some(
+      (favorite: Product) => favorite.code === code
+    )
+    setIsFavorite(isProductFavorite)
+  }, [code])
+
+  // const [heartIconSrc, setHeartIconSrc] = useState<string>(
+  //   "/heart_icon_white.svg"
+  // )
+
+  const [heartIconSrc, setHeartIconSrc] = useState<string>(
+    localStorage.getItem("isFavorite") === "true"
+      ? "/heart_icon_green.svg"
+      : "/heart_icon_white.svg"
+  )
+
+  const handelFavoriteClick = () => {
+    // Toggle favorites status
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]")
+    const updatedFavorites = isFavorite
+      ? favorites.filter((favorite: Product) => favorite.code !== code)
+      : [
+          ...favorites,
+          {
+            code,
+            product_name,
+            generic_name,
+            brands,
+            categories,
+            image_url,
+            ecoscore_grade,
+            ecoScoreImage,
+            ecoScoreLabel,
+            ecoscore_score,
+          },
+        ]
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites))
+    setIsFavorite(!isFavorite)
+    setHeartIconSrc(
+      isFavorite ? "/heart_icon_white.svg" : "/heart_icon_green.svg"
+    )
+    if (typeof window !== "undefined") {
+      localStorage.setItem("isFavorite", JSON.stringify(!isFavorite))
+    }
+    // router.push("/favorites")
+  }
 
   return (
     <div>
@@ -28,8 +94,13 @@ const ProductPage = () => {
             <img src={"/pil_icon.svg"} alt="" />
           </Link>
         </div>
-
-        <img src={"/heart_icon_white.svg"} alt="" />
+        <button onClick={handelFavoriteClick}>
+          <img
+            src={heartIconSrc}
+            alt=""
+            className={isFavorite ? styles.favoriteIcon : ""}
+          />
+        </button>
       </div>
 
       <div className={styles.infoCard}>
@@ -103,8 +174,9 @@ const ProductPage = () => {
       </div>
 
       <div className={styles.linkContainer}>
-        <Link href={"https://www.google.com"}>
-          <p className= {styles.linkText}>Läs mer om produktens klimatpoäng</p>
+        {/* <Link href={"https://www.google.com"}> */}
+        <Link href={`https://se.openfoodfacts.org/product/${code}`}>
+          <p className={styles.linkText}>Läs mer om produktens klimatpoäng</p>
         </Link>
       </div>
 

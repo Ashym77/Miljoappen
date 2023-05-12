@@ -7,8 +7,8 @@ import { useRouter } from "next/router"
 export const Navbar = () => {
   const router = useRouter()
   const isHomePage = router.pathname === "/"
-  const isFavorit = router.pathname === "/productFetch"
-  const IsFaq = router.pathname === "/productPage"
+  const isFavorit = router.pathname === "/favorites"
+  const IsFaq = router.pathname === "/faqPage"
 
   return (
     <div>
@@ -34,7 +34,7 @@ export const Navbar = () => {
             </li>
 
             <li>
-              <Link href={"/productFetch"}>
+              <Link href={"/favorites"}>
                 {isFavorit ? (
                   <img
                     src={"/favorit_icon_green.svg"}
@@ -52,7 +52,7 @@ export const Navbar = () => {
             </li>
 
             <li>
-              <Link href={"/productPage"}>
+              <Link href={"/faqPage"}>
                 {IsFaq ? (
                   <img
                     src={"/faq_icon_green.svg"}
@@ -71,7 +71,6 @@ export const Navbar = () => {
           </ul>
         </nav>
       </div>
-      '
     </div>
   )
 }

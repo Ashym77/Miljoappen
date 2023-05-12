@@ -96,7 +96,7 @@ const FetchApi = () => {
     useEffect(() => {
       async function fetchProducts() {
         const response = await fetch(
-          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+          // `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
           `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
         )
 
@@ -107,6 +107,8 @@ const FetchApi = () => {
 
           product_name: product.product_name,
 
+          generic_name: product.generic_name,
+
           brands: product.brands,
 
           categories: product.categories,
@@ -114,7 +116,6 @@ const FetchApi = () => {
           image_url: product.image_url,
 
           ecoscore_grade: product.ecoscore_grade,
-          generic_name: product.generic_name,
 
           ecoScoreImage: getEcoScoreImage(product.ecoscore_grade),
 
@@ -188,39 +189,78 @@ const FetchApi = () => {
           loader={<h4>Loading...</h4>}
           children={undefined}
         ></InfiniteScroll> */}
-        <div className={styles.productContainer}>
-          {filteredProducts.map((product) => (
-            <div className={styles.cardGrid} key={product.code}>
-              <div className={styles.productCard}>
-                <div className={styles.productImageContainer}>
-                  <img
-                    src={product.image_url}
-                    alt={product.product_name}
-                    className={styles.productImage}
-                  />
-                </div>
-                <div className={styles.productName}>
-                  <p>{product.product_name}</p>
-                </div>
-                <div className={styles.genericName}>
-                  {product.generic_name !== undefined ? (
-                    <p>{product.generic_name.slice(0, 22)}... </p>
-                  ) : (
-                    <p></p>
-                  )}
-                </div>
 
-                <div className={styles.productEcoScoreImageContainer}>
-                  <img
-                    src={product.ecoScoreImage}
-                    alt={`EcoScore: ${product.ecoscore_grade}`}
-                    className={styles.productEcoScore}
-                  />
-                </div>
-                <div className={styles.productEcoScoreText}>
-                  <p>{product.ecoScoreLabel} klimatpåverkan </p>
-                </div>
-                <div className={styles.productButton}>
+        <div className={styles.productButton}>
+          {filteredProducts.map((product) => (
+            <div key={product.code}>
+              <button
+                className={styles.button}
+                onClick={() =>
+                  router.push({
+                    pathname: "/productPage",
+                    query: {
+                      code: product.code,
+                      product_name: product.product_name,
+                      generic_name: product.generic_name,
+                      brands: product.brands,
+                      categories: product.categories,
+                      image_url: product.image_url,
+                      ecoscore_grade: product.ecoscore_grade,
+                      ecoScoreImage: product.ecoScoreImage,
+                      ecoScoreLabel: product.ecoScoreLabel,
+                      ecoscore_score: product.ecoscore_score,
+                    },
+                  })
+                }
+              >
+                <div className={styles.productContainer}>
+                  {/* {filteredProducts.map((product) => ( */}
+                  {/* <div className={styles.cardGrid} key={product.code}> */}
+                  <div className={styles.cardGrid}>
+                    <div className={styles.productCard}>
+                      <div className={styles.productImageContainer}>
+                        <img
+                          src={product.image_url}
+                          alt={product.product_name}
+                          className={styles.productImage}
+                        />
+                      </div>
+                      <div className={styles.productName}>
+                        <p>
+                          {product.product_name.slice(0, 18)}
+                          {product.product_name.length > 18 ? "..." : ""}
+                        </p>
+                      </div>
+                      <div className={styles.genericName}>
+                        {product.generic_name !== undefined ? (
+                          <p>
+                            {product.generic_name.slice(0, 22)}
+                            {product.generic_name.length > 22 ? "..." : ""}
+                          </p>
+                        ) : product.brands !== undefined ? (
+                          <p>
+                            {product.brands.slice(0, 22)}
+                            {product.brands.length > 22 ? "..." : ""}
+                          </p>
+                        ) : (
+                          <p></p>
+                        )}
+                      </div>
+
+                      <div className={styles.productEcoScoreImageContainer}>
+                        <img
+                          src={product.ecoScoreImage}
+                          alt={`EcoScore: ${product.ecoscore_grade}`}
+                          className={styles.productEcoScore}
+                        />
+                      </div>
+                      <div className={styles.productEcoScoreText}>
+                        <p>{product.ecoScoreLabel} klimatpåverkan </p>
+                      </div>
+                      <div className={styles.showDetails}>
+                        <p>Visa detaljer</p>
+                      </div>
+                      {/* <div className={styles.productButton}>
                   <button
                     className={styles.button}
                     onClick={() =>
@@ -229,6 +269,7 @@ const FetchApi = () => {
                         query: {
                           code: product.code,
                           product_name: product.product_name,
+                          generic_name: product.generic_name,
                           brands: product.brands,
                           categories: product.categories,
                           image_url: product.image_url,
@@ -242,52 +283,12 @@ const FetchApi = () => {
                   >
                     Visa produkt
                   </button>
-                </div>
-                {/* <div className={styles.imageContainer}>
-                <img
-                  src={product.image_url}
-                  alt={product.product_name}
-                  className={styles.productImage}
-                />
-              </div>
-              <div className={styles.productInfoContainer}>
-                <div className={styles.textContainer}>
-                <div className={styles.nameContainer}>
-                  <p className={styles.productName}>{product.product_name}</p>
-                </div>
-                <div className={styles.ecoScoreContainer}>
-                <div className={styles.scoreContainer}>
-                  <h3 className={styles.ecoScoreImageLabel}>Miljöpoäng: </h3>
-                  <img
-                    src={product.ecoScoreImage}
-                    alt={`EcoScore: ${product.ecoscore_grade}`}
-                    className={styles.ecoscoreImage}
-                  />
-                </div>
-                </div>
-                </div>
-                <div className={styles.productInfoContainer2}>
-                  <div className={styles.LabelContainer}>
-                    <p className={styles.ecoScorev}>
-                      {product.ecoScoreLabel}
-                    </p>
+                </div> */}
+                    </div>
                   </div>
+                  {/* ))} */}
                 </div>
-                <div className={styles.productNameContainer}></div>
-                <p className={styles.productBrand}>{product.brands}</p>
-                <p className={styles.productEcoScore}>
-                  EcoScore: {product.ecoscore_grade}
-                </p>
-  
-                <div className={styles.buttonContainer}>
-                  <button className={styles.button}>
-                    <Link href="/Search" className={styles.buttonlink}>
-                      Visa produkt
-                    </Link>
-                  </button>
-                </div>
-              </div> */}
-              </div>
+              </button>
             </div>
           ))}
         </div>
