@@ -19,7 +19,7 @@ interface Favorite {
   ecoscore_score: string
 }
 
-const Favorites: NextPage<Props> = ({}) => {
+const FavoritesPage: NextPage<Props> = ({}) => {
   const [favorites, setFavorites] = useState<Favorite[]>([])
 
   useEffect(() => {
@@ -61,7 +61,15 @@ const Favorites: NextPage<Props> = ({}) => {
               </div>
               <div className={styles.genericName}>
                 {favorite.generic_name !== undefined ? (
-                  <p>{favorite.generic_name.slice(0, 22)}... </p>
+                  <p>
+                    {favorite.generic_name.slice(0, 22)}
+                    {favorite.generic_name.length > 22 ? "..." : ""}
+                  </p>
+                ) : favorite.brands !== undefined ? (
+                  <p>
+                    {favorite.brands.slice(0, 22)}
+                    {favorite.brands.length > 22 ? "..." : ""}
+                  </p>
                 ) : (
                   <p></p>
                 )}
@@ -83,8 +91,8 @@ const Favorites: NextPage<Props> = ({}) => {
                     src={"/blackClose.svg"}
                     alt={""}
                     className={styles.dialogImageE}
-                    width={"30"}
-                    height={"33"}
+                    width={"100"}
+                    height={"100"}
                   />
                 </button>
               </div>
@@ -92,9 +100,13 @@ const Favorites: NextPage<Props> = ({}) => {
           </div>
         ))}
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
       <Navbar />
     </div>
   )
 }
 
-export default Favorites
+export default FavoritesPage

@@ -7,7 +7,7 @@ import { useRouter } from "next/router"
 export const Navbar = () => {
   const router = useRouter()
   const isHomePage = router.pathname === "/"
-  const isFavorit = router.pathname === "/favorites"
+  const isFavorit = router.pathname === "/favoritesPage"
   const IsFaq = router.pathname === "/faqPage"
 
   return (
@@ -34,7 +34,7 @@ export const Navbar = () => {
             </li>
 
             <li>
-              <Link href={"/favorites"}>
+              <Link href={"/favoritesPage"}>
                 {isFavorit ? (
                   <img
                     src={"/favorit_icon_green.svg"}

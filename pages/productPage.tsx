@@ -22,6 +22,9 @@ interface Product {
 const ProductPage = () => {
   const router = useRouter()
   const [isFavorite, setIsFavorite] = useState<boolean>(false)
+  const [heartIconSrc, setHeartIconSrc] = useState<string>(
+    "/heart_icon_white.svg"
+  )
 
   const {
     code,
@@ -39,6 +42,7 @@ const ProductPage = () => {
   useEffect(() => {
     // Check if the current product is already saved as a favorite
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]")
+    console.log("favorites:", favorites)
     const isProductFavorite = favorites.some(
       (favorite: Product) => favorite.code === code
     )
@@ -49,11 +53,11 @@ const ProductPage = () => {
   //   "/heart_icon_white.svg"
   // )
 
-  const [heartIconSrc, setHeartIconSrc] = useState<string>(
-    localStorage.getItem("isFavorite") === "true"
-      ? "/heart_icon_green.svg"
-      : "/heart_icon_white.svg"
-  )
+  // const [heartIconSrc, setHeartIconSrc] = useState<string>(
+  //   localStorage.getItem("isFavorite") === "true"
+  //     ? "/heart_icon_green.svg"
+  //     : "/heart_icon_white.svg"
+  // )
 
   const handelFavoriteClick = () => {
     // Toggle favorites status
@@ -80,9 +84,9 @@ const ProductPage = () => {
     setHeartIconSrc(
       isFavorite ? "/heart_icon_white.svg" : "/heart_icon_green.svg"
     )
-    if (typeof window !== "undefined") {
-      localStorage.setItem("isFavorite", JSON.stringify(!isFavorite))
-    }
+    // if (typeof window !== "undefined") {
+    //   localStorage.setItem("isFavorite", JSON.stringify(!isFavorite))
+    // }
     // router.push("/favorites")
   }
 

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Lato:wght@300;400;700&display=swap");
+
 .card {
   display: flex;
   flex-direction: column;
@@ -17,6 +19,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  font-family: "Josefin Sans";
 }
 
 .h1 {

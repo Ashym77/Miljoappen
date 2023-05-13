@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;700&family=Lato:wght@300;400;700&display=swap");
+
 /* .searchbarContainer {
   display: flex;
   align-items: center;
@@ -20,6 +22,7 @@
   align-items: center;
   margin: 30px;
   font-size: 30px;
+  font-family: "Josefin Sans";
   /* font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif; */
   font-weight: 900;
@@ -137,7 +140,7 @@
   align-self: center;
   font-size: 14px;
   font-weight: 700;
-
+  /* font-family: "Lato"; */
   margin-top: 30px;
   margin-left: 18px;
 }
@@ -237,11 +240,14 @@
   align-self: center;
   margin-left: 5px;
   margin-top: 5px;
+  height: auto;
+  width: 35px;
+  height: 35px;
 }
 
 .button {
-  width: 90px;
-  height: 34px;
+  /* width: 90px;
+  height: auto; */
   background-color: #befa9e;
   /* background-color: #ffffff;
     text-decoration: underline; */
