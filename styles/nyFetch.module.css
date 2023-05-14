@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin: 15px;
+  /* margin: 15px; */
 }
 
 /* .cardGrid { */
@@ -79,7 +79,7 @@
   /* grid-template-rows: 40px 40px 40px; */
   grid-template-rows: 31px 31px 31px;
   grid-gap: 0px;
-  margin: 10px;
+  margin: 5px;
 
   /* padding: 10px; */
   /* grid-template-areas:
@@ -218,30 +218,47 @@
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 3; */
-  grid-column: 2 / 3;
+
+  /* grid-column: 2 / 3;
   grid-row: 2 / 4;
   justify-self: center;
   align-self: center;
-  margin-top: 20px;
+  margin-top: 20px; */
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  /* margin: 15px; */
 }
 
-.button {
-  width: 90px;
-  height: 34px;
-  background-color: #befa9e;
-  /* background-color: #ffffff;
+/* .button { */
+/* width: 90px; */
+/* height: 34px; */
+/* background-color: #befa9e; */
+/* background-color: #ffffff;
   text-decoration: underline; */
-  border-radius: 5px;
-  border: none;
-  font-family: "Lato";
-  font-size: 12px;
-  /* justify-self: center;
+/* border-radius: 5px; */
+/* border: none; */
+/* font-family: "Lato"; */
+/* font-size: 12px; */
+/* justify-self: center;
   align-self: center; */
-}
+/* } */
 
-.buttonLink {
-  text-decoration: none;
-  color: #000000;
+/* .buttonLink { */
+/* text-decoration: none; */
+/* color: #000000; */
+/* } */
+
+.showDetails {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  text-decoration: underline;
+  font-size: 10px;
+  /* margin-left: 10px; */
+  margin-bottom: 100px;
 }
 
 .navdiv {
