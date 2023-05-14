@@ -1,11 +1,10 @@
-import { NextApiRequest, NextApiResponse } from "next"
 import { connectToDatabase } from "@/utils/db"
+import { NextApiRequest, NextApiResponse } from "next"
 
 type User = {
-  _id:string
+  _id: string
   name: string
   email: string
-  
 }
 
 export default async function handler(
@@ -13,8 +12,6 @@ export default async function handler(
   res: NextApiResponse<User | User[] | string>
 ) {
   try {
-   
-
     switch (req.method) {
       case "GET": {
         // Get all users from the database
@@ -25,7 +22,7 @@ export default async function handler(
           return {
             name: userDoc.name as string,
             email: userDoc.email as string,
-          _id:userDoc._id.toString()
+            _id: userDoc._id.toString(),
           }
         })
 

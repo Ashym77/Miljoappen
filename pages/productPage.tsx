@@ -178,8 +178,9 @@ const ProductPage = () => {
       </div>
 
       <div className={styles.linkContainer}>
-        {/* <Link href={"https://www.google.com"}> */}
-        <Link href={`https://se.openfoodfacts.org/product/${code}`}>
+
+        <Link href={`https://world.openfoodfacts.org/product/${code}`}>
+
           <p className={styles.linkText}>Läs mer om produktens klimatpoäng</p>
         </Link>
       </div>
