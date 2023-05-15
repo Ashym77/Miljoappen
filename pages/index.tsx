@@ -4,9 +4,10 @@ import styles from "../styles/index.module.css"
 import Image from "next/image"
 import SearchIcon from "@mui/icons-material/Search"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import FetchApi from "@/p-components/FetchApi"
 import { Navbar } from "@/p-components/Navbar"
+import router from "next/router"
 
 interface Props {}
 
@@ -63,7 +64,12 @@ function getEcoScoreLable(lable: string): string {
 }
 
 const index: NextPage<Props> = ({}) => {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [query, setQuery] = useState("")
+  //const location = useLocation();
+  //const history = useHistory();
   useEffect(() => {
+    // nedan är kodet för mol rutan som dycker upp när man klickar knappen
     const openButton = document.querySelector(
       "[data-open-modal]"
     ) as HTMLButtonElement
@@ -94,11 +100,28 @@ const index: NextPage<Props> = ({}) => {
     // })
   })
 
+  // ett försök att gå till nästa sida med enter med usehistory men det är itne funktionelt ön
+  // function handleFormSubmit(e: { preventDefault: () => void }) {
+  //   e.preventDefault()
+  //   if (searchTerm.trim()) {
+  //     // Transfer search term to productFetch search bar
+  //    // history.push(`/productFetch?search=${searchTerm}`)
+
+  //     // window.location.href = `/productFetch?search=${searchTerm}`;
+  //     console.log(`Searching for ${searchTerm} in productFetch`)
+  //   }
+  // }
+  const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    router.push(`/productFetch?search=${searchTerm}`)
+    console.log(`Searching for ${searchTerm} in productFetch`)
+  }
+
   return (
     <div>
       <div className={styles.logoContainer}>
         <Image
-          src={"/Logga.svg"}
+          src={"/Slutgiltig logga.svg"}
           alt={""}
           width={"0"}
           height={"0"}
@@ -108,18 +131,19 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.textContainer}>
         <p className={styles.text}>
-          Välkommen till Klimat! <br />
-          Här kan du enkelt söka på livsmedelsprodukters klimatavtryck
+          Här kan du enkelt söka <br /> på livsmedelsprodukters klimatavtryck.
         </p>
       </div>
 
       <div className={styles.searchbarContainer}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleFormSubmit}>
           <input
             type="search"
             name=""
             placeholder="Search"
             className={styles.input}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <div className={styles.searchIcon}>
             <SearchIcon />
@@ -129,7 +153,10 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.buttonContainer}>
         <button className={styles.button}>
-          <Link href="/productFetch" className={styles.buttonlink}>
+          <Link
+            href={{ pathname: "/productFetch", query: { search: searchTerm } }}
+            className={styles.buttonlink}
+          >
             Sök produkt
           </Link>
         </button>
@@ -153,8 +180,8 @@ const index: NextPage<Props> = ({}) => {
             <h1 className={styles.dialogHeadline}>Vår klimatskala</h1>
 
             <Image
-              src={"/ecoscore_a_v2.svg"}
-              alt={"/ecoscore_a_v2.svg"}
+              src={"/Löv A.png"}
+              alt={"/Löv A.png"}
               className={styles.dialogImageA}
               width={"100"}
               height={"100"}
@@ -163,8 +190,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextA}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_b_v2.svg"}
-              alt={"/ecoscore_b_v2.svg"}
+              src={"/Löv B.png"}
+              alt={"/Löv B.png"}
               className={styles.dialogImageB}
               width={"100"}
               height={"100"}
@@ -173,8 +200,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextB}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_c_v2.svg"}
-              alt={"/ecoscore_c_v2.svg"}
+              src={"/Löv C.png"}
+              alt={"/Löv C.png"}
               className={styles.dialogImageC}
               width={"100"}
               height={"100"}
@@ -183,8 +210,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextC}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_d_v2.svg"}
-              alt={"/ecoscore_d_v2.svg"}
+              src={"/Löv D.png"}
+              alt={"/Löv D.png"}
               className={styles.dialogImageD}
               width={"100"}
               height={"100"}
@@ -193,8 +220,8 @@ const index: NextPage<Props> = ({}) => {
             <h2 className={styles.dialogClimatetextD}>Klimatpåverkan</h2>
 
             <Image
-              src={"/ecoscore_e_v2.svg"}
-              alt={"/ecoscore_e_v2.svg"}
+              src={"/Löv E.png"}
+              alt={"/Löv e.png"}
               className={styles.dialogImageE}
               width={"100"}
               height={"100"}
