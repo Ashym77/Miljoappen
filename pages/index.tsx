@@ -7,6 +7,8 @@ import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { useEffect, useState } from "react"
 import FetchApi from "@/p-components/FetchApi"
 import { Navbar } from "@/p-components/Navbar"
+import ProductFetch from "./productFetch"
+import NyFetch from "./nyFetch"
 
 interface Props {}
 
@@ -62,9 +64,20 @@ function getEcoScoreLable(lable: string): string {
   }
 }
 
+
+
 const index: NextPage<Props> = ({}) => {
   const [searchTerm, setSearchTerm] = useState("")
   useEffect(() => {
+
+    const urlParams = new URLSearchParams(window.location.search);
+const query = urlParams.get('q');
+if (query) {
+  const searchField = document.getElementById('search-input') as HTMLInputElement;
+  if (searchField) {
+    searchField.value = query;
+  }
+}
     const openButton = document.querySelector(
       "[data-open-modal]"
     ) as HTMLButtonElement
@@ -115,14 +128,17 @@ const index: NextPage<Props> = ({}) => {
       </div>
 
       <div className={styles.searchbarContainer}>
+        
         <form className={styles.form}>
           <input
             type="search"
+            id="search-input"
             name=""
             placeholder="Search"
             className={styles.input}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            
           />
           <div className={styles.searchIcon}>
             <SearchIcon />
@@ -131,7 +147,9 @@ const index: NextPage<Props> = ({}) => {
       </div>
 
       <div className={styles.buttonContainer}>
+        
         <button className={styles.button}>
+          
           <Link
             href={{ pathname: "/productFetch", query: { search: searchTerm } }}
             className={styles.buttonlink}

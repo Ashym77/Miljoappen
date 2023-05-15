@@ -178,6 +178,7 @@ const FetchApi = () => {
         <div className={styles.searchbarContainer}>
           {/* <h1>Product List</h1> */}
           <input
+            id="search-input"
             type="search"
             className={styles.input}
             placeholder="Sök produkt..."
