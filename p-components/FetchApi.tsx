@@ -5,7 +5,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
 import { debounce } from "@mui/material"
-// import { useLocation } from "react-router-dom"
+
+import { useLocation } from "react-router-dom"
+
 
 const FetchApi = () => {
   interface Props {}
