@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
 import { debounce } from "@mui/material"
+
 import { useLocation } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 

@@ -1,3 +1,5 @@
+import styles from "../styles/subscriptionPage.module.css"
+
 interface Props {
   name: string
 
@@ -11,12 +13,17 @@ export const InputNameComponent = ({ name, setName }: Props) => {
   }
 
   return (
-    <input
-      type="text"
-      value={name}
-      onChange={handleNameChange}
-      placeholder="namn"
-      className=""
-    />
+    <>
+      <div>
+        <p className={styles.inputComponentsText}>Namn</p>
+        <input
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+          placeholder="namn"
+          className={styles.inputComponents}
+        />
+      </div>
+    </>
   )
 }
