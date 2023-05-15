@@ -5,7 +5,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
 import { debounce } from "@mui/material"
+
 import { useLocation } from "react-router-dom"
+
 
 const FetchApi = () => {
   interface Props {}
@@ -178,6 +180,7 @@ const FetchApi = () => {
           {/* <h1>Product List</h1> */}
           <input
             type="search"
+            // value={searchTerm}
             className={styles.input}
             placeholder="Sök produkt..."
             onChange={(event) => {

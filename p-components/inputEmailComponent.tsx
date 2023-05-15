@@ -1,3 +1,5 @@
+import styles from "../styles/subscriptionPage.module.css"
+
 interface Props {
   email: string
 
@@ -11,15 +13,17 @@ export const InputEmailComponent = ({ email, setEmail }: Props) => {
     setEmail(newEmail)
   }
   return (
-    <div>
+    <>
       <div>
+        <p className={styles.inputComponentsText}>E-post</p>
         <input
           type="text"
           value={email}
           onChange={handleEmailChange}
           placeholder="Email"
+          className={styles.inputComponents}
         />
       </div>
-    </div>
+    </>
   )
 }
