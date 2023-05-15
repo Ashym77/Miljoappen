@@ -94,7 +94,7 @@ const ProductPage = () => {
     <div>
       <div className={styles.heartIconContainer}>
         <div className={styles.arrowIconContainer}>
-          <Link href={"/productFetch"}>
+          <Link href={"/"}>
             <img src={"/pil_icon.svg"} alt="" />
           </Link>
         </div>
@@ -178,9 +178,7 @@ const ProductPage = () => {
       </div>
 
       <div className={styles.linkContainer}>
-
         <Link href={`https://world.openfoodfacts.org/product/${code}`}>
-
           <p className={styles.linkText}>Läs mer om produktens klimatpoäng</p>
         </Link>
       </div>

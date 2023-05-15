@@ -7,6 +7,7 @@ import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { useEffect, useState } from "react"
 import FetchApi from "@/p-components/FetchApi"
 import { Navbar } from "@/p-components/Navbar"
+import router from "next/router"
 
 interface Props {}
 
@@ -64,7 +65,11 @@ function getEcoScoreLable(lable: string): string {
 
 const index: NextPage<Props> = ({}) => {
   const [searchTerm, setSearchTerm] = useState("")
+  const [query, setQuery] = useState("")
+  //const location = useLocation();
+  //const history = useHistory();
   useEffect(() => {
+    // nedan är kodet för mol rutan som dycker upp när man klickar knappen
     const openButton = document.querySelector(
       "[data-open-modal]"
     ) as HTMLButtonElement
@@ -95,6 +100,23 @@ const index: NextPage<Props> = ({}) => {
     // })
   })
 
+  // ett försök att gå till nästa sida med enter med usehistory men det är itne funktionelt ön
+  // function handleFormSubmit(e: { preventDefault: () => void }) {
+  //   e.preventDefault()
+  //   if (searchTerm.trim()) {
+  //     // Transfer search term to productFetch search bar
+  //    // history.push(`/productFetch?search=${searchTerm}`)
+
+  //     // window.location.href = `/productFetch?search=${searchTerm}`;
+  //     console.log(`Searching for ${searchTerm} in productFetch`)
+  //   }
+  // }
+  const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    router.push(`/productFetch?search=${searchTerm}`)
+    console.log(`Searching for ${searchTerm} in productFetch`)
+  }
+
   return (
     <div>
       <div className={styles.logoContainer}>
@@ -109,13 +131,12 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.textContainer}>
         <p className={styles.text}>
-          Välkommen till Klimat! <br />
-          Här kan du enkelt söka på livsmedelsprodukters klimatavtryck
+          Här kan du enkelt söka <br /> på livsmedelsprodukters klimatavtryck.
         </p>
       </div>
 
       <div className={styles.searchbarContainer}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleFormSubmit}>
           <input
             type="search"
             name=""
