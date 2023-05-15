@@ -100,21 +100,11 @@ const index: NextPage<Props> = ({}) => {
     // })
   })
 
-  // ett försök att gå till nästa sida med enter med usehistory men det är itne funktionelt ön
-  // function handleFormSubmit(e: { preventDefault: () => void }) {
-  //   e.preventDefault()
-  //   if (searchTerm.trim()) {
-  //     // Transfer search term to productFetch search bar
-  //    // history.push(`/productFetch?search=${searchTerm}`)
-
-  //     // window.location.href = `/productFetch?search=${searchTerm}`;
-  //     console.log(`Searching for ${searchTerm} in productFetch`)
-  //   }
-  // }
   const handleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    router.push(`/productFetch?search=${searchTerm}`)
+    //router.push(`/productFetch?search=${searchTerm}`)
     console.log(`Searching for ${searchTerm} in productFetch`)
+    setSearchTerm("")
   }
 
   return (
@@ -339,9 +329,6 @@ const index: NextPage<Props> = ({}) => {
         ></Image>
       </div>
 
-      {/* <div className={styles.navdiv}>
-        <MuiBottomNavBar />
-      </div> */}
       <Navbar />
     </div>
   )

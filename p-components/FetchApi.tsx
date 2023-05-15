@@ -6,6 +6,7 @@ import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
 import { debounce } from "@mui/material"
 import { useLocation } from "react-router-dom"
+import SearchIcon from "@mui/icons-material/Search"
 
 const FetchApi = () => {
   interface Props {}
@@ -85,22 +86,29 @@ const FetchApi = () => {
   }
 
   function ProductList() {
+    // const [query, setQuery] = useState<string>("")
+    // const [products, setProducts] = useState<Product[]>([])
+    // const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+    // const [hasMore, setHasMore] = useState<boolean>(true)
+    // const router = useRouter()
+    // const { search } = router.query
+    const queryParams = new URLSearchParams(location.search)
+    const searchTerm = queryParams.get("search")
+
     const [query, setQuery] = useState<string>("")
     const [products, setProducts] = useState<Product[]>([])
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
     const [hasMore, setHasMore] = useState<boolean>(true)
     const router = useRouter()
     const { search } = router.query
-    const queryParams = new URLSearchParams(location.search)
-    const searchTerm = queryParams.get("search")
 
     useEffect(() => {
       async function fetchProducts() {
         const response = await fetch(
           // `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
           //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
-          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=425&json=true&search_terms=${searchTerm}`
-          `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=440&search_terms=${searchTerm}&json=true `
+          `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=425&json=true&search_terms=${searchTerm}`
+          // `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=450&search_terms=${searchTerm}&json=true `
         )
 
         const data = await response.json()
@@ -141,13 +149,13 @@ const FetchApi = () => {
 
         setProducts(filteredProducts)
 
-        setFilteredProducts(filteredProducts.slice(0, 440)) // display first 10 products
+        setFilteredProducts(filteredProducts.slice(0, 450)) // display first 10 products
 
         setHasMore(true)
       }
 
       fetchProducts()
-    }, [])
+    }, [search])
 
     function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
       const searchTerm = event.target.value.toLowerCase()
@@ -157,12 +165,24 @@ const FetchApi = () => {
         return productName?.includes(searchTerm)
       })
 
-      setFilteredProducts(newFilteredProducts.slice(0, 440))
+      setFilteredProducts(newFilteredProducts.slice(0, 450))
 
       setHasMore(true)
 
       setQuery(searchTerm)
     }
+
+    const handleFormSubmit = (e: { preventDefault: () => void }) => {
+      e.preventDefault()
+      router.push(`/productFetch?search=${searchTerm}`)
+      console.log(`Searching for ${searchTerm} in productFetch`)
+    }
+
+    // const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    //   e.preventDefault()
+    //   router.push(`/productFetch?search=${searchTerm}`)
+    //   console.log(`Searching for ${searchTerm} in productFetch`)
+    // }
 
     //   function loadMore() {
     //     const currentSize = filteredProducts.length
@@ -174,17 +194,36 @@ const FetchApi = () => {
     //   }
     return (
       <div>
+        {/* <div className={styles.searchbarContainer}>
+          <form className={styles.form} onSubmit={handleFormSubmit}>
+            <input
+              type="search"
+              name=""
+              placeholder="Search"
+              className={styles.input}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <div className={styles.searchIcon}>
+              <SearchIcon />
+            </div>
+          </form>
+        </div> */}
+
         <div className={styles.searchbarContainer}>
           {/* <h1>Product List</h1> */}
-          <input
-            type="search"
-            className={styles.input}
-            placeholder="Sök produkt..."
-            onChange={(event) => {
-              handleSearch(event)
-            }}
-          />
+          <form className={styles.form} onSubmit={handleFormSubmit}>
+            <input
+              type="search"
+              className={styles.input}
+              placeholder="Sök produkt..."
+              onChange={(event) => {
+                handleSearch(event)
+              }}
+            />
+          </form>
         </div>
+
         {/* <InfiniteScroll
           dataLength={filteredProducts.length}
           next={loadMore}

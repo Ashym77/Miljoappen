@@ -195,6 +195,8 @@
 }
 
 .linkContainer {
+  display: flex;
+  justify-content: space-evenly;
   margin-top: 20px;
   margin-right: 75px;
 }
@@ -207,4 +209,11 @@
   font-size: 15px;
   text-decoration: underline;
   text-align: center;
+}
+
+.iconContainer {
+}
+
+.linkIcon {
+  margin-left: 270px;
 }
