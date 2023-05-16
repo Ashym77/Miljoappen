@@ -5,6 +5,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
 import { debounce } from "@mui/material"
+import { useLocation } from "react-router-dom"
 
 const FetchApi = () => {
   interface Props {}
@@ -85,23 +86,21 @@ const FetchApi = () => {
 
   function ProductList() {
     const [query, setQuery] = useState<string>("")
-
     const [products, setProducts] = useState<Product[]>([])
-
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-
     const [hasMore, setHasMore] = useState<boolean>(true)
-
     const router = useRouter()
     const { search } = router.query
+    const queryParams = new URLSearchParams(location.search)
+    const searchTerm = queryParams.get("search")
 
     useEffect(() => {
       async function fetchProducts() {
         const response = await fetch(
-
           // `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
-          `https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
-
+          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
+          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=425&json=true&search_terms=${searchTerm}`
+          `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=440&search_terms=${searchTerm}&json=true `
         )
 
         const data = await response.json()
@@ -142,23 +141,25 @@ const FetchApi = () => {
 
         setProducts(filteredProducts)
 
-        setFilteredProducts(filteredProducts.slice(0, 425)) // display first 10 products
+        setFilteredProducts(filteredProducts.slice(0, 440)) // display first 10 products
 
         setHasMore(true)
       }
-      query
+query
       fetchProducts()
     }, [])
 
     function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
       const searchTerm = event.target.value.toLowerCase()
+      const enteredSearchTerm = queryParams.get("search")
+      
 
       const newFilteredProducts = products.filter((product) => {
         const productName = product.product_name?.toLowerCase()
         return productName?.includes(searchTerm)
       })
 
-      setFilteredProducts(newFilteredProducts.slice(0, 425))
+      setFilteredProducts(newFilteredProducts.slice(0, 440))
 
       setHasMore(true)
 
@@ -178,8 +179,8 @@ const FetchApi = () => {
         <div className={styles.searchbarContainer}>
           {/* <h1>Product List</h1> */}
           <input
-            id="search-input"
             type="search"
+            id="input-search"
             className={styles.input}
             placeholder="Sök produkt..."
             onChange={(event) => {
