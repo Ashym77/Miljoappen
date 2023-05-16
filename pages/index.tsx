@@ -128,7 +128,7 @@ const index: NextPage<Props> = ({}) => {
 
       <div className={styles.textContainer}>
         <p className={styles.text}>
-          Här kan du enkelt söka <br /> på livsmedelsprodukters klimatavtryck.
+          Här kan du enkelt söka <br /> på livsmedelsprodukters klimatavtryck
         </p>
       </div>
 
@@ -141,7 +141,7 @@ const index: NextPage<Props> = ({}) => {
           <input
             type="search"
             name=""
-            placeholder="Search"
+            placeholder="Sök produkt"
             className={styles.input}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}

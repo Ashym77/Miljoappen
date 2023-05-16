@@ -104,6 +104,8 @@ const FetchApi = () => {
     const { search } = router.query
     const abortControllerRef = React.useRef<AbortController | null>(null)
 
+
+     
     useEffect(() => {
       const queryParams = new URLSearchParams(location.search)
       const searchTerm = queryParams.get("search")
@@ -236,7 +238,7 @@ const FetchApi = () => {
               onChange={(event) => {
                 handleSearch(event)
               }}
-              //value={searchTerm || ""}
+              value={query}
             />
           </form>
         </div>

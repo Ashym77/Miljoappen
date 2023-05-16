@@ -173,7 +173,7 @@ const ProductPage = () => {
       <div className={styles.text2Container}>
         <p className={styles.bonusMalustext}>
           Bonus malus, som ger plus- och minuspoäng baserat på fyra
-          underkategorier: miljömärkning, ingrediensers ursprung, miljöskadliga
+          underkategorier: miljömärkning,ingrediensers ursprung, miljöskadliga
           ingredienser och förpackning
         </p>
       </div>
@@ -191,8 +191,8 @@ const ProductPage = () => {
               <Image
                 src={"/link_icon_v2.svg"}
                 alt={""}
-                width={"10"}
-                height={"10"}
+                width={"50"}
+                height={"50"}
                 className={styles.linkIcon}
               ></Image>
             </div>

@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 40px;
 
   /* border: solid red; */
 }
@@ -16,7 +16,8 @@
   width: 450.81px;
   height: 100.42px;
   left: 136.59px;
-  margin-top: 20.48px;
+  margin-top: 24.48px;
+  margin-bottom: 10px;
 }
 
 .textContainer {
@@ -56,8 +57,8 @@
 }
 
 .input {
-  width: 351px;
-  height: 51px;
+  width: 290px;
+  height: 45px;
   border-radius: 50px;
   text-align: center;
   justify-content: center;
@@ -74,7 +75,7 @@
 
 .searchIcon {
   position: absolute;
-  top: 12px;
+  top: 9px;
   left: 10px;
 }
 
