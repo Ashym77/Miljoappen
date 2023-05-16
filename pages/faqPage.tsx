@@ -155,7 +155,10 @@ const FaqPage: NextPage<Props> = ({}) => {
           </div>
         </div>
       </div>
-
+      <br />
+      <br />
+      <br />
+      <br />
       <Navbar />
     </div>
   )
