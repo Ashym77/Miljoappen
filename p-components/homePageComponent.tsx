@@ -61,9 +61,8 @@ function getEcoScoreLable(lable: string): string {
   }
 }
 
-const index: NextPage<Props> = ({}) => {
+const homePageComponent: NextPage<Props> = ({}) => {
   const [searchTerm, setSearchTerm] = useState("")
-  const [query, setQuery] = useState("")
 
   useEffect(() => {
     // nedan är kodet för molal rutan som dycker upp när man klickar knappen
@@ -233,4 +232,4 @@ const index: NextPage<Props> = ({}) => {
   )
 }
 
-export default index
+export default homePageComponent

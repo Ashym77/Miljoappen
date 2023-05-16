@@ -198,8 +198,10 @@
 .linkContainer {
   display: flex;
   justify-content: space-evenly;
+  position: relative;
   margin-top: 20px;
   margin-right: 75px;
+  /* border: solid green; */
 }
 
 .linkText {
@@ -210,11 +212,33 @@
   font-size: 15px;
   text-decoration: underline;
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .iconContainer {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: -14px;
+  right: -15px;
+  /* border: solid red; */
+  width: 60px;
+  margin: 0;
+  padding: 0;
 }
 
 .linkIcon {
-  margin-left: 270px;
+  /* margin-left: 270px; */
+  margin-right: 0;
+  /* height: 20pxs; */
+  width: 60px;
+  justify-self: flex-start;
 }
+
+/* .line {
+  border: none;
+  background: #fff;
+  height: 1px;
+  width: 20px;
+  list-style: ;
+} */
