@@ -10,7 +10,8 @@
   border-radius: 16px;
   padding: 24px;
   box-sizing: border-box;
-  top: 50px;
+  top: 100px;
+  bottom: 100px;
   margin: 20px;
 }
 
@@ -57,6 +58,7 @@
   margin: 0;
   /* margin-right: 10px; */
   color: #434343;
+  cursor: pointer;
 }
 
 .arrowContainer {
