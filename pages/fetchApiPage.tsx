@@ -8,9 +8,9 @@ type Product = {
   image_url: string
 }
 
-type ApiResponse = {
-  products: Product[]
-}
+// type ApiResponse = {
+//   products: Product[]
+// }
 
 export default function FetchApiPage() {
   const router = useRouter()
