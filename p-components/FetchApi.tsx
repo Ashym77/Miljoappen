@@ -6,7 +6,7 @@ import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
 import { debounce } from "@mui/material"
 
-import { useLocation } from "react-router-dom"
+// import { useLocation } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
 import React from "react"
 
@@ -243,6 +243,10 @@ const FetchApi = () => {
           </form>
         </div>
 
+        <div className={styles.topRes}>
+          <p className={styles.topResText}>Toppresultat</p>
+        </div>
+
         {/* <InfiniteScroll
           dataLength={filteredProducts.length}
           next={loadMore}
@@ -353,7 +357,10 @@ const FetchApi = () => {
             </div>
           ))}
         </div>
-
+        <br />
+        <br />
+        <br />
+        <br />
         <Navbar />
         {/* <div className={styles.navdiv}>
           <MuiBottomNavBar />
