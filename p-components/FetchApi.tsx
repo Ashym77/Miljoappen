@@ -1,13 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import styles from "../styles/nyFetch.module.css"
-import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
-import Link from "next/link"
 import { useRouter } from "next/router"
 import { Navbar } from "./Navbar"
 import { debounce } from "@mui/material"
-
 // import { useLocation } from "react-router-dom"
-import SearchIcon from "@mui/icons-material/Search"
 import React from "react"
 
 const FetchApi = () => {
@@ -88,12 +84,6 @@ const FetchApi = () => {
   }
 
   function ProductList() {
-    // const [query, setQuery] = useState<string>("")
-    // const [products, setProducts] = useState<Product[]>([])
-    // const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-    // const [hasMore, setHasMore] = useState<boolean>(true)
-    // const router = useRouter()
-    // const { search } = router.query
     const queryParams = new URLSearchParams(location.search)
     const searchTerm = queryParams.get("search")
     const [query, setQuery] = useState<string>("")
@@ -104,8 +94,6 @@ const FetchApi = () => {
     const { search } = router.query
     const abortControllerRef = React.useRef<AbortController | null>(null)
 
-
-     
     useEffect(() => {
       const queryParams = new URLSearchParams(location.search)
       const searchTerm = queryParams.get("search")
@@ -202,32 +190,8 @@ const FetchApi = () => {
       console.log(`Searching for ${searchTerm} in productFetch`)
     }
 
-    //   function loadMore() {
-    //     const currentSize = filteredProducts.length
-    //     const nextProducts = products.slice(currentSize, currentSize + 2)
-    //     setFilteredProducts((prevProducts) => [...prevProducts, ...nextProducts])
-    //     if (currentSize + 24 >= products.length) {
-    //       setHasMore(false)
-    //     }
-    //   }
     return (
       <div>
-        {/* <div className={styles.searchbarContainer}>
-          <form className={styles.form} onSubmit={handleFormSubmit}>
-            <input
-              type="search"
-              name=""
-              placeholder="Search"
-              className={styles.input}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div className={styles.searchIcon}>
-              <SearchIcon />
-            </div>
-          </form>
-        </div> */}
-
         <div className={styles.searchbarContainer}>
           {/* <h1>Product List</h1> */}
           <form className={styles.form} onSubmit={handleFormSubmit} id={"id"}>
@@ -246,14 +210,6 @@ const FetchApi = () => {
         <div className={styles.topRes}>
           <p className={styles.topResText}>Toppresultat</p>
         </div>
-
-        {/* <InfiniteScroll
-          dataLength={filteredProducts.length}
-          next={loadMore}
-          hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
-          children={undefined}
-        ></InfiniteScroll> */}
 
         <div className={styles.productButton}>
           {filteredProducts.map((product) => (
@@ -325,30 +281,6 @@ const FetchApi = () => {
                       <div className={styles.showDetails}>
                         <p>Visa detaljer</p>
                       </div>
-                      {/* <div className={styles.productButton}>
-                  <button
-                    className={styles.button}
-                    onClick={() =>
-                      router.push({
-                        pathname: "/productPage",
-                        query: {
-                          code: product.code,
-                          product_name: product.product_name,
-                          generic_name: product.generic_name,
-                          brands: product.brands,
-                          categories: product.categories,
-                          image_url: product.image_url,
-                          ecoscore_grade: product.ecoscore_grade,
-                          ecoScoreImage: product.ecoScoreImage,
-                          ecoScoreLabel: product.ecoScoreLabel,
-                          ecoscore_score: product.ecoscore_score,
-                        },
-                      })
-                    }
-                  >
-                    Visa produkt
-                  </button>
-                </div> */}
                     </div>
                   </div>
                   {/* ))} */}
@@ -362,9 +294,6 @@ const FetchApi = () => {
         <br />
         <br />
         <Navbar />
-        {/* <div className={styles.navdiv}>
-          <MuiBottomNavBar />
-        </div> */}
       </div>
     )
   }

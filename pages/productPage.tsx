@@ -50,16 +50,6 @@ const ProductPage = () => {
     setIsFavorite(isProductFavorite)
   }, [code])
 
-  // const [heartIconSrc, setHeartIconSrc] = useState<string>(
-  //   "/heart_icon_white.svg"
-  // )
-
-  // const [heartIconSrc, setHeartIconSrc] = useState<string>(
-  //   localStorage.getItem("isFavorite") === "true"
-  //     ? "/heart_icon_green.svg"
-  //     : "/heart_icon_white.svg"
-  // )
-
   const handelFavoriteClick = () => {
     // Toggle favorites status
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]")
@@ -121,7 +111,6 @@ const ProductPage = () => {
           />
         </div>
 
-        {/* <div className = {styles.ecoScoreContainer}> */}
         <div className={styles.ecoScoreImageContainer}>
           <img
             className={styles.ecoScoreImage}
@@ -133,22 +122,6 @@ const ProductPage = () => {
           <p className={styles.ecoScoreLabel}>{ecoScoreLabel} klimatpåverkan</p>
         </div>
 
-        {/* <table>
-          <tr>
-            <th>Kategori</th>
-            <th>Påverkan</th>
-          </tr>
-        </table> */}
-        {/* 
-        <div className={styles.categoriesContainer}>
-          <p className={styles.categories}></p>
-          <p className={styles.categories}>Kategori</p>
-        </div>
-
-        <div className={styles.impactContainer}>
-          <p className={styles.impact}></p>
-          <p className={styles.categories}>Påverkan</p>
-        </div> */}
         <div className={styles.totalscoreContainer}>
           <p className={styles.totalscore}> {ecoscore_score}/100 </p>
           <p className={styles.totalscoretext}>Klimatpoäng</p>
@@ -173,7 +146,7 @@ const ProductPage = () => {
       <div className={styles.text2Container}>
         <p className={styles.bonusMalustext}>
           Bonus malus, som ger plus- och minuspoäng baserat på fyra
-          underkategorier: miljömärkning,ingrediensers ursprung, miljöskadliga
+          underkategorier: miljömärkning, ingrediensers ursprung, miljöskadliga
           ingredienser och förpackning
         </p>
       </div>
@@ -201,12 +174,6 @@ const ProductPage = () => {
       </div>
 
       <Navbar />
-      {/* <p className={styles.ecoscore_grade}>Eco Score Grade:</p>
-      <h1 className={styles.headline}>Product Details</h1>
-      <p className={styles.code}>Code:</p>
-      <p className={styles.product_name}>Product Name: {product_name}</p>
-      <p className={styles.brands}>Brands: </p>
-      <p className={styles.categories}>Categories</p> */}
     </div>
   )
 }

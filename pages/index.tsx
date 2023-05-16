@@ -3,7 +3,7 @@ import Link from "next/link"
 import styles from "../styles/index.module.css"
 import Image from "next/image"
 import SearchIcon from "@mui/icons-material/Search"
-import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
+
 import { useEffect, useState } from "react"
 import FetchApi from "@/p-components/FetchApi"
 import { Navbar } from "@/p-components/Navbar"
@@ -69,7 +69,7 @@ const index: NextPage<Props> = ({}) => {
   //const location = useLocation();
   //const history = useHistory();
   useEffect(() => {
-    // nedan är kodet för mol rutan som dycker upp när man klickar knappen
+    // nedan är kodet för modal rutan som dycker upp när man klickar knappen
     const openButton = document.querySelector(
       "[data-open-modal]"
     ) as HTMLButtonElement
@@ -85,19 +85,13 @@ const index: NextPage<Props> = ({}) => {
         modal.showModal()
 
         document.body.classList.add("dialogMask") // Add the overlay to the body
-        // document.body.classList.add("dialog-overlay") // Add the overlay to the body
       }
     })
 
     closeButton.addEventListener("click", () => {
       modal.close()
-      // document.body.classList.remove("dialog-overlay") // Remove the overlay from the body when the dialog is closed
       document.body.classList.remove("dialogMask") // Remove the overlay from the body when the dialog is closed
     })
-
-    // modal.addEventListener("close", () => {
-    //   document.body.classList.remove("dialog-overlay") // Remove the overlay from the body when the dialog is closed
-    // })
   })
 
   const handleFormSubmit = (e: { preventDefault: () => void }) => {
@@ -106,13 +100,6 @@ const index: NextPage<Props> = ({}) => {
     console.log(`Searching for ${searchTerm} in productFetch`)
     setSearchTerm("")
   }
-  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  //   router.push({
-  //     pathname: "/productFetch",
-  //     query: { searchTerm },
-  //   })
-  // }
 
   return (
     <div>
@@ -162,13 +149,7 @@ const index: NextPage<Props> = ({}) => {
           </Link>
         </button>
       </div>
-      {/* <div className={styles.linkContainer}>
-        <Link href={"/info"} className={styles.linkText}>
-          Läs mer om vår klimatskala
-        </Link>
-      </div> */}
 
-      {/* <div> */}
       <div className={styles.dialogOpenButtonContainer}>
         <button data-open-modal className={styles.dialogOpenButton}>
           Läs mer om vår klimatskala
@@ -244,91 +225,6 @@ const index: NextPage<Props> = ({}) => {
           </div>
         </dialog>
       </div>
-      {/* </div> */}
-
-      {/* <dialog
-        data-modal
-        className="fixed inset-0 z-50 flex items-center justify-center"
-        className="bg-white rounded-lg p-8 grid grid-cols-2 grid-rows-6 gap-4"
-        className="bg-white rounded-lg p-8 grid grid-cols-2 grid-rows-6 gap-4 items-center justify-center"
-      >
-        <button
-          type="button"
-          data-action="modal#close"
-          data-close-modal
-          className="absolute top-4 right-4"
-        >
-          X
-        </button>
-        <div className="bg-white rounded-lg p-8 grid grid-cols-2 grid-rows-6 gap-4">
-          <h1 className="col-span-2 text-center font-bold text-xl">
-            Vår klimatskala
-          </h1>
-          <img
-            src="/ecoscore_a_v2.svg"
-            alt="Minimal"
-            className="col-span-1 row-span-1 w-33 h-33"
-          ></img>
-          <h3 className="col-span-1 row-span-1 text-center">Minimal</h3>
-          <img
-            src="/ecoscore_b_v2.svg"
-            alt="Minimal"
-            className="col-span-1 row-span-1 w-33 h-33"
-          ></img>
-          <h3 className="col-span-1 row-span-1 text-center">Låg</h3>
-          <img
-            src="/ecoscore_c_v2.svg"
-            alt="Minimal"
-            className="col-span-1 row-span-1 w-33 h-33"
-          ></img>
-          <h3 className="col-span-1 row-span-1 text-center">Måttlig</h3>
-          <img
-            src="/ecoscore_d_v2.svg"
-            alt="Minimal"
-            className="col-span-1 row-span-1 w-33 h-33"
-          ></img>
-          <h3 className="col-span-1 row-span-1 text-center">Medelhög</h3>
-          <img
-            src="/ecoscore_e_v2.svg"
-            alt="Minimal"
-            className="col-span-1 row-span-1 w-33 h-33"
-          ></img>
-          <h3 className="col-span-1 row-span-1 text-center">Hög</h3>
-          <button data-close-modal className="col-span-2 mt-4 text-center">
-          Close
-        </button>
-          <button
-            type="button"
-            data-action="modal#close"
-            data-close-modal
-            className="absolute top-4 right-4"
-          >
-            X
-          </button>
-        </div>
-      </dialog> */}
-
-      {/* <dialog data-modal class="fixed inset-0 z-50 flex items-center justify-center">
-  <div class="bg-white rounded-lg p-8 grid grid-cols-2 grid-rows-6 gap-4">
-    <h1 class="col-span-2 text-center font-bold text-xl">Vår klimatskala</h1>
-    <img src="/ecoscore_a_v2.svg" alt="Minimal" class="col-span-1 row-span-1 w-16 h-16">
-    <h3 class="col-span-1 row-span-1 text-center">Minimal</h3>
-    <img src="/ecoscore_b_v2.svg" alt="Låg" class="col-span-1 row-span-1 w-16 h-16">
-    <h3 class="col-span-1 row-span-1 text-center">Låg</h3>
-    <img src="/ecoscore_c_v2.svg" alt="Måttlig" class="col-span-1 row-span-1 w-16 h-16">
-    <h3 class="col-span-1 row-span-1 text-center">Måttlig</h3>
-    <img src="/ecoscore_d_v2.svg" alt="Medelhög" class="col-span-1 row-span-1 w-16 h-16">
-    <h3 class="col-span-1 row-span-1 text-center">Medelhög</h3>
-    <img src="/ecoscore_e_v2.svg" alt="Hög" class="col-span-1 row-span-1 w-16 h-16">
-    <h3 class="col-span-1 row-span-1 text-center">Hög</h3>
-    <button data-close-modal class="col-span-2 mt-4 text-center">Close</button>
-  </div>
-</dialog> */}
-
-      {/* <p className={styles.hoverText}>Läs mer om vår klimatskala</p>
-      <div className={styles.card}>
-        <p>This is the hover card that appears when you hover over the text.</p>
-      </div> */}
 
       <div className={styles.imageContainer}>
         <Image

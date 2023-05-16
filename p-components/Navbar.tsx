@@ -1,6 +1,4 @@
-import SearchIcon from "@mui/icons-material/Search"
 import Link from "next/link"
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"
 import styles from "../styles/navbar.module.css"
 import { useRouter } from "next/router"
 
