@@ -102,10 +102,17 @@ const index: NextPage<Props> = ({}) => {
 
   const handleFormSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    //router.push(`/productFetch?search=${searchTerm}`)
+    router.push(`/productFetch?search=${searchTerm}`)
     console.log(`Searching for ${searchTerm} in productFetch`)
     setSearchTerm("")
   }
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault()
+  //   router.push({
+  //     pathname: "/productFetch",
+  //     query: { searchTerm },
+  //   })
+  // }
 
   return (
     <div>
@@ -126,7 +133,11 @@ const index: NextPage<Props> = ({}) => {
       </div>
 
       <div className={styles.searchbarContainer}>
-        <form className={styles.form} onSubmit={handleFormSubmit}>
+        <form
+          className={styles.form}
+          onSubmit={handleFormSubmit}
+          name="serchform"
+        >
           <input
             type="search"
             name=""

@@ -3,14 +3,15 @@ import styles from "../styles/nyFetch.module.css"
 import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Navbar } from "./Navbar"
+
 import { debounce } from "@mui/material"
 
 import { useLocation } from "react-router-dom"
 import SearchIcon from "@mui/icons-material/Search"
+import { Navbar } from "@/p-components/Navbar"
 import React from "react"
 
-const FetchApi = () => {
+const AshTestingPage = () => {
   interface Props {}
 
   interface Product {
@@ -94,41 +95,40 @@ const FetchApi = () => {
     // const [hasMore, setHasMore] = useState<boolean>(true)
     // const router = useRouter()
     // const { search } = router.query
-    const queryParams = new URLSearchParams(location.search)
-    const searchTerm = queryParams.get("search")
-    const [query, setQuery] = useState<string>("")
+    //const queryParams = new URLSearchParams(location.search)
+    //const searchTerm = queryParams.get("search")
+    //const [query, setQuery] = useState<string>("")
     const [products, setProducts] = useState<Product[]>([])
     const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
-    const [hasMore, setHasMore] = useState<boolean>(true)
+    //const [hasMore, setHasMore] = useState<boolean>(true)
     const router = useRouter()
-    const { search } = router.query
+    const [searchTerm, setSearchTerm] = useState("")
     const abortControllerRef = React.useRef<AbortController | null>(null)
-
-    useEffect(() => {
-      const queryParams = new URLSearchParams(location.search)
-      const searchTerm = queryParams.get("search")
-      setQuery(searchTerm || "")
-    }, [location.search])
+    //const { search } = router.query
 
     useEffect(() => {
       async function fetchProducts() {
-        if (!query) {
-          setProducts([])
-          return
-        }
-        abortControllerRef.current?.abort()
-        const abortController = new AbortController()
-        abortControllerRef.current = abortController
-        const signal = abortController.signal
+
+        if (!searchTerm) {
+            setProducts([])
+            return
+          }
+
+          abortControllerRef.current?.abort() // cancel previous request (if any)
+          const abortController = new AbortController()
+          abortControllerRef.current = abortController
+          const signal = abortController.signal
 
         const response = await fetch(
-          //`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
+          // `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${query}&json=1`
           //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_nsearch_terms=${query}&page_size=425&json=true`
           //`https://world.openfoodfacts.org/cgi/search.pl?action=process&&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=425&json=true&search_terms=${searchTerm}`
           // `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=450&search_terms=${searchTerm}&json=true `
-          `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&sort_by=unique_scans_n&page_size=450&search_terms=${query}&json=true `,
+          `https://world.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=countries&tag_contains_0=contains&tag_0=Sweden&sort_by=unique_scans_n&page_size=440&search_terms=${searchTerm}&json=true`,
           { signal }
         )
+          
+
         const data = await response.json()
 
         const products: Product[] = data.products.map((product: Product) => ({
@@ -169,36 +169,40 @@ const FetchApi = () => {
 
         setFilteredProducts(filteredProducts.slice(0, 450)) // display first 10 products
 
-        setHasMore(true)
+        //setHasMore(true)
       }
-      if (query) {
-        fetchProducts()
-      }
-    }, [query])
+
+      fetchProducts()
+    }, [])
 
     function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
       const searchTerm = event.target.value.toLowerCase()
 
       const newFilteredProducts = products.filter((product) => {
         const productName = product.product_name?.toLowerCase()
-        setQuery(searchTerm)
-
         return productName?.includes(searchTerm)
       })
 
       setFilteredProducts(newFilteredProducts.slice(0, 450))
 
-      setHasMore(true)
+      //setHasMore(true)
 
-      // Update the searchTerm state with the new search term
-      setQuery(searchTerm)
+      //setQuery(searchTerm)
     }
 
     const handleFormSubmit = (e: { preventDefault: () => void }) => {
       e.preventDefault()
-      router.push(`/productFetch?search=${searchTerm}`)
+      const searchParams = new URLSearchParams(router.asPath.split("?")[1])
+      searchParams.set("searchTerm", searchTerm)
+      router.push(`/?${searchParams.toString()}`, undefined, { shallow: true })
       console.log(`Searching for ${searchTerm} in productFetch`)
     }
+
+    // const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    //   e.preventDefault()
+    //   router.push(`/productFetch?search=${searchTerm}`)
+    //   console.log(`Searching for ${searchTerm} in productFetch`)
+    // }
 
     //   function loadMore() {
     //     const currentSize = filteredProducts.length
@@ -228,7 +232,7 @@ const FetchApi = () => {
 
         <div className={styles.searchbarContainer}>
           {/* <h1>Product List</h1> */}
-          <form className={styles.form} onSubmit={handleFormSubmit} id={"id"}>
+          <form className={styles.form} onSubmit={handleFormSubmit}>
             <input
               type="search"
               className={styles.input}
@@ -236,7 +240,6 @@ const FetchApi = () => {
               onChange={(event) => {
                 handleSearch(event)
               }}
-              //value={searchTerm || ""}
             />
           </form>
         </div>
@@ -280,7 +283,7 @@ const FetchApi = () => {
                       <div className={styles.productImageContainer}>
                         <img
                           src={product.image_url}
-                          alt={""}
+                          alt={product.product_name}
                           className={styles.productImage}
                         />
                       </div>
@@ -362,4 +365,4 @@ const FetchApi = () => {
 
   return <ProductList />
 }
-export default FetchApi
+export default AshTestingPage

@@ -5,6 +5,7 @@ import { User } from "@/types/user"
 import { InputNameComponent } from "@/p-components/inputNameComponent"
 import { InputEmailComponent } from "@/p-components/inputEmailComponent"
 import styles from "../styles/subscriptionPage.module.css"
+import { Navbar } from "@/p-components/Navbar"
 
 interface Props {
   name: string
@@ -143,6 +144,8 @@ const Database: NextPage<Props> = ({}) => {
         >
           Button
         </button>
+
+        <Navbar />
       </div>
     </>
   )
