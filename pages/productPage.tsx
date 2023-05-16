@@ -1,10 +1,9 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-//import styles from "../styles/productPage.module.css"
-import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { Navbar } from "@/p-components/Navbar"
 import styles from "../styles/productPage2.module.css"
 import Link from "next/link"
+import Image from "next/image"
 
 interface Product {
   code: string
@@ -48,16 +47,6 @@ const ProductPage = () => {
     )
     setIsFavorite(isProductFavorite)
   }, [code])
-
-  // const [heartIconSrc, setHeartIconSrc] = useState<string>(
-  //   "/heart_icon_white.svg"
-  // )
-
-  // const [heartIconSrc, setHeartIconSrc] = useState<string>(
-  //   localStorage.getItem("isFavorite") === "true"
-  //     ? "/heart_icon_green.svg"
-  //     : "/heart_icon_white.svg"
-  // )
 
   const handelFavoriteClick = () => {
     // Toggle favorites status
@@ -132,22 +121,6 @@ const ProductPage = () => {
           <p className={styles.ecoScoreLabel}>{ecoScoreLabel} klimatpåverkan</p>
         </div>
 
-        {/* <table>
-          <tr>
-            <th>Kategori</th>
-            <th>Påverkan</th>
-          </tr>
-        </table> */}
-        {/* 
-        <div className={styles.categoriesContainer}>
-          <p className={styles.categories}></p>
-          <p className={styles.categories}>Kategori</p>
-        </div>
-
-        <div className={styles.impactContainer}>
-          <p className={styles.impact}></p>
-          <p className={styles.categories}>Påverkan</p>
-        </div> */}
         <div className={styles.totalscoreContainer}>
           <p className={styles.totalscore}> {ecoscore_score}/100 </p>
           <p className={styles.totalscoretext}>Klimatpoäng</p>
@@ -157,8 +130,7 @@ const ProductPage = () => {
 
       <div className={styles.headlineContainer}>
         <h3 className={styles.headline}>
-          {" "}
-          Produktens klimatpoäng bygger på två kategorier{" "}
+          Produktens klimatpoäng bygger på två kategorier
         </h3>
       </div>
 
@@ -185,18 +157,20 @@ const ProductPage = () => {
           <p className={styles.linkText}>Läs mer om produktens klimatpoäng </p>
 
           <div className={styles.iconContainer}>
-            <img src={"/link_icon.svg"} alt="" className={styles.linkIcon} />
+            {/* <Image src={"/link_icon.svg"} alt="" className={styles.linkIcon} /> */}
+            <Image
+              src={"/link_icon_v2.svg"}
+              alt={""}
+              width={"10"}
+              height={"10"}
+              className={styles.linkIcon}
+            ></Image>
           </div>
         </Link>
+        {/* <hr className={styles.line} /> */}
       </div>
 
       <Navbar />
-      {/* <p className={styles.ecoscore_grade}>Eco Score Grade:</p>
-      <h1 className={styles.headline}>Product Details</h1>
-      <p className={styles.code}>Code:</p>
-      <p className={styles.product_name}>Product Name: {product_name}</p>
-      <p className={styles.brands}>Brands: </p>
-      <p className={styles.categories}>Categories</p> */}
     </div>
   )
 }
