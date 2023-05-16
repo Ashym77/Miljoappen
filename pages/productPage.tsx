@@ -5,6 +5,7 @@ import { MuiBottomNavBar } from "@/p-components/MuiBottomNavBar"
 import { Navbar } from "@/p-components/Navbar"
 import styles from "../styles/productPage2.module.css"
 import Link from "next/link"
+import Image from "next/image"
 
 interface Product {
   code: string
@@ -185,7 +186,16 @@ const ProductPage = () => {
           <p className={styles.linkText}>Läs mer om produktens klimatpoäng </p>
 
           <div className={styles.iconContainer}>
-            <img src={"/link_icon.svg"} alt="" className={styles.linkIcon} />
+            <div className={styles.iconContainer}>
+              {/* <Image src={"/link_icon.svg"} alt="" className={styles.linkIcon} /> */}
+              <Image
+                src={"/link_icon_v2.svg"}
+                alt={""}
+                width={"10"}
+                height={"10"}
+                className={styles.linkIcon}
+              ></Image>
+            </div>
           </div>
         </Link>
       </div>
