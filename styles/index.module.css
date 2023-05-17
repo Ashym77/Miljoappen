@@ -8,8 +8,17 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
+  margin-left: 30px;
 
   /* border: solid red; */
+}
+@keyframes drop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 
 .logo {
@@ -18,6 +27,13 @@
   left: 136.59px;
   margin-top: 24.48px;
   margin-bottom: 10px;
+  animation: swish 1s ease-in-out;
+  animation-fill-mode: forwards;
+  animation-name: drop;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  transform: translateY(-100%);
+  animation-fill-mode: forwards;
 }
 
 .textContainer {

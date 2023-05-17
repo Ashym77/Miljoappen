@@ -63,11 +63,10 @@ function getEcoScoreLable(lable: string): string {
   }
 }
 
-const index: NextPage<Props> = ({}) => {
+const index = ({}) => {
   const [searchTerm, setSearchTerm] = useState("")
   const [query, setQuery] = useState("")
-  //const location = useLocation();
-  //const history = useHistory();
+
   useEffect(() => {
     // nedan är kodet för modal rutan som dycker upp när man klickar knappen
     const openButton = document.querySelector(
@@ -83,14 +82,11 @@ const index: NextPage<Props> = ({}) => {
     openButton.addEventListener("click", () => {
       if (!modal.open) {
         modal.showModal()
-
-        document.body.classList.add("dialogMask") // Add the overlay to the body
       }
     })
 
     closeButton.addEventListener("click", () => {
       modal.close()
-      document.body.classList.remove("dialogMask") // Remove the overlay from the body when the dialog is closed
     })
   })
 
