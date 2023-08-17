@@ -82,9 +82,9 @@ const FetchApi = () => {
         return ecoScoreLabel[5]
     }
   }
-
+  /*
   function ProductList() {
-    const queryParams = new URLSearchParams(location.search)
+    const queryParams = new URLSearchParams(window.location.search)
     const searchTerm = queryParams.get("search")
     const [query, setQuery] = useState<string>("")
     const [products, setProducts] = useState<Product[]>([])
@@ -93,12 +93,27 @@ const FetchApi = () => {
     const router = useRouter()
     const { search } = router.query
     const abortControllerRef = React.useRef<AbortController | null>(null)
-
-    useEffect(() => {
-      const queryParams = new URLSearchParams(location.search)
+*/
+  /*useEffect(() => {
+      const queryParams = new URLSearchParams(window.location.search)
       const searchTerm = queryParams.get("search")
       setQuery(searchTerm || "")
     }, [location.search])
+*/
+
+  function ProductList() {
+    const router = useRouter()
+    const [query, setQuery] = useState<string>("")
+    const abortControllerRef = React.useRef<AbortController | null>(null)
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
+    const [hasMore, setHasMore] = useState<boolean>(true)
+    const [products, setProducts] = useState<Product[]>([])
+
+    useEffect(() => {
+      const queryParams = new URLSearchParams(window.location.search)
+      const searchTerm = queryParams.get("search")
+      setQuery(searchTerm || "")
+    }, [])
 
     useEffect(() => {
       async function fetchProducts() {
@@ -157,7 +172,7 @@ const FetchApi = () => {
 
         setProducts(filteredProducts)
 
-        setFilteredProducts(filteredProducts.slice(0, 450)) // display first 10 products
+        setFilteredProducts(filteredProducts.slice(0, 450))
 
         setHasMore(true)
       }
@@ -184,10 +199,10 @@ const FetchApi = () => {
       setQuery(searchTerm)
     }
 
-    const handleFormSubmit = (e: { preventDefault: () => void }) => {
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault()
-      router.push(`/productFetch?search=${searchTerm}`)
-      console.log(`Searching for ${searchTerm} in productFetch`)
+      router.push(`/productFetch?search=${query}`)
+      console.log(`Searching for ${query} in productFetch`)
     }
 
     return (

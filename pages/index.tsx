@@ -5,7 +5,7 @@ import Image from "next/image"
 import SearchIcon from "@mui/icons-material/Search"
 
 import { useEffect, useState } from "react"
-import FetchApi from "@/p-components/FetchApi"
+// import FetchApi from "@/p-components/FetchApi"
 import { Navbar } from "@/p-components/Navbar"
 import router from "next/router"
 import React from "react"
@@ -65,7 +65,7 @@ function getEcoScoreLable(lable: string): string {
 }
 
 const Index: NextPage<Props> = ({}) => {
-  const [searchTerm, setSearchTerm] = React.useState("")
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     // nedan är kodet för modal rutan som dycker upp när man klickar knappen

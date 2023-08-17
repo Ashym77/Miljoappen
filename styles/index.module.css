@@ -21,10 +21,12 @@
 }
 
 .logo {
+
   width: 450px;
   height: 100px;
   left: 136px;
   margin-top: 24px;
+
   margin-bottom: 10px;
   animation: swish 1s ease-in-out;
   animation-fill-mode: forwards;
